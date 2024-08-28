@@ -710,6 +710,50 @@ namespace WorldPackets
 
             uint32 Ticks = 0;
         };
+
+        class SetAdvFlyingSpeed final : public ServerPacket
+        {
+        public:
+            SetAdvFlyingSpeed(OpcodeServer opcode, uint32 sequenceIndex, float speed) : ServerPacket(opcode, 4 + 4)
+            {
+                SequenceIndex = sequenceIndex;
+                Speed = speed;
+            }
+
+            WorldPacket const* Write() override;
+
+            uint32 SequenceIndex;
+            float Speed;
+        };
+
+        class SetAdvFlyingMinMaxSpeeds final : public ServerPacket
+        {
+        public:
+            SetAdvFlyingMinMaxSpeeds(OpcodeServer opcode, uint32 sequenceIndex, float speed, float maxSpeed) : ServerPacket(opcode, 4 + 4 + 4)
+            {
+                SequenceIndex = sequenceIndex;
+                Speed = speed;
+                MaxSpeed = maxSpeed;
+            }
+
+            WorldPacket const* Write() override;
+
+            uint32 SequenceIndex;
+            float Speed;
+            float MaxSpeed;
+        };
+
+        class MoveAddImpulse final : public ServerPacket
+        {
+        public:
+            MoveAddImpulse() : ServerPacket(SMSG_MOVE_ADD_IMPULSE, 4 + 4) { }
+
+            WorldPacket const* Write() override;
+
+            ObjectGuid MoverGUID;
+            uint32 SequenceIndex = 1;
+            TaggedPosition<Position::XYZ> Direction;
+        };
     }
 
     ByteBuffer& operator<<(ByteBuffer& data, Movement::MonsterSplineFilterKey const& monsterSplineFilterKey);
