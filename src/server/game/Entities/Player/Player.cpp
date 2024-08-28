@@ -30836,3 +30836,41 @@ bool Player::CanExecutePendingSpellCastRequest()
 
     return true;
 }
+
+void Player::InitAdvFlying()
+{
+    FlightCapabilityEntry const* flightCapabilityEntry = sFlightCapabilityStore.LookupEntry(GetFlightCapabilityID());
+    if (!flightCapabilityEntry)
+        return;
+
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_AIR_FRICTION,               flightCapabilityEntry->AirFriction);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_MAX_VEL,                    flightCapabilityEntry->MaxVel);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_LIFT_COEFFICIENT,           flightCapabilityEntry->LiftCoefficient);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_DOUBLE_JUMP_VEL_MOD,        flightCapabilityEntry->DoubleJumpVelMod);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_GLIDE_START_MIN_HEIGHT,     flightCapabilityEntry->GlideStartMinHeight);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_ADD_IMPULSE_MAX_SPEED,      flightCapabilityEntry->AddImpulseMaxSpeed);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_BANKING_RATE,               flightCapabilityEntry->BankingRateMin,              flightCapabilityEntry->BankingRateMax);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_PITCHING_RATE_DOWN,         flightCapabilityEntry->PitchingRateDownMin,         flightCapabilityEntry->PitchingRateDownMax);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_PITCHING_RATE_UP,           flightCapabilityEntry->PitchingRateUpMin,           flightCapabilityEntry->PitchingRateUpMax);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_TURN_VELOCITY_THRESHOLD,    flightCapabilityEntry->TurnVelocityThresholdMin,    flightCapabilityEntry->TurnVelocityThresholdMax);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_SURFACE_FRICTION,           flightCapabilityEntry->SurfaceFriction);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_OVER_MAX_DECELERATION,      flightCapabilityEntry->OverMaxDeceleration);
+    SendAdvFlyingSpeed(SMSG_MOVE_SET_ADV_FLYING_LAUNCH_SPEED_COEFFICIENT,   flightCapabilityEntry->LaunchSpeedCoefficient);
+}
+
+inline void Player::SendAdvFlyingSpeed(OpcodeServer opcode, float speed, Optional<float> maxSpeed /*= {}*/)
+{
+    if (maxSpeed.has_value())
+        SendDirectMessage(WorldPackets::Movement::SetAdvFlyingMinMaxSpeeds(opcode, m_movementCounter++, speed, *maxSpeed).Write());
+    else
+        SendDirectMessage(WorldPackets::Movement::SetAdvFlyingSpeed(opcode, m_movementCounter++, speed).Write());
+}
+
+void Player::AddMoveImpulse(Position direction)
+{
+    auto addImpulse = WorldPackets::Movement::MoveAddImpulse();
+    addImpulse.MoverGUID = GetGUID();
+    addImpulse.SequenceIndex = m_movementCounter++;
+    addImpulse.Direction = direction;
+    SendMessageToSet(addImpulse.Write(), true);
+}

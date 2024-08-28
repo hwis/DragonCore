@@ -108,6 +108,7 @@ enum PlayerRestState : uint8;
 enum class PlayerCreateMode : int8;
 enum RestTypes : uint8;
 enum TransferAbortReason : uint32;
+enum OpcodeServer : uint16;
 
 namespace BattlePets
 {
@@ -2181,6 +2182,10 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
         void RemoveLootRoll(LootRoll* roll);
 
         void RemovedInsignia(Player* looterPlr);
+
+        void InitAdvFlying();
+        void SendAdvFlyingSpeed(OpcodeServer opcode, float speed, Optional<float> maxSpeed = {});
+        void AddMoveImpulse(Position direction);
 
         WorldSession* GetSession() const { return m_session; }
 
