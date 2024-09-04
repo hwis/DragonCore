@@ -147,7 +147,7 @@ class spell_dru_overgrowth : public SpellScript
     {
         SPELL_DRUID_REJUVENATION = 774,
         SPELL_DRUID_WILD_GROWTH = 48438,
-        SPELL_DRUID_LIFE_BLOOM = 33763,
+        SPELL_DRUID_LIFE_BLOOM = 188550,
         SPELL_DRUID_REGROWTH = 8936
     };
 
@@ -157,6 +157,7 @@ class spell_dru_overgrowth : public SpellScript
         {
             if (Unit* target = GetHitUnit())
             {
+                caster->SendPlaySpellVisual(caster, 38314, 0, 0, 0.0f, false);
                 caster->AddAura(SPELL_DRUID_REJUVENATION, target);
                 caster->AddAura(SPELL_DRUID_WILD_GROWTH, target);
                 caster->AddAura(SPELL_DRUID_LIFE_BLOOM, target);
@@ -172,7 +173,7 @@ class spell_dru_overgrowth : public SpellScript
 };
 
 
-// Swiftmend - 158478
+// Swiftmend - 18562
 class spell_dru_swiftmend : public SpellScript
 {
     void HandleHit(SpellEffIndex /*effIndex*/)
@@ -181,7 +182,7 @@ class spell_dru_swiftmend : public SpellScript
         {
             if(caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST))
             {
-                caster->AddAura(SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF);
+                caster->AddAura(SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF, caster);
             }
         }
     }
