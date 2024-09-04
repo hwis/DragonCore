@@ -35,7 +35,7 @@ public:
             }
         }
     }
-}
+};
 
 class quest_the_war_within : public QuestScript
 {
@@ -84,7 +84,7 @@ public:
     {
         OnEffectHitTarget += SpellEffectFn(spell_tele_to_silithus::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
-}
+};
 
 void AddSC_visions_of_atheroth()
 {
