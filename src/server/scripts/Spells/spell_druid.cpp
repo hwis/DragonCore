@@ -132,8 +132,66 @@ enum DruidSpells
     SPELL_DRUID_THRASH_BEAR_AURA               = 192090,
     SPELL_DRUID_THRASH_CAT                     = 106830,
     SPELL_DRUID_YSERAS_GIFT_HEAL_PARTY         = 145110,
-    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109
+    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109,
+
+    SPELL_DRUID_SOUL_OF_THE_FOREST               = 158478,
+    SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF    = 114108,
+
+    SPELL_DRUID_OVERGROWTH                       = 203651
 };
+
+// Overgrowth - 203651
+class spell_dru_overgrowth : public SpellScript
+{
+    enum
+    {
+        SPELL_DRUID_REJUVENATION = 774,
+        SPELL_DRUID_WILD_GROWTH = 48438,
+        SPELL_DRUID_LIFE_BLOOM = 33763,
+        SPELL_DRUID_REGROWTH = 8936
+    };
+
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (Unit* target = GetHitUnit())
+            {
+                caster->AddAura(SPELL_DRUID_REJUVENATION, target);
+                caster->AddAura(SPELL_DRUID_WILD_GROWTH, target);
+                caster->AddAura(SPELL_DRUID_LIFE_BLOOM, target);
+                caster->AddAura(SPELL_DRUID_REGROWTH, target);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_overgrowth_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+
+// Swiftmend - 158478
+class spell_dru_swiftmend : public SpellScript
+{
+    void HandleHit(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if(caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST))
+            {
+                caster->AddAura(SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_swiftmend::HandleHit, EFFECT_0, SPELL_EFFECT_HEAL);
+    }
+};
+
 
 // 774 - Rejuvenation
 // 155777 - Rejuvenation (Germination)
@@ -2334,4 +2392,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellAndAuraScriptPair(spell_dru_wild_growth, spell_dru_wild_growth_aura);
     RegisterSpellScript(spell_dru_yseras_gift);
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
+    
+    RegisterSpellScript(spell_dru_swiftmend);
+    RegisterSpellScript(spell_dru_overgrowth);
 }
