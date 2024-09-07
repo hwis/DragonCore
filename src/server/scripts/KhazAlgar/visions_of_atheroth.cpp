@@ -88,6 +88,7 @@ public:
 
 void AddSC_visions_of_atheroth()
 {
+    new add_start_quest_tww();
     new quest_the_war_within();
     RegisterSpellScript(spell_tele_to_silithus);
 }
