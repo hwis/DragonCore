@@ -2341,7 +2341,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_celestial_alignment);
     RegisterSpellScript(spell_dru_cultivation);
     RegisterSpellScript(spell_dru_dash);
-    RegisterSpellAndAuraScriptPair(spell_dru_dash, spell_dru_tiger_dash_aura);
+    RegisterSpellAndAuraScriptPair(spell_dru_dash, spell_dru_dash_aura);
     RegisterSpellScript(spell_dru_earthwarden);
     RegisterSpellScript(spell_dru_eclipse_aura);
     RegisterSpellScript(spell_dru_eclipse_dummy);
