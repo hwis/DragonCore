@@ -13,22 +13,22 @@ public:
     {
         Quest const* qA = sObjectMgr->GetQuestTemplate(QUEST_THE_WAR_WITHIN_A);
         Quest const* qH = sObjectMgr->GetQuestTemplate(QUEST_THE_WAR_WITHIN_H);
-        if(player->GetQuestStatus(qA) == QUEST_STATUS_REWARDED)
+        if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_A) == QUEST_STATUS_REWARDED)
             return;
-        if(player->GetQuestStatus(qH) == QUEST_STATUS_REWARDED)
+        if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_H) == QUEST_STATUS_REWARDED)
             return;
         if(player->GetLevel() >= 70)
         {
             if(player->GetTeam() == ALLIANCE)
             {
-                if(player->GetQuestStatus(qA) == QUEST_STATUS_NONE)
+                if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_A) == QUEST_STATUS_NONE)
                 {
                     player->AddQuestAndCheckCompletion(qA, player);
                 }
             }
             if(player->GetTeam() == HORDE)
             {
-                if(player->GetQuestStatus(qH) == QUEST_STATUS_NONE)
+                if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_H) == QUEST_STATUS_NONE)
                 {
                     player->AddQuestAndCheckCompletion(qH, player);
                 }
