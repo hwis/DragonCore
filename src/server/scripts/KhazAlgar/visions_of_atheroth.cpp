@@ -44,6 +44,8 @@ public:
 
     void OnQuestStatusChange(Player* player, Quest const* /*quest*/, QuestStatus /*oldStatus*/, QuestStatus newStatus)
     {
+        Quest const* qA = sObjectMgr->GetQuestTemplate(QUEST_THE_WAR_WITHIN_A);
+        Quest const* qH = sObjectMgr->GetQuestTemplate(QUEST_THE_WAR_WITHIN_H);
         if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_A) == QUEST_STATUS_REWARDED)
             return;
         if(player->GetQuestStatus(QUEST_THE_WAR_WITHIN_H) == QUEST_STATUS_REWARDED)
