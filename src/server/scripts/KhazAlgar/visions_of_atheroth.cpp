@@ -74,8 +74,6 @@ public:
 class spell_tele_to_silithus : public SpellScript
 {
 public:
-    spell_tele_to_silithus() : SpellScript("spell_tele_to_silithus") { }
-
     void HandleDummy(SpellEffIndex /*effindex*/)
     {
         Player* player = GetCaster()->ToPlayer();
