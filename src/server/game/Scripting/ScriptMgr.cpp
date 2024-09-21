@@ -2350,6 +2350,12 @@ void ScriptMgr::OnSceneComplete(Player* player, uint32 sceneInstanceID, SceneTem
     tmpscript->OnSceneComplete(player, sceneInstanceID, sceneTemplate);
 }
 
+// Battle pet
+void ScriptMgr::OnPetBattleFinish(Player* player)
+{
+	FOREACH_SCRIPT(PlayerScript)->OnPetBattleFinish(player);
+}
+
 // Quest
 void ScriptMgr::OnQuestStatusChange(Player* player, Quest const* quest, QuestStatus oldStatus, QuestStatus newStatus)
 {
@@ -3035,6 +3041,11 @@ void PlayerScript::OnMovieComplete(Player* /*player*/, uint32 /*movieId*/)
 
 void PlayerScript::OnPlayerChoiceResponse(Player* /*player*/, uint32 /*choiceId*/, uint32 /*responseId*/)
 {
+}
+
+void PlayerScript::OnPetBattleFinish(Player* player)
+{
+	//FOREACH_SCRIPT(PlayerScript)->OnPetBattleFinish(player);
 }
 
 AccountScript::AccountScript(char const* name)

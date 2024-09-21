@@ -238,6 +238,21 @@ class RaidCheck
         Unit const* _caster;
 };
 
+// 421453 - Ultimate Penitence
+class spell_pri_ultimate_penitence : public SpellScript
+{
+	void HandleDummy(SpellEffIndex /*effIndex*/)
+	{
+		GetCaster()->SetDisableGravity(true);
+		GetCaster()->GetMotionMaster()->MoveJump(GetCaster()->GetPositionX(), GetCaster()->GetPositionY(), GetCaster()->GetPositionZ() + 15.0f, 10.0f, 10.0f);
+	}
+
+	void Register() override
+	{
+		OnEffectHit += SpellEffectFn(spell_pri_ultimate_penitence::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+	}
+};
+
 // 121536 - Angelic Feather talent
 class spell_pri_angelic_feather_trigger : public SpellScript
 {
@@ -3658,4 +3673,5 @@ void AddSC_priest_spell_scripts()
     RegisterSpellScript(spell_pri_vampiric_touch);
     RegisterSpellScript(spell_pri_whispering_shadows);
     RegisterSpellScript(spell_pri_whispering_shadows_effect);
+	RegisterSpellScript(spell_pri_ultimate_penitence);
 }

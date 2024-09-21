@@ -6179,7 +6179,7 @@ void Unit::SetMinion(Minion *minion, bool apply)
                 SetMinionGUID(minion->GetGUID());
         }
 
-        SummonPropertiesEntry const* properties = minion->m_Properties;
+        /*SummonPropertiesEntry const* properties = minion->m_Properties;
         if (properties && SummonTitle(properties->Title) == SummonTitle::Companion)
         {
             SetCritterGUID(minion->GetGUID());
@@ -6198,7 +6198,17 @@ void Unit::SetMinion(Minion *minion, bool apply)
                     }
                 }
             }
-        }
+        }*/
+
+	if(minion->m_Properties && SummonTitle(minion->m_Properties->Title) == SummonTitle::Companion)
+	{
+		SetCritterGUID(minion->GetGUID());
+		if(Player* thisPlayer = ToPlayer())
+		{
+			ObjectGuid SummonedGUID = thisPlayer->GetSummonedBattlePetGUID();
+			minion->SetBattlePetCompanionGUID(SummonedGUID);
+		}
+	}
 
         // PvP, FFAPvP
         minion->ReplaceAllPvpFlags(GetPvpFlags());
@@ -8102,7 +8112,7 @@ void Unit::Dismount()
     {
         player->EnablePetControlsOnDismount();
         player->ResummonPetTemporaryUnSummonedIfAny();
-        player->ResummonBattlePetTemporaryUnSummonedIfAny();
+        //player->ResummonBattlePetTemporaryUnSummonedIfAny();
     }
 }
 

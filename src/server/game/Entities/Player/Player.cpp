@@ -142,6 +142,10 @@
 #include <G3D/g3dmath.h>
 #include <sstream>
 
+#include "PetBattle.h"
+#include "BattlePetSystem.h"
+#include "BattlePetDataStore.h"
+
 #define ZONE_UPDATE_INTERVAL (1*IN_MILLISECONDS)
 
 // corpse reclaim times
@@ -1581,7 +1585,7 @@ void Player::RemoveFromWorld()
         StopCastingCharm();
         StopCastingBindSight();
         UnsummonPetTemporaryIfAny();
-        UnsummonBattlePetTemporaryIfAny();
+        //UnsummonBattlePetTemporaryIfAny();
         SetPower(POWER_COMBO_POINTS, 0);
         m_session->DoLootReleaseAll();
         m_lootRolls.clear();
@@ -6210,12 +6214,12 @@ bool Player::IsActionButtonDataValid(uint8 button, uint64 action, uint8 type) co
             break;
         case ACTION_BUTTON_COMPANION:
         {
-            if (!GetSession()->GetBattlePetMgr()->GetPet(ObjectGuid::Create<HighGuid::BattlePet>(action)))
+            /* if (!GetSession()->GetBattlePetMgr()->GetPet(ObjectGuid::Create<HighGuid::BattlePet>(action)))
             {
                 TC_LOG_ERROR("entities.player", "Player::IsActionButtonDataValid: Companion action {} not added into button {} for player {} ({}): companion does not exist",
                     action, button, GetName(), GetGUID().ToString());
                 return false;
-            }
+            }*/
             break;
         }
         case ACTION_BUTTON_MOUNT:
@@ -18542,8 +18546,8 @@ bool Player::LoadFromDB(ObjectGuid guid, CharacterDatabaseQueryHolder const& hol
     }
 
     // Unlock battle pet system if it's enabled in bnet account
-    if (GetSession()->GetBattlePetMgr()->IsBattlePetSystemEnabled())
-        LearnSpell(BattlePets::SPELL_BATTLE_PET_TRAINING, false);
+    // if (GetSession()->GetBattlePetMgr()->IsBattlePetSystemEnabled())
+    //    LearnSpell(BattlePets::SPELL_BATTLE_PET_TRAINING, false);
 
     m_achievementMgr->CheckAllAchievementCriteria(this);
     m_questObjectiveCriteriaMgr->CheckAllQuestObjectiveCriteria(this);
@@ -20435,7 +20439,7 @@ void Player::SaveToDB(LoginDatabaseTransaction loginTransaction, CharacterDataba
 
     // TODO: Move this out
     GetSession()->GetCollectionMgr()->SaveAccountToys(loginTransaction);
-    GetSession()->GetBattlePetMgr()->SaveToDB(loginTransaction);
+    /* GetSession()->GetBattlePetMgr()->SaveToDB(loginTransaction); */
     GetSession()->GetCollectionMgr()->SaveAccountHeirlooms(loginTransaction);
     GetSession()->GetCollectionMgr()->SaveAccountMounts(loginTransaction);
     GetSession()->GetCollectionMgr()->SaveAccountItemAppearances(loginTransaction);
@@ -21802,7 +21806,7 @@ Creature* Player::GetSummonedBattlePet() const
     return nullptr;
 }
 
-void Player::SetBattlePetData(BattlePets::BattlePet const* pet)
+/* void Player::SetBattlePetData(BattlePets::BattlePet const* pet)
 {
     if (pet)
     {
@@ -21818,7 +21822,7 @@ void Player::SetBattlePetData(BattlePets::BattlePet const* pet)
         SetBattlePetCompanionExperience(0);
         SetWildBattlePetLevel(0);
     }
-}
+} */
 
 void Player::StopCastingCharm()
 {
@@ -27428,8 +27432,8 @@ void Player::ResummonPetTemporaryUnSummonedIfAny()
     m_temporaryUnsummonedPetNumber = 0;
 }
 
-void Player::UnsummonBattlePetTemporaryIfAny(bool onFlyingMount /*= false*/)
-{
+//void Player::UnsummonBattlePetTemporaryIfAny(bool onFlyingMount /*= false*/)
+/*{
     Creature* battlepet = GetSummonedBattlePet();
     if (!battlepet || !battlepet->IsSummon())
         return;
@@ -27441,9 +27445,9 @@ void Player::UnsummonBattlePetTemporaryIfAny(bool onFlyingMount /*= false*/)
         m_temporaryUnsummonedBattlePet = battlepet->GetBattlePetCompanionGUID();
 
     GetSession()->GetBattlePetMgr()->DismissPet();
-}
+}*/
 
-void Player::ResummonBattlePetTemporaryUnSummonedIfAny()
+/*void Player::ResummonBattlePetTemporaryUnSummonedIfAny()
 {
     if (m_temporaryUnsummonedBattlePet.IsEmpty())
         return;
@@ -27455,7 +27459,7 @@ void Player::ResummonBattlePetTemporaryUnSummonedIfAny()
     GetSession()->GetBattlePetMgr()->SummonPet(m_temporaryUnsummonedBattlePet);
 
     m_temporaryUnsummonedBattlePet.Clear();
-}
+}*/
 
 bool Player::IsPetNeedBeTemporaryUnsummoned() const
 {
@@ -30835,4 +30839,86 @@ bool Player::CanExecutePendingSpellCastRequest()
         return false;
 
     return true;
+}
+
+/*Battle Pet*/
+uint32 Player::GetUnlockedPetBattleSlot()
+{
+	if(m_achievementMgr->HasAchieved(6566))
+		return 3;
+
+	if(m_achievementMgr->HasAchieved(7433))
+		return 2;
+
+	if(HasBattlePetTraining())
+		return 1;
+
+	return 0;
+}
+
+std::shared_ptr<BattlePet>* Player::GetBattlePetCombatTeam()
+{
+	return _battlePetCombatTeam;
+}
+
+void Player::UpdateBattlePetCombatTeam()
+{
+	for(auto& i : _battlePetCombatTeam)
+		i = std::shared_ptr<BattlePet>();
+	
+	auto unlockedSlotCount = GetUnlockedPetBattleSlot();
+
+	for(auto itr = _battlePets.begin(); itr != _battlePets.end(); ++itr)
+	{
+		if(auto battlePet = itr->second)
+		{
+			if(battlePet->Slot >= 0 && battlePet->Slot < static_cast<int32>(unlockedSlotCount))
+			{
+				battlePet->UpdateAbilities();
+				_battlePetCombatTeam[battlePet->Slot] = battlePet;
+			}
+		}
+	}
+}
+
+void Player::PetBattleCountBattleSpecies()
+{
+	PetBattle* battle = sPetBattleSystem->GetBattle(_petBattleId);
+	if(!battle)
+		return;
+
+	uint32 thisTeamID = battle->Teams[PET_BATTLE_TEAM_1]->PlayerGuid == GetGUID() ? PET_BATTLE_TEAM_1 : PET_BATTLE_TEAM_2;
+	
+	for(BattlePetMap::iterator itr = _battlePets.begin(); itr != _battlePets.end(); ++itr)
+		if(std::shared_ptr<BattlePet> petBattle = itr->second)
+		{
+			if(battle->Teams[thisTeamID]->CapturedSpeciesCount.find(petBattle->Species) == battle->Teams[thisTeamID]->CapturedSpeciesCount.end())
+				battle->Teams[thisTeamID]->CapturedSpeciesCount[petBattle->Species] = 0;
+			
+			battle->Teams[thisTeamID]->CapturedSpeciesCount[petBattle->Species]++;
+		}
+}
+
+uint32 Player::GetBattlePetTrapLevel()
+{
+	if(m_achievementMgr->HasAchieved(6581))
+		return 3;
+
+	if(m_achievementMgr->HasAchieved(6556))
+		return 2;
+	
+	return 1;
+}
+
+void Player::UnsummonCurrentBattlePetIfAny(bool p_Unvolontary)
+{
+	if(!p_Unvolontary)
+		_lastSummonedBattlePet = 0;
+	
+	if(Creature* pet = GetSummonedBattlePet())
+	{
+		pet->DespawnOrUnsummon();
+		pet->AddObjectToRemoveList();
+		SetSummonedBattlePetGUID(ObjectGuid::Empty);
+	}
 }

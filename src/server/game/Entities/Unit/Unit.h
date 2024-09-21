@@ -1945,6 +1945,8 @@ class TC_GAME_API Unit : public WorldObject
         void AtStartOfEncounter(EncounterType type);
         void AtEndOfEncounter(EncounterType type);
 
+	ObjectGuid _petBattleId; //new
+
     private:
 
         void UpdateSplineMovement(uint32 t_diff);

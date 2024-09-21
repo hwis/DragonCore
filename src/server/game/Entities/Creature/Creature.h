@@ -27,12 +27,14 @@
 #include "MapObject.h"
 #include <list>
 
+class BattlePetInstance;
 class CreatureAI;
 class CreatureGroup;
 class Quest;
 class Player;
 class SpellInfo;
 class WorldSession;
+class WildBattlePet;
 struct Loot;
 
 enum MovementGeneratorType : uint8;
@@ -339,7 +341,9 @@ class TC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
 
         uint32 GetRespawnDelay() const { return m_respawnDelay; }
         void SetRespawnDelay(uint32 delay) { m_respawnDelay = delay; }
-
+	std::shared_ptr<BattlePetInstance> m_battlePetInstance;
+	ObjectGuid replacementFromGUID;
+	WildBattlePet* GetWildBattlePet() { return m_wildBattlePet; }
         float GetWanderDistance() const { return m_wanderDistance; }
         void SetWanderDistance(float dist) { m_wanderDistance = dist; }
 
@@ -468,6 +472,9 @@ class TC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
         void InitializeInteractSpellId();
         void SetInteractSpellId(int32 interactSpellId) { SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::InteractSpellID), interactSpellId); }
 
+
+        void ForcedDespawn(uint32 timeMSToDespawn = 0, Seconds forceRespawnTimer = 0s);
+
     protected:
         bool CreateFromProto(ObjectGuid::LowType guidlow, uint32 entry, CreatureData const* data = nullptr, uint32 vehId = 0);
         bool InitEntry(uint32 entry, CreatureData const* data = nullptr);
@@ -525,8 +532,11 @@ class TC_GAME_API Creature : public Unit, public GridObject<Creature>, public Ma
         bool IsInvisibleDueToDespawn(WorldObject const* seer) const override;
         bool CanAlwaysSee(WorldObject const* obj) const override;
 
+	/*new >*/
+	float m_followDistance = 1.0f;
+	WildBattlePet* m_wildBattlePet;
+	/*< new*/
     private:
-        void ForcedDespawn(uint32 timeMSToDespawn = 0, Seconds forceRespawnTimer = 0s);
         bool CheckNoGrayAggroConfig(uint32 playerLevel, uint32 creatureLevel) const; // No aggro from gray creatures
 
         // Waypoint path

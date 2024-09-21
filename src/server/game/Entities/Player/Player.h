@@ -94,6 +94,7 @@ class ReputationMgr;
 class RestMgr;
 class SpellCastTargets;
 class TradeData;
+class BattlePet; // new
 
 enum class ChrSpecialization : uint32;
 enum GroupCategory : uint8;
@@ -948,6 +949,7 @@ enum PlayerDelayedOperations
     DELAYED_BG_MOUNT_RESTORE    = 0x08,                     ///< Flag to restore mount state after teleport from BG
     DELAYED_BG_TAXI_RESTORE     = 0x10,                     ///< Flag to restore taxi state after teleport from BG
     DELAYED_BG_GROUP_RESTORE    = 0x20,                     ///< Flag to restore group state after teleport from BG
+	DELAYED_PET_BATTLE_INITIAL = 0x80,
     DELAYED_END
 };
 
@@ -1120,6 +1122,8 @@ enum TalentLearnResult : int32
     TALENT_FAILED_UNSPENT_TALENT_POINTS                 = 9,
     TALENT_FAILED_IN_PVP_MATCH                          = 10
 };
+
+typedef std::map<ObjectGuid, std::shared_ptr<BattlePet>> BattlePetMap;
 
 struct TC_GAME_API SpecializationInfo
 {
@@ -1303,7 +1307,7 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
         void RemovePetAura(PetAura const* petSpell);
 
         Creature* GetSummonedBattlePet() const;
-        void SetBattlePetData(BattlePets::BattlePet const* pet = nullptr);
+        //void SetBattlePetData(BattlePets::BattlePet const* pet = nullptr);
 
         /// Handles said message in regular chat based on declared language and in config pre-defined Range.
         void Say(std::string_view text, Language language, WorldObject const* = nullptr) override;
@@ -2636,8 +2640,9 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
         void EnablePetControlsOnDismount();
         void UnsummonPetTemporaryIfAny();
         void ResummonPetTemporaryUnSummonedIfAny();
-        void UnsummonBattlePetTemporaryIfAny(bool onFlyingMount = false);
-        void ResummonBattlePetTemporaryUnSummonedIfAny();
+        //void UnsummonBattlePetTemporaryIfAny(bool onFlyingMount = false);
+	//void UpdateBattlePetCombatTeam();
+        //void ResummonBattlePetTemporaryUnSummonedIfAny();
         bool IsPetNeedBeTemporaryUnsummoned() const;
 
         void SendCinematicStart(uint32 CinematicSequenceId) const;
@@ -2800,6 +2805,34 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
 
         bool IsAdvancedCombatLoggingEnabled() const { return _advancedCombatLoggingEnabled; }
         void SetAdvancedCombatLogging(bool enabled) { _advancedCombatLoggingEnabled = enabled; }
+
+	// Battle Pet new
+	bool _LoadPetBattles(PreparedQueryResult result);
+
+	void PetBattleCountBattleSpecies();
+	uint32 GetBattlePetTrapLevel();
+	void UnsummonCurrentBattlePetIfAny(bool p_Unvolontary);
+	bool HasBattlePetTraining();
+	BattlePetMap* GetBattlePets();
+	std::shared_ptr<BattlePet> GetBattlePet(ObjectGuid journalID);
+	void AddTrackingQuestIfNeeded(ObjectGuid sourceGuid);
+	uint64 _lastSummonedBattlePet;
+	std::shared_ptr<BattlePet>* GetBattlePetCombatTeam();
+	std::shared_ptr<BattlePet> _battlePetCombatTeam[3];
+	std::set<std::pair<uint32, uint32>> _oldPetBattleSpellToMerge;
+	BattlePetMap _battlePets;
+	bool AddBattlePetWithSpeciesId(BattlePetSpeciesEntry const* entry, uint16 flags, bool sendUpdate, bool sendDeliveryUppdate);
+	void SendBattlePayBattlePetDelivered(ObjectGuid petguid, uint32 creatureID) const;
+	bool AddBattlePet(uint32 spellID, uint16 flags = 0, bool bSendUpdate = true);
+	uint32 GetUnlockedPetBattleSlot();
+	
+	void SummonBattlePet(ObjectGuid journalID);
+	void SummonLastSummonedBattlePet();
+	void UpdateBattlePetCombatTeam();
+	void SaveBattlePets(CharacterDatabaseTransaction& trans);
+	void AddBattlePetByCreatureId(uint32 creatureId, bool sendUpdate, bool sendDiliveryUpdate);
+
+	/* BATTLE PET END */
 
         SceneMgr& GetSceneMgr() { return m_sceneMgr; }
         SceneMgr const& GetSceneMgr() const { return m_sceneMgr; }
@@ -3244,7 +3277,6 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
         void SetCanDelayTeleport(bool setting) { m_bCanDelayTeleport = setting; }
         bool IsHasDelayedTeleport() const { return m_bHasDelayedTeleport; }
         void SetDelayedTeleportFlag(bool setting) { m_bHasDelayedTeleport = setting; }
-        void ScheduleDelayedOperation(uint32 operation) { if (operation < DELAYED_END) m_DelayedOperations |= operation; }
 
         bool IsInstanceLoginGameMasterException() const;
 
@@ -3315,6 +3347,7 @@ class TC_GAME_API Player final : public Unit, public GridObject<Player>
         void RequestSpellCast(std::unique_ptr<SpellCastRequest> castRequest);
         void CancelPendingCastRequest();
         bool CanRequestSpellCast(SpellInfo const* spell, Unit const* castingUnit) const;
+	void ScheduleDelayedOperation(uint32 operation) { if (operation < DELAYED_END) m_DelayedOperations |= operation; }
 
     private:
         std::unique_ptr<SpellCastRequest> _pendingSpellCastRequest;
@@ -3336,5 +3369,10 @@ Trinity::IteratorPair<UF::ChrCustomizationChoice const*> MakeChrCustomizationCho
 
     return { container.data(), container.data() + container.size() };
 }
+
+	/*************************************************/
+	/************* BATTLE PET SYSTEM *****************/
+	/*************************************************/
+
 
 #endif

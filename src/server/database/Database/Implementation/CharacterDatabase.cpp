@@ -792,7 +792,18 @@ void CharacterDatabaseConnection::DoPrepareStatements()
     PrepareStatement(CHAR_UPD_CHARACTER_INSTANCE_LOCK_FORCE_EXPIRE, "UPDATE character_instance_lock SET expiryTime = ?, extended = 0 WHERE guid = ? AND mapId = ? AND lockId = ?", CONNECTION_ASYNC);
     PrepareStatement(CHAR_DEL_INSTANCE, "DELETE FROM instance WHERE instanceId = ?", CONNECTION_ASYNC);
     PrepareStatement(CHAR_INS_INSTANCE, "INSERT INTO instance (instanceId, data, completedEncountersMask, entranceWorldSafeLocId) VALUES (?, ?, ?, ?)", CONNECTION_ASYNC);
+
+// new
+// Battle Pets
+#define PETBATTLE_FIELDS "slot, name, nameTimeStamp, species, quality, breed, level, xp, display, health, flags, infoPower, infoMaxHealth, infoSpeed, infoGender, account, declinedGenitive, declinedNative, declinedAccusative, declinedInstrumental, declinedPrepositional"
+
+#define PETBATTLE_FULL_FIELDS "id, " PETBATTLE_FIELDS
+	PrepareStatement(CHAR_SEL_PETBATTLE_ACCOUNT, "SELECT " PETBATTLE_FULL_FIELDS " FROM account_battlepet WHERE account = ?", CONNECTION_BOTH);
+	PrepareStatement(CHAR_INS_PETBATTLE, "INSERT INTO account_battlepet(" PETBATTLE_FIELDS ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", CONNECTION_BOTH);
+	PrepareStatement(CHAR_UPD_PETBATTLE, "UPDATE account_battlepet SET slot=?, name=?, nameTimeStamp=?, species=?, quality=?, breed=?, level=?, xp=?, display=?, health=?, flags=?, infoPower=?, infoMaxHealth=?, infoSpeed=?, infoGender=?, declinedGenitive=?, declinedNative=?, declinedAccusative=?, declinedInstrumental=?, declinedPrepositional=? WHERE account=? AND id=?", CONNECTION_BOTH);
+	PrepareStatement(CHAR_DEL_PETBATTLE, "DELETE FROM account_battlepet WHERE id =?", CONNECTION_BOTH);
 }
+
 
 CharacterDatabaseConnection::CharacterDatabaseConnection(MySQLConnectionInfo& connInfo, ConnectionFlags connectionFlags) : MySQLConnection(connInfo, connectionFlags)
 {

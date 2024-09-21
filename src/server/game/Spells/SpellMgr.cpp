@@ -5012,6 +5012,15 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->AttributesEx &= ~SPELL_ATTR1_IS_CHANNELLED;
     });
 
+	// Castigation
+	ApplySpellFix({193134}, [](SpellInfo* spellInfo)
+	{
+		ApplySpellEffectFix(spellInfo, EFFECT_0, [](SpellEffectInfo* spellEffectInfo)
+		{
+			spellEffectInfo->BasePoints = -34;
+		});
+	});
+
     // Burning Rush
     ApplySpellFix({ 111400 }, [](SpellInfo* spellInfo)
     {

@@ -308,3 +308,46 @@ void ObjectAccessor::RemoveObject(Player* player)
     HashMapHolder<Player>::Remove(player);
     PlayerNameMapHolder::Remove(player);
 }
+
+Unit* ObjectAccessor::FindUnit(ObjectGuid const& guid)
+{
+    Unit* unit = HashMapHolder<Unit>::Find(guid);
+    return unit && unit->IsInWorld() ? unit : nullptr;
+}
+
+GameObject* ObjectAccessor::FindGameObject(ObjectGuid const& guid)
+{
+    GameObject* gameObject = HashMapHolder<GameObject>::Find(guid);
+    return gameObject && gameObject->IsInWorld() ? gameObject : nullptr;
+}
+
+Creature* ObjectAccessor::FindCreature(ObjectGuid const& guid)
+{
+    Creature* creature = HashMapHolder<Creature>::Find(guid);
+    return creature && creature->IsInWorld() ? creature : nullptr;
+}
+
+Player* ObjectAccessor::FindPlayer(Map* map, ObjectGuid guid)
+{
+    return GetObjectInMap(guid, map, static_cast<Player*>(nullptr));
+}
+
+Player* ObjectAccessor::GetObjectInWorld(ObjectGuid guid, Player* /*typeSpecifier*/)
+{
+    Player* player = HashMapHolder<Player>::Find(guid);
+    if (player && player->IsInWorld())
+        return player;
+    return nullptr;
+}
+
+static Unit * GetObjectInOrOutOfWorld(ObjectGuid guid, Unit* /*typeSpecifier*/)
+{
+   if (guid.IsPlayer())
+      return static_cast<Unit*>(GetObjectInOrOutOfWorld(guid, static_cast<Player*>(nullptr)));
+    
+   if (guid.IsPet())
+      return static_cast<Unit*>(GetObjectInOrOutOfWorld(guid, static_cast<Pet*>(nullptr)));
+    
+      return static_cast<Unit*>(GetObjectInOrOutOfWorld(guid, static_cast<Creature*>(nullptr)));
+}
+//DekkCore
