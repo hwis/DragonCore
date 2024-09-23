@@ -132,8 +132,155 @@ enum DruidSpells
     SPELL_DRUID_THRASH_BEAR_AURA               = 192090,
     SPELL_DRUID_THRASH_CAT                     = 106830,
     SPELL_DRUID_YSERAS_GIFT_HEAL_PARTY         = 145110,
-    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109
+    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109,
+
+    SPELL_DRUID_SOUL_OF_THE_FOREST               = 158478,
+    SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF    = 114108,
+
+    SPELL_DRUID_OVERGROWTH                       = 203651,
+	
+	SPELL_DRUID_PREDATORY_SWIFTNESS		= 16974,
+	SPELL_DRUID_PREDATORY_SWIFTNESS_AURA	= 69369,
+
+	SPELL_DRUID_RAKE = 1822,
+	SPELL_DRUID_RAKE_STUN = 163505
 };
+
+// Rake - 1822
+class spell_dru_rake : public SpellScript
+{
+	bool Load() override
+	{
+		Unit* caster = GetCaster();
+		if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH))
+			m_stealthed = true;
+
+		return true;
+	}
+
+	void HandleOnHit(SpellEffIndex /*effIndex*/)
+	{
+		Unit* caster = GetCaster();
+		Unit* target = GetExplTargetUnit();
+		if (!caster || !target)
+			return;
+		
+		if (m_stealthed)
+		{
+			SetHitDamage(GetHitDamage() * 2);
+			caster->CastSpell(target, SPELL_DRUID_RAKE_STUN, true);
+		}
+	}
+
+	void Register() override
+	{
+		OnEffectHitTarget += SpellEffectFn(spell_dru_rake::HandleOnHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+	}
+
+private:
+	bool m_stealthed = false;
+};
+
+// Predatory Swiftness - 16974
+class spell_dru_predatory_swiftness : public SpellScript
+{
+	uint8 _cp;
+	
+	bool Load() override
+	{
+		_cp = GetCaster()->GetPower(POWER_COMBO_POINTS);
+		return true;
+	}
+
+	SpellCastResult CheckCast()
+	{
+		if (GetCaster())
+		{
+			if (GetCaster()->GetTypeId() != TYPEID_PLAYER)
+			{
+				return SPELL_FAILED_DONT_REPORT;
+			}
+
+			if (GetCaster()->ToPlayer()->GetPower(POWER_COMBO_POINTS))
+			{
+				return SPELL_FAILED_NO_COMBO_POINTS;
+			}
+		}
+		else
+			return SPELL_FAILED_DONT_REPORT;
+
+		return SPELL_CAST_OK;
+	}
+
+	void HandleOnHit()
+	{
+		if (Player* player = GetCaster()->ToPlayer())
+			if (player->HasAura(SPELL_DRUID_PREDATORY_SWIFTNESS) && roll_chance_i(20 * _cp))
+				player->CastSpell(player, SPELL_DRUID_PREDATORY_SWIFTNESS_AURA, true);
+	}
+
+	void Register() override
+	{
+		OnCheckCast += SpellCheckCastFn(spell_dru_predatory_swiftness::CheckCast);
+		AfterHit += SpellHitFn(spell_dru_predatory_swiftness::HandleOnHit);
+	}
+};
+
+
+
+// Overgrowth - 203651
+class spell_dru_overgrowth : public SpellScript
+{
+    enum
+    {
+        SPELL_DRUID_REJUVENATION = 774,
+        SPELL_DRUID_WILD_GROWTH = 48438,
+        SPELL_DRUID_LIFE_BLOOM = 188550,
+        SPELL_DRUID_REGROWTH = 8936
+    };
+
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (Unit* target = GetHitUnit())
+            {
+                caster->SendPlaySpellVisual(caster, 38314, 0, 0, 0.0f, false);
+                caster->AddAura(SPELL_DRUID_REJUVENATION, target);
+                caster->AddAura(SPELL_DRUID_WILD_GROWTH, target);
+                caster->AddAura(SPELL_DRUID_LIFE_BLOOM, target);
+                caster->AddAura(SPELL_DRUID_REGROWTH, target);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_overgrowth::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+
+// Swiftmend - 18562
+class spell_dru_swiftmend : public SpellScript
+{
+    void HandleHit(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if(caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST))
+            {
+                caster->AddAura(SPELL_DRUID_SOUL_OF_THE_FOREST_RESTO_BUFF, caster);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_swiftmend::HandleHit, EFFECT_0, SPELL_EFFECT_HEAL);
+    }
+};
+
 
 // 774 - Rejuvenation
 // 155777 - Rejuvenation (Germination)
@@ -451,8 +598,8 @@ class spell_dru_cultivation : public AuraScript
     }
 };
 
-// 1850 - Dash
-class spell_dru_dash : public AuraScript
+// 1850 - Dash (Aura)
+class spell_dru_dash_aura : public AuraScript
 {
     void CalculateAmount(AuraEffect const* /*aurEff*/, int32& amount, bool& /*canBeRecalculated*/)
     {
@@ -463,8 +610,15 @@ class spell_dru_dash : public AuraScript
 
     void Register() override
     {
-        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_dru_dash::CalculateAmount, EFFECT_0, SPELL_AURA_MOD_INCREASE_SPEED);
+        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_dru_dash_aura::CalculateAmount, EFFECT_0, SPELL_AURA_MOD_INCREASE_SPEED);
     }
+};
+
+// 1850 - Dash
+class spell_dru_dash : public spell_dru_base_transformer
+{
+protected:
+    bool ToCatForm() const override { return true; }
 };
 
 // 203974 - Earthwarden
@@ -2274,7 +2428,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_cat_form);
     RegisterSpellScript(spell_dru_celestial_alignment);
     RegisterSpellScript(spell_dru_cultivation);
-    RegisterSpellScript(spell_dru_dash);
+    RegisterSpellAndAuraScriptPair(spell_dru_dash, spell_dru_dash_aura);
     RegisterSpellScript(spell_dru_earthwarden);
     RegisterSpellScript(spell_dru_eclipse_aura);
     RegisterSpellScript(spell_dru_eclipse_dummy);
@@ -2334,4 +2488,10 @@ void AddSC_druid_spell_scripts()
     RegisterSpellAndAuraScriptPair(spell_dru_wild_growth, spell_dru_wild_growth_aura);
     RegisterSpellScript(spell_dru_yseras_gift);
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
+    
+    RegisterSpellScript(spell_dru_swiftmend);
+    RegisterSpellScript(spell_dru_overgrowth);
+	RegisterSpellScript(spell_dru_predatory_swiftness);
+	//RegisterSpellScript(spell_dru_predatory_swiftness_aura);
+	RegisterSpellScript(spell_dru_rake);
 }
