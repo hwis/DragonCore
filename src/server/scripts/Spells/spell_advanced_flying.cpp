@@ -38,6 +38,8 @@ enum AdvancedFlyingSpells
     SPELL_VIGOR_CACHE           = 433547,
     SPELL_RIDING_ABROAD         = 432503, // TODO outside of dragon isles
     SPELL_ENERGY_WIDGET         = 423624,
+	SWITCH_AF_REGULAR			= 404468,
+	SWITCH_AF_DRAGONRIDING		= 404464
 };
 
 // 373646 - Soar (Racial)
@@ -47,7 +49,10 @@ class spell_af_skyriding : public AuraScript
 {
     void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, true);
+		if (GetCaster()->HasAura(SWITCH_AF_DRAGONRIDING))
+		{
+        	GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, true);
+		}
     }
 
     void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
@@ -194,6 +199,39 @@ class spell_af_whirling_surge : public SpellScript
     }
 };
 
+// 436858 - Switch Flight Style
+class spell_switch_flight : public SpellScript
+{
+	void HandleDummy(SpellEffIndex /*effIndex*/)
+	{
+		Unit* caster = GetCaster();
+		Player* player = GetCaster()->ToPlayer();
+
+		if (!caster)
+			return;
+
+		if (!caster->HasAura(404468) && !caster->HasAura(404464))
+		{
+			caster->CastSpell(caster, 404468, TRIGGERED_FULL_MASK);
+		}
+		else if (!caster->HasAura(404468))
+		{
+			caster->RemoveAura(404464);
+			caster->CastSpell(caster, 404468, TRIGGERED_FULL_MASK);
+		}
+		else if (!caster->HasAura(404464))
+		{
+			caster->RemoveAura(404468);
+			caster->CastSpell(caster, 404464, TRIGGERED_FULL_MASK);
+		}
+	}
+
+	void Register() override
+	{
+		OnEffectHitTarget += SpellEffectFn(spell_switch_flight::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+	}
+};
+
 void AddSC_advanced_flying_spell_scripts()
 {
     RegisterSpellScript(spell_af_skyriding);
@@ -201,4 +239,5 @@ void AddSC_advanced_flying_spell_scripts()
     RegisterSpellScript(spell_af_skyward_ascent);
     RegisterSpellScript(spell_af_surge_forward);
     RegisterSpellScript(spell_af_whirling_surge);
+	RegisterSpellScript(spell_switch_flight);
 }
