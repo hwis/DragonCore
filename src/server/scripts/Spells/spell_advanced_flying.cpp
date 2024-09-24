@@ -51,7 +51,8 @@ class spell_af_skyriding : public AuraScript
     {
 		if (GetCaster()->HasAura(SWITCH_AF_DRAGONRIDING))
 		{
-        	GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, true);
+			GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, TRIGGERED_FULL_MASK);	
+			GetTarget()->SetPower(POWER_ALTERNATE_MOUNT, GetTarget()->GetPower(POWER_ALTERNATE_MOUNT), true);
 		}
     }
 
@@ -62,8 +63,8 @@ class spell_af_skyriding : public AuraScript
 
     void Register() override
     {
-        OnEffectApply += AuraEffectApplyFn(spell_af_skyriding::OnApply, EFFECT_0, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
-        OnEffectRemove += AuraEffectRemoveFn(spell_af_skyriding::OnRemove, EFFECT_0, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
+		OnEffectApply += AuraEffectApplyFn(spell_af_skyriding::OnApply, EFFECT_2, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
+		OnEffectRemove += AuraEffectRemoveFn(spell_af_skyriding::OnRemove, EFFECT_2, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
     }
 };
 
@@ -72,7 +73,13 @@ class spell_af_energy : public AuraScript
 {
     void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        GetTarget()->CastSpell(GetTarget(), SPELL_VIGOR_CACHE, true);
+		Unit* target = GetTarget();
+		if (!target->HasAura(SPELL_VIGOR_CACHE))
+		{
+			CastSpellExtraArgs extraArgs(TRIGGERED_FULL_MASK);
+			extraArgs.AddSpellMod(SPELLVALUE_BASE_POINT0, target->GetPower(POWER_ALTERNATE_MOUNT));
+			target->CastSpell(target, SPELL_VIGOR_CACHE, extraArgs);
+		}
     }
 
     void OnPeriodic(AuraEffect* /*aurEff*/)
@@ -100,6 +107,23 @@ class spell_af_energy : public AuraScript
                     subAmountAurEff->SetAmount(newAmount);
                     subAmountAurEff->GetBase()->SetNeedClientUpdateForTargets();
                 }
+
+				int newMaxPower = 3;
+		
+				if(caster->HasAura(377920) && !caster->HasAura(377921) && !caster->HasAura(377922))
+				{
+					newMaxPower = 4;
+				}
+				else if (caster->HasAura(377921) && caster->HasAura(377920) && !caster->HasAura(377922))
+				{
+					newMaxPower = 5;
+				}
+				else if (caster->HasAura(377922) && caster->HasAura(377921) && caster->HasAura(377920))
+				{
+					newMaxPower = 6;
+				}
+
+				caster->SetMaxPower(POWER_ALTERNATE_MOUNT, newMaxPower);
             }
         }
     }
@@ -205,24 +229,23 @@ class spell_switch_flight : public SpellScript
 	void HandleDummy(SpellEffIndex /*effIndex*/)
 	{
 		Unit* caster = GetCaster();
-		Player* player = GetCaster()->ToPlayer();
 
 		if (!caster)
 			return;
 
-		if (!caster->HasAura(404468) && !caster->HasAura(404464))
+		if (!caster->HasAura(SWITCH_AF_REGULAR) && !caster->HasAura(SWITCH_AF_DRAGONRIDING))
 		{
-			caster->CastSpell(caster, 404468, TRIGGERED_FULL_MASK);
+			caster->CastSpell(caster, SWITCH_AF_REGULAR, TRIGGERED_FULL_MASK);
 		}
-		else if (!caster->HasAura(404468))
+		else if (!caster->HasAura(SWITCH_AF_REGULAR))
 		{
-			caster->RemoveAura(404464);
-			caster->CastSpell(caster, 404468, TRIGGERED_FULL_MASK);
+			caster->RemoveAura(SWITCH_AF_DRAGONRIDING);
+			caster->CastSpell(caster, SWITCH_AF_REGULAR, TRIGGERED_FULL_MASK);
 		}
-		else if (!caster->HasAura(404464))
+		else if (!caster->HasAura(SWITCH_AF_DRAGONRIDING))
 		{
-			caster->RemoveAura(404468);
-			caster->CastSpell(caster, 404464, TRIGGERED_FULL_MASK);
+			caster->RemoveAura(SWITCH_AF_REGULAR);
+			caster->CastSpell(caster, SWITCH_AF_DRAGONRIDING, TRIGGERED_FULL_MASK);
 		}
 	}
 
