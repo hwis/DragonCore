@@ -15,4 +15,4 @@ INSERT INTO spell_script_names VALUES
 (372773, "spell_af_energy"),
 (372608, "spell_af_surge_forward"),
 (361584, "spell_af_whirling_surge"),
-(436858, "spell_switch_flight");
+(436854, "spell_switch_flight");

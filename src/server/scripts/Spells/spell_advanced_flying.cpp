@@ -180,6 +180,17 @@ class spell_af_skyward_ascent : public SpellScript
 // 372608 - Surge Forward
 class spell_af_surge_forward : public SpellScript
 {
+
+	SpellCastResult CheckCast()
+	{
+		Unit* caster = GetCaster();
+
+		if (!caster->IsInAir())
+			return SPELL_FAILED_NOT_ON_GROUND;
+
+		return SPELL_CAST_OK;
+	}
+
     void HandleHitTarget(SpellEffIndex /*effIndex*/)
     {
         if (Player* caster = GetCaster()->ToPlayer())
@@ -195,7 +206,8 @@ class spell_af_surge_forward : public SpellScript
     }
 
     void Register() override
-    {
+    {	
+		OnCheckCast += SpellCheckCastFn(spell_af_surge_forward::CheckCast);
         OnEffectHitTarget += SpellEffectFn(spell_af_surge_forward::HandleHitTarget, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 };
@@ -203,6 +215,16 @@ class spell_af_surge_forward : public SpellScript
 // 361584 - Whirling Surge
 class spell_af_whirling_surge : public SpellScript
 {
+	SpellCheckCastFn CheckCast()
+	{
+		Unit* caster = GetCaster();
+		
+		if (!caster->IsInAir())
+			return SPELL_FAILED_NOT_ON_GROUND;
+
+		return SPELL_CAST_OK;
+	}
+	
     void HandleHitTarget(SpellEffIndex /*effIndex*/)
     {
         if (Player* caster = GetCaster()->ToPlayer())
@@ -219,11 +241,12 @@ class spell_af_whirling_surge : public SpellScript
 
     void Register() override
     {
+		OnCheckCast += SpellCheckCastFn(spell_af_whirling_surge::CheckCast);
         OnEffectHitTarget += SpellEffectFn(spell_af_whirling_surge::HandleHitTarget, EFFECT_0, SPELL_EFFECT_APPLY_AURA);
     }
 };
 
-// 436858 - Switch Flight Style
+// 436854 - Switch Flight Style
 class spell_switch_flight : public SpellScript
 {
 	void HandleDummy(SpellEffIndex /*effIndex*/)
