@@ -492,7 +492,15 @@ class spell_dru_cultivation : public AuraScript
 };
 
 // 1850 - Dash
-class spell_dru_dash : public AuraScript
+class spell_dru_dash : public spell_dru_base_transformer
+{
+protected:
+    
+    bool ToCatForm() const override { return true; }
+};
+
+// 1850 - Dash (Aura)
+class spell_dru_dash_aura : public AuraScript
 {
     void CalculateAmount(AuraEffect const* /*aurEff*/, int32& amount, bool& /*canBeRecalculated*/)
     {
@@ -503,7 +511,7 @@ class spell_dru_dash : public AuraScript
 
     void Register() override
     {
-        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_dru_dash::CalculateAmount, EFFECT_0, SPELL_AURA_MOD_INCREASE_SPEED);
+        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_dru_dash_aura::CalculateAmount, EFFECT_0, SPELL_AURA_MOD_INCREASE_SPEED);
     }
 };
 
@@ -2314,7 +2322,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_cat_form);
     RegisterSpellScript(spell_dru_celestial_alignment);
     RegisterSpellScript(spell_dru_cultivation);
-    RegisterSpellScript(spell_dru_dash);
+    RegisterSpellAndAuraScriptPair(spell_dru_dash, spell_dru_dash_aura);
     RegisterSpellScript(spell_dru_earthwarden);
     RegisterSpellScript(spell_dru_eclipse_aura);
     RegisterSpellScript(spell_dru_eclipse_dummy);
