@@ -109,6 +109,7 @@ enum DruidSpells
     SPELL_DRUID_MOONFIRE_DAMAGE                = 164812,
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
+    SPELL_DRUID_OVERGROWTH                      = 203651,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
 	SPELL_DRUID_RAKE							= 1822,
 	SPELL_DRUID_RAKE_STUN						= 163505,
@@ -2307,6 +2308,38 @@ class spell_dru_yseras_gift_group_heal : public SpellScript
     void Register() override
     {
         OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_dru_yseras_gift_group_heal::SelectTargets, EFFECT_0, TARGET_UNIT_CASTER_AREA_RAID);
+    }
+};
+
+// 203651 Overgrowth
+class spell_dru_overgrowth : public SpellScript
+{
+    enum
+    {
+        SPELL_DRUID_REJUVENATION = 774,
+        SPELL_DRUID_WILD_GROWTH = 48438,
+        SPELL_DRUID_LIFE_BLOOM = 188550,
+        SPELL_DRUID_REGROWTH = 8936
+    };
+
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (Unit* target = GetHitUnit())
+            {
+                caster->SendPlaySpellVisual(caster, 38314, 0, 0, 0.f, false);
+                caster->AddAura(SPELL_DRUID_REJUVENATION, target);
+                caster->AddAura(SPELL_DRUID_WILD_GROWTH, target);
+                caster->AddAura(SPELL_DRUID_LIFE_BLOOM, target);
+                caster->AddAura(SPELL_DRUID_REGROWTH, target);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_overgrowth::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 };
 
