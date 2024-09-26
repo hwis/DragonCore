@@ -38,6 +38,8 @@
 #include "SpellInfo.h"
 #include "Trainer.h"
 #include "WorldPacket.h"
+#include "ObjectAccessor.h"
+#include "Conversation.h"
 
 enum class TabardVendorType : int32
 {
@@ -413,4 +415,60 @@ void WorldSession::HandleRepairItemOpcode(WorldPackets::Item::RepairItem& packet
         TC_LOG_DEBUG("network", "ITEM: Repair all items at {}", packet.NpcGUID.ToString());
         _player->DurabilityRepairAll(true, discountMod, packet.UseGuildBank);
     }
+}
+
+void WorldSession::HandleChromieTimeSelectExpansionOpcode(WorldPackets::NPC::ChromieTimeSelectExpansion& selectedExpansion)
+{
+    uint32 questId = 0;
+    switch (selectedExpansion.Expansion)
+    {
+    case 5:
+        _player->CastSpell(_player, 325537, true); // Selected Cataclysm
+        questId = 60891;
+        break;
+    case 6:
+        _player->CastSpell(_player, 325400, true); // Selected Outland
+        questId = 60120;
+        break;
+    case 7:
+        _player->CastSpell(_player, 325042, true); // Selected Northrend
+        questId = 60096;
+        break;
+    case 8:
+        _player->CastSpell(_player, 325530, true); // Selected Pandaria
+        questId = 60965;
+        break;
+    case 9:
+        _player->CastSpell(_player, 325534, true); // Selected Draenor
+        questId = 34398;
+        break;
+    case 10:
+        _player->CastSpell(_player, 325539, true); // Select Legion
+        questId = 40519;
+        break;
+    case 14:
+        _player->CastSpell(_player, 397733, true); // Select Shadowlands
+        questId = 60545;
+        break;
+    case 15:
+        _player->CastSpell(_player, 420123, true); // Select BFA
+        questId = 58983;
+        /*questId = _player->GetTeam() == ALLIANCE ? 58983 : 60361;*/
+        break;
+    case 16:
+        _player->CastSpell(_player, 452212, true); // Select Dragonflight
+        questId = _player->GetTeam() == ALLIANCE ? 65436 : 65435;
+        break;
+    default:
+        break;
+    }
+
+    if (questId)
+        if (_player->GetQuestStatus(questId) == QUEST_STATUS_NONE)
+            if (Quest const* quest = sObjectMgr->GetQuestTemplate(questId))
+                if (Creature* chromie = ObjectAccessor::GetCreature(*_player, selectedExpansion.GUID))
+                    _player->AddQuest(quest, chromie);
+
+    WorldPackets::NPC::ChromieTimeSelectExpansionSuccess expansionSuccess;
+    SendPacket(expansionSuccess.Write());
 }
