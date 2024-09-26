@@ -112,6 +112,8 @@ enum DruidSpells
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
+	SPELL_DRUID_RAKE							= 1822,
+	SPELL_DRUID_RAKE_STUN						= 163505,
     SPELL_DRUID_PROWL                          = 5215,
     SPELL_DRUID_REGROWTH                       = 8936,
     SPELL_DRUID_REJUVENATION                   = 774,
@@ -368,6 +370,44 @@ class spell_dru_bristling_fur : public AuraScript
     {
         OnEffectProc += AuraEffectProcFn(spell_dru_bristling_fur::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
     }
+};
+
+// 1822 - SPELL_DRUID_RAKE
+class spell_dru_rake : public SpellScript
+{
+    bool Load() override
+    {
+        Unit* caster = GetCaster();
+        if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && caster->HasAura(405834))
+            m_stealthed = true;
+
+        if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && caster->HasAura(231052))
+            m_stealthed = true;
+
+        return true;
+}
+
+    void HandleOnHit(SpellEffIndex /*effIndex*/)
+    {
+        Unit* caster = GetCaster();
+        Unit* target = GetExplTargetUnit();
+        if (!caster || !target)
+            return;
+
+        if (m_stealthed)
+        {
+            SetHitDamage(GetHitDamage() * 1.6);
+            caster->CastSpell(target, SPELL_DRUID_RAKE_STUN, true);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_rake::HandleOnHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+    }
+
+private:
+    bool m_stealthed = false;
 };
 
 // 768 - CatForm - SPELL_DRUID_CAT_FORM
@@ -2393,4 +2433,6 @@ void AddSC_druid_spell_scripts()
     RegisterSpellAndAuraScriptPair(spell_dru_wild_growth, spell_dru_wild_growth_aura);
     RegisterSpellScript(spell_dru_yseras_gift);
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
+    RegisterSpellScript(spell_dru_rake);
+    RegisterSpellScript(spell_dru_overgrowth);
 }
