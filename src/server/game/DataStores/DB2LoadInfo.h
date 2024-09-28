@@ -4903,6 +4903,22 @@ struct SpecializationSpellsLoadInfo
     static constexpr DB2LoadInfo Instance{ Fields, 6, &SpecializationSpellsMeta::Instance, HOTFIX_SEL_SPECIALIZATION_SPELLS };
 };
 
+struct SpecializationSpellsDisplayLoadInfo
+{
+    static constexpr DB2FieldMeta Fields[8] =
+    {
+        { false, FT_INT, "ID" },
+        { false, FT_SHORT, "SpecializationID" },
+        { false, FT_INT, "SpecllID1" },
+        { false, FT_INT, "SpecllID2" },
+        { false, FT_INT, "SpecllID3" },
+        { false, FT_INT, "SpecllID4" },
+        { false, FT_INT, "SpecllID5" },
+        { false, FT_INT, "SpecllID6" },
+    };
+    static constexpr DB2LoadInfo Instance{ Fields, 8, &SpecializationSpellsDisplayMeta::Instance, HOTFIX_SEL_SPECIALIZATION_SPELLS_DISPLAY };
+};
+
 struct SpecSetMemberLoadInfo
 {
     static constexpr DB2FieldMeta Fields[3] =
@@ -5110,6 +5126,18 @@ struct SpellEffectLoadInfo
     };
 
     static constexpr DB2LoadInfo Instance{ Fields, 36, &SpellEffectMeta::Instance, HOTFIX_SEL_SPELL_EFFECT };
+};
+
+struct SpellLoadInfo
+{
+    static constexpr DB2FieldMeta Fields[4] =
+    {
+        { false, FT_INT, "ID" },
+        { false, FT_STRING, "NameSubtext" },
+        { false, FT_STRING, "Description" },
+        { false, FT_STRING, "AuraDescription" },
+    };
+    static constexpr DB2LoadInfo Instance{ Fields, 4, &SpellMeta::Instance, HOTFIX_SEL_SPELL };
 };
 
 struct SpellEmpowerLoadInfo

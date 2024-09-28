@@ -3566,6 +3566,13 @@ struct SpecializationSpellsEntry
     uint8 DisplayOrder;
 };
 
+struct SpecializationSpellsDisplayEntry
+{
+    uint32 ID;
+    uint16 SpecializationID;
+    uint32 SpecllID[6];
+};
+
 struct SpecSetMemberEntry
 {
     uint32 ID;
@@ -3734,6 +3741,16 @@ struct SpellEquippedItemsEntry
     int8 EquippedItemClass;
     int32 EquippedItemInvTypes;
     int32 EquippedItemSubclass;
+};
+
+struct SpellEntry
+{
+    uint32 ID;
+    LocalizedString NameSubtext;
+    LocalizedString Description;
+    LocalizedString AuraDescription;
+
+    SpellEffectEntry const* GetSpellEffect(uint32 eff, uint8 diff = 0) const;
 };
 
 struct SpellFocusObjectEntry
