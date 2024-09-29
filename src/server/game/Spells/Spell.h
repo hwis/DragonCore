@@ -429,6 +429,9 @@ class TC_GAME_API Spell
         void EffectCreatePrivateConversation();
         void EffectSendChatMessage();
         void EffectGrantBattlePetExperience();
+        
+        void EffectSetChromieTime();
+
         void EffectLearnTransmogIllusion();
         void EffectModifyAuraStacks();
         void EffectModifyCooldown();
