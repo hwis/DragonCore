@@ -3394,6 +3394,20 @@ void SpellMgr::LoadSpellInfoCorrections()
 
     // Some spells have no amplitude set
     {
+        ApplySpellFix({ 48629 }, [](SpellInfo* spellInfo)
+        {
+            ApplySpellEffectFix(spellInfo, EFFECT_0, [](SpellEffectInfo* spellEffectInfo)
+            {
+                spellEffectInfo->BasePoints = 106785;
+            });
+
+
+            ApplySpellEffectFix(spellInfo, EFFECT_3, [](SpellEffectInfo* spellEffectInfo)
+            {
+                spellEffectInfo->BasePoints = 0;
+            });
+        });
+        
         ApplySpellFix({
             6727,  // Poison Mushroom
             7331,  // Healing Aura (TEST) (Rank 1)
