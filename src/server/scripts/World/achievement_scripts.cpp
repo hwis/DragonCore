@@ -117,7 +117,7 @@ public:
 
     void OnCompleted(Player* player, AchievementEntry const* /*achievement*/) override
     {
-        player->GetSession()->GetBattlePetMgr()->UnlockSlot(BattlePets::BattlePetSlot::Slot1);
+        // player->GetSession()->GetBattlePetMgr()->UnlockSlot(BattlePets::BattlePetSlot::Slot1);
         // TODO: Unlock trap
     }
 };
@@ -130,7 +130,7 @@ public:
 
     void OnCompleted(Player* player, AchievementEntry const* /*achievement*/) override
     {
-        player->GetSession()->GetBattlePetMgr()->UnlockSlot(BattlePets::BattlePetSlot::Slot2);
+        //player->GetSession()->GetBattlePetMgr()->UnlockSlot(BattlePets::BattlePetSlot::Slot2);
     }
 };
 

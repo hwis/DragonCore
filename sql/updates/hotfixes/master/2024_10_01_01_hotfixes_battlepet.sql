@@ -1,0 +1,125 @@
+DROP TABLE IF EXISTS `battle_pet_ability`;
+CREATE TABLE `battle_pet_ability` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`Name` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`Description` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`IconFileDataID` INT(10) NOT NULL DEFAULT '0',
+	`PetTypeEnum` TINYINT(3) NOT NULL DEFAULT '0',
+	`Cooldown` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetVisualID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`Flags` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_ability_effect`;
+CREATE TABLE `battle_pet_ability_effect` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetAbilityTurnID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`OrderIndex` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetEffectPropertiesID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`AuraBattlePetAbilityID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetVisualID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`Param1` SMALLINT(5) NOT NULL DEFAULT '0',
+	`Param2` SMALLINT(5) NOT NULL DEFAULT '0',
+	`Param3` SMALLINT(5) NOT NULL DEFAULT '0',
+	`Param4` SMALLINT(5) NOT NULL DEFAULT '0',
+	`Param5` SMALLINT(5) NOT NULL DEFAULT '0',
+	`Param6` SMALLINT(5) NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_ability_locale`;
+CREATE TABLE `battle_pet_ability_locale` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`locale` VARCHAR(4) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`Name_lang` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`Description_lang` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`, `locale`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_ability_state`;
+CREATE TABLE `battle_pet_ability_state` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetStateID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`Value` INT(10) NOT NULL DEFAULT '0',
+	`BattlePetAbilityID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_ability_turn`;
+CREATE TABLE `battle_pet_ability_turn` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetAbilityID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`OrderIndex` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`TurnTypeEnum` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`EventTypeEnum` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetVisualID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_species_x_ability`;
+CREATE TABLE `battle_pet_species_x_ability` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetAbilityID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`RequiredLevel` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0',
+	`SlotEnum` TINYINT(3) NOT NULL DEFAULT '0',
+	`BattlePetSpeciesID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_state`;
+CREATE TABLE `battle_pet_state` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`LuaName` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`Flags` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`BattlePetVisualID` SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;
+
+DROP TABLE IF EXISTS `battle_pet_state_locale`;
+CREATE TABLE `battle_pet_state_locale` (
+	`ID` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`locale` VARCHAR(4) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`LuaName_lang` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`VerifiedBuild` INT(10) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`ID`, `locale`) USING BTREE
+)
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB
+ROW_FORMAT=DYNAMIC
+;

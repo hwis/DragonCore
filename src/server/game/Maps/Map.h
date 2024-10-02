@@ -37,6 +37,7 @@
 #include "Timer.h"
 #include "UniqueTrackablePtr.h"
 #include "WorldStateDefines.h"
+#include "WildBattlePet.h"
 #include <bitset>
 #include <list>
 #include <map>
@@ -546,6 +547,11 @@ class TC_GAME_API Map : public GridRefManager<NGridType>
         }
 
         virtual std::string GetDebugInfo() const;
+	/*new >*/
+	WildBattlePetPool* GetWildBattlePetPool(Creature* creature);
+	void AddBattlePet(Creature* creature);
+	void RemoveBattlePet(Creature* creature);
+	/*< new*/
 
     private:
 
@@ -603,6 +609,10 @@ class TC_GAME_API Map : public GridRefManager<NGridType>
         void ScriptsProcess();
 
         void SendObjectUpdates();
+
+	void PopulateBattlePet(uint32 diff);
+	void DepopulateBattlePet();
+	std::map<uint16, std::map<uint32, WildBattlePetPool>> m_wildBattlePetPool;
 
     protected:
         virtual void LoadGridObjects(NGridType* grid, Cell const& cell);

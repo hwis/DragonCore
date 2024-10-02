@@ -85,6 +85,57 @@ namespace WorldPackets
             uint32 SceneInstanceID = 0;
             int32 TimePassed = 0;
         };
+
+        // <<< new
+        //< SMSG_SCENE_OBJECT_PET_BATTLE_FIRST_ROUND
+        //< SMSG_SCENE_OBJECT_PET_BATTLE_ROUND_RESULT
+        //< SMSG_SCENE_OBJECT_PET_BATTLE_REPLACEMENTS_MADE
+
+        class PetBattleRound final : public ServerPacket
+        {
+        public:
+            PetBattleRound(OpcodeServer opcode) : ServerPacket(opcode) { }
+
+            WorldPacket const* Write() override;
+
+            ObjectGuid SceneObjectGUID;
+          //  BattlePet::RoundResult MsgData; 
+        };
+
+        class SceneObjectFinalRound final : public ServerPacket
+        {
+        public:
+            SceneObjectFinalRound() : ServerPacket(SMSG_SCENE_OBJECT_PET_BATTLE_FINAL_ROUND) { }
+
+            WorldPacket const* Write() override;
+
+            ObjectGuid SceneObjectGUID;
+          //  BattlePet::FinalRound MsgData; 
+        };
+
+        class PetBattleFinished final : public ServerPacket
+        {
+        public:
+            PetBattleFinished() : ServerPacket(SMSG_SCENE_OBJECT_PET_BATTLE_FINISHED, 16) { }
+
+            WorldPacket const* Write() override;
+
+            ObjectGuid SceneObjectGUID;
+        };
+
+        class SceneObjectPetBattleInitialUpdate final : public ServerPacket
+        {
+        public:
+            SceneObjectPetBattleInitialUpdate() : ServerPacket(SMSG_SCENE_OBJECT_PET_BATTLE_INITIAL_UPDATE) { }
+
+            WorldPacket const* Write() override;
+
+            ObjectGuid SceneObjectGUID;
+            //BattlePet::PetBattleFullUpdate MsgData; 
+        };
+
+        // >>> new
+
     }
 }
 

@@ -51,7 +51,7 @@ struct VisibleAchievementCheck
     }
 };
 
-AchievementMgr::AchievementMgr() : _achievementPoints(0) { }
+AchievementMgr::AchievementMgr() : _achievementPoints(0), _achievementBattlePetPoints(0) { }
 
 AchievementMgr::~AchievementMgr() { }
 
@@ -226,6 +226,7 @@ void PlayerAchievementMgr::Reset()
 
     _completedAchievements.clear();
     _achievementPoints = 0;
+    _achievementBattlePetPoints = 0;
     DeleteFromDB(_owner->GetGUID());
 
     // re-fill data
@@ -266,6 +267,9 @@ void PlayerAchievementMgr::LoadFromDB(PreparedQueryResult achievementResult, Pre
             ca.Changed = false;
 
             _achievementPoints += achievement->Points;
+        
+            if (achievement->Category == 15117)
+                _achievementBattlePetPoints += achievement->Points;
 
             // title achievement rewards are retroactive
             if (AchievementReward const* reward = sAchievementMgr->GetAchievementReward(achievement))
@@ -469,6 +473,8 @@ void PlayerAchievementMgr::CompletedAchievement(AchievementEntry const* achievem
     if (_owner->IsGameMaster() || _owner->GetSession()->HasPermission(rbac::RBAC_PERM_CANNOT_EARN_ACHIEVEMENTS))
         return;
 
+    auto const& ownerSession = _owner->GetSession();
+
     if ((achievement->Faction == ACHIEVEMENT_FACTION_HORDE    && referencePlayer->GetTeam() != HORDE) ||
         (achievement->Faction == ACHIEVEMENT_FACTION_ALLIANCE && referencePlayer->GetTeam() != ALLIANCE))
         return;
@@ -499,6 +505,20 @@ void PlayerAchievementMgr::CompletedAchievement(AchievementEntry const* achievem
     referencePlayer->UpdateCriteria(CriteriaType::EarnAchievementPoints, achievement->Points, 0, 0, nullptr);
 
     sScriptMgr->OnAchievementCompleted(referencePlayer, achievement);
+
+    switch (achievement->ID)
+    {
+    case 7433:
+    case 6566:
+        ownerSession->SendPetBattleSlotUpdates(true);
+        break;
+    case 6556:
+    case 6581:
+        ownerSession->SendBattlePetTrapLevel();
+        break;
+    default:
+        break;
+    }
 
     // reward items and titles if any
     AchievementReward const* reward = sAchievementMgr->GetAchievementReward(achievement);

@@ -663,6 +663,82 @@ struct BattlePetAbilityLoadInfo
     static constexpr DB2LoadInfo Instance{ Fields, 8, &BattlePetAbilityMeta::Instance, HOTFIX_SEL_BATTLE_PET_ABILITY };
 };
 
+struct BattlePetStateLoadInfo
+{
+	static constexpr DB2FieldMeta Fields[4] =
+        {
+            { false, FT_INT, "ID" },
+            { false, FT_STRING_NOT_LOCALIZED, "LuaName" },
+            { true, FT_INT, "Flags" },
+            { false, FT_SHORT, "BattlePetVisualID" },
+        };
+
+        static constexpr DB2LoadInfo Instance{ Fields, 4, &BattlePetStateMeta::Instance, HOTFIX_SEL_BATTLE_PET_STATE };
+};
+
+struct BattlePetAbilityEffectLoadInfo
+{
+	static constexpr DB2FieldMeta Fields[12] =
+        {
+            { false, FT_INT, "ID" },
+            { false, FT_SHORT, "BattlePetAbilityTurnID" },
+            { false, FT_BYTE, "OrderIndex" },
+            { false, FT_SHORT, "BattlePetEffectPropertiesID" },
+            { false, FT_SHORT, "AuraBattlePetAbilityID" },
+            { false, FT_SHORT, "BattlePetVisualID" },
+            { true, FT_SHORT, "Param1" },
+            { true, FT_SHORT, "Param2" },
+            { true, FT_SHORT, "Param3" },
+            { true, FT_SHORT, "Param4" },
+            { true, FT_SHORT, "Param5" },
+            { true, FT_SHORT, "Param6" },
+        };
+
+        static constexpr DB2LoadInfo Instance{ Fields, 12, &BattlePetAbilityEffectMeta::Instance, HOTFIX_SEL_BATTLE_PET_ABILITY_EFFECT };
+};
+
+struct BattlePetAbilityStateLoadInfo
+{
+	 static constexpr DB2FieldMeta Fields[4] =
+        {
+            { false, FT_INT, "ID" },
+            { false, FT_INT, "BattlePetStateID" },
+            { true, FT_INT, "Value" },
+            { false, FT_INT, "BattlePetAbilityID" },
+        };
+
+        static constexpr DB2LoadInfo Instance{ Fields, 4, &BattlePetAbilityStateMeta::Instance, HOTFIX_SEL_BATTLE_PET_ABILITY_STATE };
+};
+
+struct BattlePetAbilityTurnLoadInfo
+{
+	static constexpr DB2FieldMeta Fields[6] =
+        {
+            { false, FT_INT, "ID" },
+            { false, FT_SHORT, "BattlePetAbilityID" },
+            { false, FT_BYTE, "OrderIndex" },
+            { true, FT_BYTE, "TurnTypeEnum" },
+            { true, FT_BYTE, "EventTypeEnum" },
+            { false, FT_SHORT, "BattlePetVisualID" },
+        };
+
+        static constexpr DB2LoadInfo Instance{ Fields, 6, &BattlePetAbilityTurnMeta::Instance, HOTFIX_SEL_BATTLE_PET_ABILITY_TURN };
+};
+
+struct BattlePetSpeciesXAbilityLoadInfo
+{
+	static constexpr DB2FieldMeta Fields[5] =
+        {
+            { false, FT_INT, "ID" },
+            { false, FT_SHORT, "BattlePetAbilityID" },
+            { false, FT_BYTE, "RequiredLevel" },
+            { true, FT_BYTE, "SlotEnum" },
+            { false, FT_INT, "BattlePetSpeciesID" },
+        };
+
+        static constexpr DB2LoadInfo Instance{ Fields, 5, &BattlePetSpeciesXAbilityMeta::Instance, HOTFIX_SEL_BATTLE_PET_SPECIES_X_ABILITY };
+};
+
 struct BattlePetBreedQualityLoadInfo
 {
     static constexpr DB2FieldMeta Fields[4] =

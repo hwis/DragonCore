@@ -64,6 +64,11 @@
 #include "WorldStatePackets.h"
 #include <boost/heap/fibonacci_heap.hpp>
 #include <sstream>
+#ifdef ELUNA
+#include "LuaEngine.h"
+#endif
+
+#include "Hoff.h"
 
 #define DEFAULT_GRID_EXPIRY     300
 #define MAX_GRID_LOAD_TIME      50
@@ -595,6 +600,10 @@ bool Map::AddToMap(T* obj)
     obj->SetIsNewObject(true);
     obj->UpdateObjectVisibilityOnCreate();
     obj->SetIsNewObject(false);
+
+	if(Creature* creature = obj->ToCreature())
+		AddBattlePet(creature);
+
     return true;
 }
 
@@ -4082,6 +4091,53 @@ std::string InstanceMap::GetDebugInfo() const
         << std::boolalpha
         << "ScriptId: " << GetScriptId() << " ScriptName: " << GetScriptName();
     return sstr.str();
+}
+
+void Map::PopulateBattlePet(uint32 diff)
+{
+	uint32 _s = getMSTime();
+	for (auto& zone : m_wildBattlePetPool)
+	{
+		uint16 zoneId = zone.first;
+		for (auto& iter : zone.second)
+		{
+			uint32 entry = iter.first;
+			WildPetPoolTemplate* petTemplate = sWildBattlePetMgr->GetWildPetTemplate(GetId(), zoneId, entry);
+			if (!petTemplate)
+				continue;
+
+			sWildBattlePetMgr->Populate(petTemplate, &iter.second);
+		}
+	}
+}
+
+void Map::DepopulateBattlePet()
+{
+	for (auto& zone : m_wildBattlePetPool)
+		for (auto& iter : zone.second)
+			sWildBattlePetMgr->Depopulate(&iter.second);
+}
+
+WildBattlePetPool* Map::GetWildBattlePetPool(Creature* creature)
+{
+	if (!creature)
+		return nullptr;
+
+	return &m_wildBattlePetPool[creature->GetZoneId()][creature->GetEntry()];
+}
+
+void Map::AddBattlePet(Creature* creature)
+{
+	if (sWildBattlePetMgr->IsBattlePet(creature->GetEntry()))
+		m_wildBattlePetPool[creature->GetZoneId()][creature->GetEntry()].ToBeReplaced.insert(creature);
+	else if (creature->IsWildBattlePet())
+		sWildBattlePetMgr->EnableWildBattle(creature);
+}
+
+void Map::RemoveBattlePet(Creature* creature)
+{
+	if (sWildBattlePetMgr->IsBattlePet(creature->GetEntry()))
+		m_wildBattlePetPool[creature->GetZoneId()][creature->GetEntry()].ToBeReplaced.erase(creature);
 }
 
 template class TC_GAME_API TypeUnorderedMapContainer<AllMapStoredObjectTypes, ObjectGuid>;

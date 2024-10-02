@@ -42,6 +42,9 @@
 #include <memory>
 #include <unordered_map>
 
+class BattlePet;
+class PetBattle;
+
 class BlackMarketEntry;
 class CollectionMgr;
 class Creature;
@@ -70,11 +73,13 @@ enum class PlayerInteractionType : int32;
 enum InventoryResult : uint8;
 enum class StableResult : uint8;
 enum class TabardVendorType : int32;
+struct PetBattleRequest;
+enum class BattlePetError : uint16;
 
-namespace BattlePets
-{
-    class BattlePetMgr;
-}
+//namespace BattlePets
+//{
+//    class BattlePetMgr;
+//}
 
 namespace lfg
 {
@@ -212,7 +217,25 @@ namespace WorldPackets
         class BattlePetSummon;
         class BattlePetUpdateNotify;
         class CageBattlePet;
+	class BattlePetDeletePetCheat;
+        class RequestWild;
+        class RequestUpdate;
+        class BattlePetUpdateDisplayNotify;
+        class PetBattleRequest;
+        class NullCmsg;
+        class RequestPVP;
+        class ReplaceFrontPet;
+        class QueueProposeMatchResult;
+        class PetBattleInput;
+        class LeaveQueue;
     }
+
+	namespace PetBattle
+	{
+		class RequestWild;
+		class RequestUpdate;
+		class PetBattleRequest;
+	}
 
     namespace BlackMarket
     {
@@ -1186,7 +1209,7 @@ class TC_GAME_API WorldSession
         void SetCalendarEventCreationCooldown(time_t cooldown) { _calendarEventCreationCooldown = cooldown; }
 
         // Battle Pets
-        BattlePets::BattlePetMgr* GetBattlePetMgr() const { return _battlePetMgr.get(); }
+        // BattlePets::BattlePetMgr* GetBattlePetMgr() const { return _battlePetMgr.get(); }
 
         CollectionMgr* GetCollectionMgr() const { return _collectionMgr.get(); }
 
@@ -1812,8 +1835,7 @@ class TC_GAME_API WorldSession
         void HandleGarrisonGetMapData(WorldPackets::Garrison::GarrisonGetMapData& garrisonGetMapData);
 
         // Battle Pets
-        void HandleBattlePetRequestJournal(WorldPackets::BattlePet::BattlePetRequestJournal& battlePetRequestJournal);
-        void HandleBattlePetRequestJournalLock(WorldPackets::BattlePet::BattlePetRequestJournalLock& battlePetRequestJournalLock);
+        void HandleBattlePetRequestJournal(WorldPackets::BattlePet::NullCmsg& battlePetRequestJournal);
         void HandleBattlePetSetBattleSlot(WorldPackets::BattlePet::BattlePetSetBattleSlot& battlePetSetBattleSlot);
         void HandleBattlePetModifyName(WorldPackets::BattlePet::BattlePetModifyName& battlePetModifyName);
         void HandleQueryBattlePetName(WorldPackets::BattlePet::QueryBattlePetName& queryBattlePetName);
@@ -1822,7 +1844,40 @@ class TC_GAME_API WorldSession
         void HandleBattlePetClearFanfare(WorldPackets::BattlePet::BattlePetClearFanfare& battlePetClearFanfare);
         void HandleBattlePetSummon(WorldPackets::BattlePet::BattlePetSummon& battlePetSummon);
         void HandleBattlePetUpdateNotify(WorldPackets::BattlePet::BattlePetUpdateNotify& battlePetUpdateNotify);
+        void HandleBattlePetJournalLock(WorldPackets::BattlePet::NullCmsg&);
+        void SendPetBattleFinalizeLocation(struct PetBattleRequest* petBattleRequest);
         void HandleCageBattlePet(WorldPackets::BattlePet::CageBattlePet& cageBattlePet);
+        void SendBattlePetDeleted(ObjectGuid battlePetGUID);
+        void HandleBattlePetDeletePetCheat(WorldPackets::BattlePet::BattlePetDeletePetCheat& battlePetDeletePet);
+        void HandleBattlePetUpdateDisplayNotify(WorldPackets::BattlePet::BattlePetUpdateDisplayNotify& packet);
+        void SendPetBattleRequestFailed(uint8 reason);
+        void HandlePetBattleRequestWild(WorldPackets::BattlePet::RequestWild& packet);
+        void HandlePetBattleRequestUpdate(WorldPackets::BattlePet::RequestUpdate& packet);
+        void SendBattlePetUpdates(BattlePet* pet = nullptr, bool add = false);
+        void SendBattlePetJournal();
+        void SendPetBattleReplacementMade(PetBattle* petBattle);
+        void SendPetBattleInitialUpdate(PetBattle* petBattle);
+        void SendPetBattleFirstRound(PetBattle* petBattle);
+        void SendPetBattleRoundResult(PetBattle* petBattle);
+        void SendPetBattleFinalRound(PetBattle* petBattle);
+        void HandleJoinPetBattleQueue(WorldPackets::BattlePet::NullCmsg&);
+        void HandleBattlePetLeaveQueue(WorldPackets::BattlePet::LeaveQueue&);
+        void SendPetBattleQueueStatus(uint32 ticketTime, uint32 tcketID, uint32 status, uint32 avgWaitTime);
+        void SendBattlePetTrapLevel();
+        void SendBattlePetJournalLockAcquired();
+        void SendBattlePetJournalLockDenied();
+        void SendPetBattleQueueProposeMatch();
+        void HandlePetBattleFinalNotify(WorldPackets::BattlePet::NullCmsg&);
+        void SendPetBattleFinished();
+        void HandlePetBattleInput(WorldPackets::BattlePet::PetBattleInput& packet);
+        void HanldeQueueProposeMatchResult(WorldPackets::BattlePet::QueueProposeMatchResult& packet);
+        void HandlePetBattleQuitNotify(WorldPackets::BattlePet::NullCmsg&);
+        void HandleReplaceFrontPet(WorldPackets::BattlePet::ReplaceFrontPet& packet);
+        void HandlePetBattleRequestPVP(WorldPackets::BattlePet::RequestPVP& packet);
+        void SendPetBattlePvPChallenge(PetBattleRequest* petBattleRequest);
+        void HandlePetBattleScriptErrorNotify(WorldPackets::BattlePet::NullCmsg&);
+        void SendBattlePetsHealed();
+        void SendPetBattleSlotUpdates(bool newSlotUnlocked);
 
         // Warden
         void HandleWardenData(WorldPackets::Warden::WardenData& packet);
@@ -1967,6 +2022,7 @@ class TC_GAME_API WorldSession
         bool m_playerLogout;                                // code processed in LogoutPlayer
         bool m_playerRecentlyLogout;
         bool m_playerSave;
+        bool m_isPetBattleJournalLocked;
         LocaleConstant m_sessionDbcLocale;
         LocaleConstant m_sessionDbLocaleIndex;
         Minutes _timezoneOffset;
@@ -1994,7 +2050,7 @@ class TC_GAME_API WorldSession
         // Packets cooldown
         time_t _calendarEventCreationCooldown;
 
-        std::unique_ptr<BattlePets::BattlePetMgr> _battlePetMgr;
+        // std::unique_ptr<BattlePets::BattlePetMgr> _battlePetMgr;
 
         std::unique_ptr<CollectionMgr> _collectionMgr;
 
@@ -2002,6 +2058,10 @@ class TC_GAME_API WorldSession
 
         WorldSession(WorldSession const& right) = delete;
         WorldSession& operator=(WorldSession const& right) = delete;
+
+    public:
+        bool IsPetBattleJournalLocked();
+    // <<< new
 };
 
 #endif

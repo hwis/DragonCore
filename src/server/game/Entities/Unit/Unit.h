@@ -1950,6 +1950,8 @@ class TC_GAME_API Unit : public WorldObject
         void AtStartOfEncounter(EncounterType type);
         void AtEndOfEncounter(EncounterType type);
 
+	ObjectGuid _petBattleId; //new
+
     private:
 
         void UpdateSplineMovement(uint32 t_diff);
@@ -2015,6 +2017,9 @@ class TC_GAME_API Unit : public WorldObject
         PositionUpdateInfo _positionUpdateInfo;
 
         bool _isCombatDisallowed;
+
+        public:
+            void GetFriendlyUnitListInRange(std::list<Unit*>& list, float fMaxSearchRange, bool exceptSelf = false) const;
 };
 
 #endif

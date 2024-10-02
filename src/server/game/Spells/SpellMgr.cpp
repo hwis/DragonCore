@@ -2524,7 +2524,7 @@ void SpellMgr::LoadSpellInfoStore()
             if (SummonPropertiesEntry const* summonProperties = sSummonPropertiesStore.LookupEntry(effect->EffectMiscValue[1]))
                 if (summonProperties->Slot == SUMMON_SLOT_MINIPET && summonProperties->GetFlags().HasFlag(SummonPropertiesFlags::SummonFromBattlePetJournal))
                     if (BattlePetSpeciesEntry const* battlePetSpecies = Trinity::Containers::MapGetValuePtr(battlePetSpeciesByCreature, effect->EffectMiscValue[0]))
-                        BattlePets::BattlePetMgr::AddBattlePetSpeciesBySpell(effect->SpellID, battlePetSpecies);
+                        //BattlePets::BattlePetMgr::AddBattlePetSpeciesBySpell(effect->SpellID, battlePetSpecies);
 
         if (effect->Effect == SPELL_EFFECT_LANGUAGE)
             sLanguageMgr->LoadSpellEffectLanguage(effect);
@@ -5042,6 +5042,15 @@ void SpellMgr::LoadSpellInfoCorrections()
     {
         spellInfo->AttributesEx &= ~SPELL_ATTR1_IS_CHANNELLED;
     });
+
+	// Castigation
+	ApplySpellFix({193134}, [](SpellInfo* spellInfo)
+	{
+		ApplySpellEffectFix(spellInfo, EFFECT_0, [](SpellEffectInfo* spellEffectInfo)
+		{
+			spellEffectInfo->BasePoints = -34;
+		});
+	});
 
     // Burning Rush
     ApplySpellFix({ 111400 }, [](SpellInfo* spellInfo)

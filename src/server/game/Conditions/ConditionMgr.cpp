@@ -644,10 +644,10 @@ bool Condition::Meets(ConditionSourceInfo& sourceInfo) const
         }
         case CONDITION_BATTLE_PET_COUNT:
         {
-            if (Player const* player = object->ToPlayer())
-                condMeets = CompareValues(static_cast<ComparisionType>(ConditionValue3),
-                    player->GetSession()->GetBattlePetMgr()->GetPetCount(sBattlePetSpeciesStore.AssertEntry(ConditionValue1), player->GetGUID()),
-                    static_cast<uint8>(ConditionValue2));
+            //if (Player const* player = object->ToPlayer())
+            //    condMeets = CompareValues(static_cast<ComparisionType>(ConditionValue3),
+            //        player->GetSession()->GetBattlePetMgr()->GetPetCount(sBattlePetSpeciesStore.AssertEntry(ConditionValue1), player->GetGUID()),
+            //        static_cast<uint8>(ConditionValue2));
             break;
         }
         case CONDITION_SCENE_IN_PROGRESS:
@@ -2601,12 +2601,12 @@ bool ConditionMgr::isConditionTypeValid(Condition* cond) const
                 TC_LOG_ERROR("sql.sql", "{} has non existing BattlePet SpeciesId in value1 ({}), skipped.", cond->ToString(true), cond->ConditionValue1);
                 return false;
             }
-            if (cond->ConditionValue2 > BattlePets::DEFAULT_MAX_BATTLE_PETS_PER_SPECIES)
+            /*if (cond->ConditionValue2 > BattlePets::DEFAULT_MAX_BATTLE_PETS_PER_SPECIES)
             {
                 TC_LOG_ERROR("sql.sql", "{} has invalid (greater than {}) value2 ({}), skipped.", cond->ToString(true),
                     uint32(BattlePets::DEFAULT_MAX_BATTLE_PETS_PER_SPECIES), cond->ConditionValue2);
                 return false;
-            }
+            }*/
             if (cond->ConditionValue3 >= COMP_TYPE_MAX)
             {
                 TC_LOG_ERROR("sql.sql", "{} has invalid ComparisionType ({}), skipped.", cond->ToString(true), cond->ConditionValue3);

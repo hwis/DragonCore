@@ -80,10 +80,15 @@ DB2Storage<BankBagSlotPricesEntry>              sBankBagSlotPricesStore("BankBag
 DB2Storage<BannedAddonsEntry>                   sBannedAddonsStore("BannedAddons.db2", &BannedAddonsLoadInfo::Instance);
 DB2Storage<BarberShopStyleEntry>                sBarberShopStyleStore("BarberShopStyle.db2", &BarberShopStyleLoadInfo::Instance);
 DB2Storage<BattlePetAbilityEntry>               sBattlePetAbilityStore("BattlePetAbility.db2", &BattlePetAbilityLoadInfo::Instance);
+DB2Storage<BattlePetAbilityEffectEntry>		    sBattlePetAbilityEffectStore("BattlePetAbilityEffect.db2", &BattlePetAbilityEffectLoadInfo::Instance);
+DB2Storage<BattlePetAbilityStateEntry>		    sBattlePetAbilityStateStore("BattlePetAbilityState.db2", &BattlePetAbilityStateLoadInfo::Instance);
+DB2Storage<BattlePetAbilityTurnEntry>		    sBattlePetAbilityTurnStore("BattlePetAbilityTurn.db2", &BattlePetAbilityTurnLoadInfo::Instance);
 DB2Storage<BattlePetBreedQualityEntry>          sBattlePetBreedQualityStore("BattlePetBreedQuality.db2", &BattlePetBreedQualityLoadInfo::Instance);
 DB2Storage<BattlePetBreedStateEntry>            sBattlePetBreedStateStore("BattlePetBreedState.db2", &BattlePetBreedStateLoadInfo::Instance);
 DB2Storage<BattlePetSpeciesEntry>               sBattlePetSpeciesStore("BattlePetSpecies.db2", &BattlePetSpeciesLoadInfo::Instance);
 DB2Storage<BattlePetSpeciesStateEntry>          sBattlePetSpeciesStateStore("BattlePetSpeciesState.db2", &BattlePetSpeciesStateLoadInfo::Instance);
+DB2Storage<BattlePetSpeciesXAbilityEntry>	sBattlePetSpeciesXAbilityStore("BattlePetSpeciesXAbility.db2", &BattlePetSpeciesXAbilityLoadInfo::Instance);
+DB2Storage<BattlePetStateEntry>			sBattlePetStateStore("BattlePetState.db2", &BattlePetStateLoadInfo::Instance);
 DB2Storage<BattlemasterListEntry>               sBattlemasterListStore("BattlemasterList.db2", &BattlemasterListLoadInfo::Instance);
 DB2Storage<BattlemasterListXMapEntry>           sBattlemasterListXMapStore("BattlemasterListXMap.db2", &BattlemasterListXMapLoadInfo::Instance);
 DB2Storage<BroadcastTextEntry>                  sBroadcastTextStore("BroadcastText.db2", &BroadcastTextLoadInfo::Instance);
@@ -426,6 +431,9 @@ typedef std::unordered_map<uint32, std::vector<SpecializationSpellsEntry const*>
 typedef std::unordered_map<uint32, std::vector<SpellPowerEntry const*>> SpellPowerContainer;
 typedef std::unordered_map<uint32, std::unordered_map<uint32, std::vector<SpellPowerEntry const*>>> SpellPowerDifficultyContainer;
 typedef std::unordered_map<uint32, std::vector<SpellProcsPerMinuteModEntry const*>> SpellProcsPerMinuteModContainer;
+typedef std::unordered_map<uint32 /*SpellID*/, BattlePetSpeciesEntry const*> SpellToSpeciesContainer;
+typedef std::vector<BattlePetSpeciesEntry const*> BattlePetSpeciesContainer;
+typedef std::vector<BattlePetSpeciesEntry const*> CreatureToSpeciesContainer;
 typedef std::vector<TalentEntry const*> TalentsByPosition[MAX_CLASSES][MAX_TALENT_TIERS][MAX_TALENT_COLUMNS];
 typedef std::unordered_set<uint32> ToyItemIdsContainer;
 typedef std::tuple<uint16, uint8, int32> WMOAreaTableKey;
@@ -456,6 +464,9 @@ namespace
     ArtifactPowerRanksContainer _artifactPowerRanks;
     std::unordered_map<uint32 /*itemId*/, AzeriteEmpoweredItemEntry const*> _azeriteEmpoweredItems;
     std::unordered_map<std::pair<uint32 /*azeriteEssenceId*/, uint32 /*rank*/>, AzeriteEssencePowerEntry const*> _azeriteEssencePowersByIdAndRank;
+	BattlePetSpeciesContainer _battlePetSpeciesContainer;
+	SpellToSpeciesContainer _spellToSpeciesContainer;
+	CreatureToSpeciesContainer _creatureToSpeciesContainer;
     std::vector<AzeriteItemMilestonePowerEntry const*> _azeriteItemMilestonePowers;
     std::array<AzeriteItemMilestonePowerEntry const*, MAX_AZERITE_ESSENCE_SLOT> _azeriteItemMilestonePowerByEssenceSlot;
     std::unordered_map<uint32 /*azeritePowerSetId*/, std::vector<AzeritePowerSetMemberEntry const*>> _azeritePowers;
@@ -692,10 +703,15 @@ uint32 DB2Manager::LoadStores(std::string const& dataPath, LocaleConstant defaul
     LOAD_DB2(sBannedAddonsStore);
     LOAD_DB2(sBarberShopStyleStore);
     LOAD_DB2(sBattlePetAbilityStore);
+	LOAD_DB2(sBattlePetAbilityEffectStore);
+	LOAD_DB2(sBattlePetAbilityStateStore);
+	LOAD_DB2(sBattlePetAbilityTurnStore);
     LOAD_DB2(sBattlePetBreedQualityStore);
     LOAD_DB2(sBattlePetBreedStateStore);
     LOAD_DB2(sBattlePetSpeciesStore);
     LOAD_DB2(sBattlePetSpeciesStateStore);
+	LOAD_DB2(sBattlePetSpeciesXAbilityStore);
+	LOAD_DB2(sBattlePetStateStore);
     LOAD_DB2(sBattlemasterListStore);
     LOAD_DB2(sBattlemasterListXMapStore);
     LOAD_DB2(sBroadcastTextStore);
@@ -1692,6 +1708,20 @@ uint32 DB2Manager::LoadStores(std::string const& dataPath, LocaleConstant defaul
         if (uiMapId == 985 || uiMapId == 986)
             sOldContinentsNodesMask[field] |= submask;
     }
+
+	_battlePetSpeciesContainer.resize(sBattlePetSpeciesStore.GetNumRows(), nullptr);
+
+	for(auto const& bps : sBattlePetSpeciesStore)
+	{
+		_battlePetSpeciesContainer[bps->ID] = bps;
+		_spellToSpeciesContainer[bps->SummonSpellID] = bps;
+
+		if(std::size_t(bps->CreatureID) >= _creatureToSpeciesContainer.size())
+			_creatureToSpeciesContainer.resize(bps->CreatureID + 1, nullptr);
+
+		_creatureToSpeciesContainer[bps->CreatureID] = bps;
+	}
+
 
     for (PVPStatEntry const* pvpStat : sPVPStatStore)
         _pvpStatIdsByMap[pvpStat->MapID].insert(pvpStat->ID);
@@ -3018,6 +3048,14 @@ SoulbindConduitRankEntry const* DB2Manager::GetSoulbindConduitRank(int32 soulbin
     return Trinity::Containers::MapGetValuePtr(_soulbindConduitRanks, { soulbindConduitId, rank });
 }
 
+BattlePetSpeciesEntry const* DB2Manager::GetSpeciesByCreatureID(uint32 CreatureID) const
+{
+	if(CreatureID >= _creatureToSpeciesContainer.size())
+		return nullptr;
+
+	return _creatureToSpeciesContainer[CreatureID];
+}
+
 std::vector<SpecializationSpellsEntry const*> const* DB2Manager::GetSpecializationSpells(uint32 specId) const
 {
     return Trinity::Containers::MapGetValuePtr(_specializationSpellsBySpec, specId);
@@ -3478,3 +3516,18 @@ bool DB2Manager::MountTypeXCapabilityEntryComparator::Compare(MountTypeXCapabili
         return left->OrderIndex < right->OrderIndex;
     return left->MountTypeID < right->MountTypeID;
 }
+
+std::set<uint32> DB2Manager::GetAllBattlePets() const
+{
+	std::set<uint32> allBattlePetID;
+	for(BattlePetSpeciesEntry const* pet : sBattlePetSpeciesStore)
+		allBattlePetID.insert(pet->ID);
+
+	return allBattlePetID;
+}
+
+BattlePetSpeciesEntry const* DB2Manager::GetSpeciesBySpell(uint32 SpellID) const
+{
+	return Trinity::Containers::MapGetValuePtr(_spellToSpeciesContainer, SpellID);
+}
+

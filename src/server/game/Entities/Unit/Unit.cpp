@@ -6179,7 +6179,7 @@ void Unit::SetMinion(Minion *minion, bool apply)
                 SetMinionGUID(minion->GetGUID());
         }
 
-        SummonPropertiesEntry const* properties = minion->m_Properties;
+        /*SummonPropertiesEntry const* properties = minion->m_Properties;
         if (properties && SummonTitle(properties->Title) == SummonTitle::Companion)
         {
             SetCritterGUID(minion->GetGUID());
@@ -6198,7 +6198,17 @@ void Unit::SetMinion(Minion *minion, bool apply)
                     }
                 }
             }
-        }
+        }*/
+
+	if(minion->m_Properties && SummonTitle(minion->m_Properties->Title) == SummonTitle::Companion)
+	{
+		SetCritterGUID(minion->GetGUID());
+		if(Player* thisPlayer = ToPlayer())
+		{
+			ObjectGuid SummonedGUID = thisPlayer->GetSummonedBattlePetGUID();
+			minion->SetBattlePetCompanionGUID(SummonedGUID);
+		}
+	}
 
         // PvP, FFAPvP
         minion->ReplaceAllPvpFlags(GetPvpFlags());
@@ -8102,7 +8112,7 @@ void Unit::Dismount()
     {
         player->EnablePetControlsOnDismount();
         player->ResummonPetTemporaryUnSummonedIfAny();
-        player->ResummonBattlePetTemporaryUnSummonedIfAny();
+        //player->ResummonBattlePetTemporaryUnSummonedIfAny();
     }
 }
 
@@ -14040,4 +14050,20 @@ DeclinedName::DeclinedName(UF::DeclinedNames const& uf)
 {
     for (std::size_t i = 0; i < MAX_DECLINED_NAME_CASES; ++i)
         name[i] = uf.Name[i];
+}
+
+void Unit::GetFriendlyUnitListInRange(std::list<Unit*>& list, float fMaxSearchRange, bool exceptSelf) const
+{
+    CellCoord p(Trinity::ComputeCellCoord(GetPositionX(), GetPositionY()));
+    Cell cell(p);
+    cell.SetNoCreate();
+
+    Trinity::AnyFriendlyUnitInObjectRangeCheck u_check(this, this, fMaxSearchRange, false, exceptSelf);
+    Trinity::UnitListSearcher<Trinity::AnyFriendlyUnitInObjectRangeCheck> searcher(this, list, u_check);
+
+    TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyFriendlyUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+    TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyFriendlyUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+
+    cell.Visit(p, world_unit_searcher, *GetMap(), *this, fMaxSearchRange);
+    cell.Visit(p, grid_unit_searcher, *GetMap(), *this, fMaxSearchRange);
 }

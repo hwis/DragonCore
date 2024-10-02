@@ -77,6 +77,62 @@ namespace ObjectAccessor
     TC_GAME_API Player* GetPlayer(WorldObject const&, ObjectGuid const& guid);
     TC_GAME_API Creature* GetCreatureOrPetOrVehicle(WorldObject const&, ObjectGuid const&);
 
+	
+ // DekkCore
+    TC_GAME_API Unit* FindUnit(ObjectGuid const& g);
+    TC_GAME_API GameObject* FindGameObject(ObjectGuid const& guid);
+    TC_GAME_API Creature* FindCreature(ObjectGuid const& guid);
+    TC_GAME_API Player* GetObjectInWorld(ObjectGuid guid, Player* /*typeSpecifier*/);
+    template<class T> static T* GetObjectInOrOutOfWorld(ObjectGuid guid, T* /*typeSpecifier*/)
+    {
+        return HashMapHolder<T>::Find(guid);
+    }
+    TC_GAME_API Player* FindPlayer(Map* map, ObjectGuid guid);
+
+    // returns object if is in map
+    template<class T> static T* GetObjectInMap(ObjectGuid guid, Map* map, T* /*typeSpecifier*/)
+    {
+        // ASSERT(map);
+        if (!map)
+            return nullptr;
+
+        if (T* obj = GetObjectInWorld(guid, static_cast<T*>(nullptr)))
+            // if (obj->GetMap() == map && !obj->IsPreDelete())
+            return obj;
+
+        return nullptr;
+    }
+
+    template<class T> static T* GetObjectInWorld(uint32 mapid, float x, float y, ObjectGuid guid, T* /*fake*/)
+    {
+        T* obj = HashMapHolder<T>::Find(guid);
+        if (!obj || obj->GetMapId() != mapid || obj->IsPreDelete())
+            return nullptr;
+
+        CellCoord p = Trinity::ComputeCellCoord(x, y);
+        if (!p.IsCoordValid())
+        {
+            //TC_LOG_ERROR("LOG_FILTER_GENERAL", "ObjectAccessor::GetObjectInWorld: invalid coordinates supplied X:{} Y:{} grid cell [{}:{}]", x, y, p.x_coord, p.y_coord);
+            return nullptr;
+        }
+
+        CellCoord q = Trinity::ComputeCellCoord(obj->GetPositionX(), obj->GetPositionY());
+        if (!q.IsCoordValid())
+        {
+            //TC_LOG_ERROR("LOG_FILTER_GENERAL", "ObjectAccessor::GetObjecInWorld: object (GUID: {} TypeId: {}) has invalid coordinates X:{} Y:{} grid cell [{}:{}]", obj->GetGUIDLow(), obj->GetTypeId(), obj->GetPositionX(), obj->GetPositionY(), q.x_coord, q.y_coord);
+            return nullptr;
+        }
+
+        int32 dx = int32(p.x_coord) - int32(q.x_coord);
+        int32 dy = int32(p.y_coord) - int32(q.y_coord);
+
+        if (dx > -2 && dx < 2 && dy > -2 && dy < 2)
+            return obj;
+        return nullptr;
+    }
+
+    // DekkCore
+
     // these functions return objects if found in whole world
     // ACCESS LIKE THAT IS NOT THREAD SAFE
     TC_GAME_API Player* FindPlayer(ObjectGuid const&);

@@ -6786,21 +6786,27 @@ SpellCastResult Spell::CheckCast(bool strict, int32* param1 /*= nullptr*/, int32
                 if (!playerCaster || !m_targets.GetUnitTarget() || !m_targets.GetUnitTarget()->IsCreature())
                     return SPELL_FAILED_BAD_TARGETS;
 
-                BattlePets::BattlePetMgr* battlePetMgr = playerCaster->GetSession()->GetBattlePetMgr();
-                if (!battlePetMgr->HasJournalLock())
+                if (playerCaster->GetSession()->IsPetBattleJournalLocked())
                     return SPELL_FAILED_CANT_DO_THAT_RIGHT_NOW;
 
-                if (Creature* creature = m_targets.GetUnitTarget()->ToCreature())
+                Creature* creature = m_targets.GetUnitTarget()->ToCreature();
+                if (creature)
                 {
-                    if (playerCaster->GetSummonedBattlePetGUID().IsEmpty() || creature->GetBattlePetCompanionGUID().IsEmpty())
-                        return SPELL_FAILED_NO_PET;
-
-                    if (playerCaster->GetSummonedBattlePetGUID() != creature->GetBattlePetCompanionGUID())
-                        return SPELL_FAILED_BAD_TARGETS;
-
-                    if (BattlePets::BattlePet* battlePet = battlePetMgr->GetPet(creature->GetBattlePetCompanionGUID()))
+                    const ObjectGuid bSummonedPetGUID = playerCaster->GetSummonedBattlePetGUID();
+                    const ObjectGuid bCompanionGUID = creature->GetBattlePetCompanionGUID();
+                    if (bSummonedPetGUID.IsEmpty() || bCompanionGUID.IsEmpty())
                     {
-                        if (BattlePetSpeciesEntry const* battlePetSpecies = sBattlePetSpeciesStore.LookupEntry(battlePet->PacketInfo.Species))
+                        return SPELL_FAILED_NO_PET;
+                    }
+            
+                    if (bSummonedPetGUID != bCompanionGUID)
+                    {
+                        return SPELL_FAILED_BAD_TARGETS;
+                    }
+            
+                    if (std::shared_ptr<BattlePet> battlePet = playerCaster->GetBattlePet(bCompanionGUID))
+                    {
+                        if (BattlePetSpeciesEntry const* battlePetSpecies = sBattlePetSpeciesStore.LookupEntry(battlePet->Species))
                         {
                             if (uint32 battlePetType = spellEffectInfo.MiscValue)
                                 if (!(battlePetType & (1 << battlePetSpecies->PetTypeEnum)))
@@ -6808,23 +6814,27 @@ SpellCastResult Spell::CheckCast(bool strict, int32* param1 /*= nullptr*/, int32
 
                             if (spellEffectInfo.Effect == SPELL_EFFECT_CHANGE_BATTLEPET_QUALITY)
                             {
-                                auto qualityItr = std::lower_bound(sBattlePetBreedQualityStore.begin(), sBattlePetBreedQualityStore.end(), spellEffectInfo.CalcBaseValue(m_caster, creature, m_castItemEntry, m_castItemLevel), [](BattlePetBreedQualityEntry const* a1, int32 selector)
-                                {
-                                    return a1->MaxQualityRoll < selector;
-                                });
-
-                                BattlePets::BattlePetBreedQuality quality = BattlePets::BattlePetBreedQuality::Poor;
-                                if (qualityItr != sBattlePetBreedQualityStore.end())
-                                    quality = BattlePets::BattlePetBreedQuality(qualityItr->QualityEnum);
-
-                                if (battlePet->PacketInfo.Quality >= AsUnderlyingType(quality))
+                                BattlePetQualities quality = BattlePetQualities::BATTLE_PET_QUALITY_POOR;
+                                //switch (spellEffectInfo.BasePoints)
+                                //{
+                                //    case 85:
+                                //        quality = BattlePetQualities::BATTLE_PET_QUALITY_RARE;
+                                //        break;
+                                //    case 75:
+                                //        quality = BattlePetQualities::BATTLE_PET_QUALITY_UNCOMMON;
+                                //        break;
+                                //    default:
+                                //        break;
+                                //}
+                
+                                if (battlePet->Quality >= AsUnderlyingType(quality))
                                     return SPELL_FAILED_CANT_UPGRADE_BATTLE_PET;
                             }
 
                             if (spellEffectInfo.Effect == SPELL_EFFECT_GRANT_BATTLEPET_LEVEL || spellEffectInfo.Effect == SPELL_EFFECT_GRANT_BATTLEPET_EXPERIENCE)
-                                if (battlePet->PacketInfo.Level >= BattlePets::MAX_BATTLE_PET_LEVEL)
+                                if (battlePet->Level >= BattlePetMisc::BATTLE_PET_MAX_LEVEL)
                                     return GRANT_PET_LEVEL_FAIL;
-
+                                
                             if (battlePetSpecies->GetFlags().HasFlag(BattlePetSpeciesFlags::CantBattle))
                                 return SPELL_FAILED_BAD_TARGETS;
                         }

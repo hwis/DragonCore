@@ -83,7 +83,7 @@ namespace Trainer
         }
 
         bool sendSpellVisual = true;
-        BattlePetSpeciesEntry const* speciesEntry = BattlePets::BattlePetMgr::GetBattlePetSpeciesBySpell(trainerSpell->SpellId);
+        /*BattlePetSpeciesEntry const* speciesEntry = BattlePets::BattlePetMgr::GetBattlePetSpeciesBySpell(trainerSpell->SpellId);
         if (speciesEntry)
         {
             if (player->GetSession()->GetBattlePetMgr()->HasMaxPetCount(speciesEntry, player->GetGUID()))
@@ -93,7 +93,7 @@ namespace Trainer
             }
 
             sendSpellVisual = false;
-        }
+        }*/
 
         float reputationDiscount = player->GetReputationPriceDiscount(npc);
         int64 moneyCost = int64(trainerSpell->MoneyCost * reputationDiscount);
@@ -120,14 +120,14 @@ namespace Trainer
         {
             bool dependent = false;
 
-            if (speciesEntry)
+            /*if (speciesEntry)
             {
                 player->GetSession()->GetBattlePetMgr()->AddPet(speciesEntry->ID, BattlePets::BattlePetMgr::SelectPetDisplay(speciesEntry),
                     BattlePets::BattlePetMgr::RollPetBreed(speciesEntry->ID), BattlePets::BattlePetMgr::GetDefaultPetQuality(speciesEntry->ID));
                 // If the spell summons a battle pet, we fake that it has been learned and the battle pet is added
                 // marking as dependent prevents saving the spell to database (intended)
                 dependent = true;
-            }
+            }*/
 
             player->LearnSpell(trainerSpell->SpellId, dependent);
         }

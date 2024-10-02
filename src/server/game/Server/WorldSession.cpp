@@ -26,6 +26,8 @@
 #include "BattlePetMgr.h"
 #include "BattlegroundMgr.h"
 #include "BattlenetPackets.h"
+#include "BattlePet.h"
+#include "BattlePetDataStore.h"
 #include "CharacterPackets.h"
 #include "ChatPackets.h"
 #include "ClientConfigPackets.h"
@@ -144,7 +146,7 @@ WorldSession::WorldSession(uint32 id, std::string&& name, uint32 battlenetAccoun
     _timeSyncNextCounter(0),
     _timeSyncTimer(0),
     _calendarEventCreationCooldown(0),
-    _battlePetMgr(std::make_unique<BattlePets::BattlePetMgr>(this)),
+    //_battlePetMgr(std::make_unique<BattlePets::BattlePetMgr>(this)),
     _collectionMgr(std::make_unique<CollectionMgr>(this))
 {
     memset(_tutorials, 0, sizeof(_tutorials));
@@ -156,8 +158,15 @@ WorldSession::WorldSession(uint32 id, std::string&& name, uint32 battlenetAccoun
         LoginDatabase.PExecute("UPDATE account SET online = 1 WHERE id = {};", GetAccountId());     // One-time query
     }
 
+    m_isPetBattleJournalLocked = false;
+
     m_Socket[CONNECTION_TYPE_REALM] = std::move(sock);
     _instanceConnectKey.Raw = UI64LIT(0);
+}
+
+bool WorldSession::IsPetBattleJournalLocked()
+{
+    return m_isPetBattleJournalLocked;
 }
 
 /// WorldSession destructor
@@ -603,8 +612,11 @@ void WorldSession::LogoutPlayer(bool save)
         _player->RemovePet(nullptr, PET_SAVE_AS_CURRENT, true);
 
         ///- Release battle pet journal lock
-        if (_battlePetMgr->HasJournalLock())
-            _battlePetMgr->ToggleJournalLock(false);
+        //if (_battlePetMgr->HasJournalLock())
+        //    _battlePetMgr->ToggleJournalLock(false);
+
+        // Remove battle pet
+        _player->UnsummonCurrentBattlePetIfAny(true);        
 
         ///- Clear whisper whitelist
         _player->ClearWhisperWhiteList();
@@ -1214,8 +1226,8 @@ void WorldSession::InitializeSessionCallback(LoginDatabaseQueryHolder const& hol
     bnetConnected.State = 1;
     SendPacket(bnetConnected.Write());
 
-    _battlePetMgr->LoadFromDB(holder.GetPreparedResult(AccountInfoQueryHolder::BATTLE_PETS),
-                              holder.GetPreparedResult(AccountInfoQueryHolder::BATTLE_PET_SLOTS));
+    //_battlePetMgr->LoadFromDB(holder.GetPreparedResult(AccountInfoQueryHolder::BATTLE_PETS),
+    //                                                      holder.GetPreparedResult(AccountInfoQueryHolder::BATTLE_PET_SLOTS));
 }
 
 rbac::RBACData* WorldSession::GetRBACData()

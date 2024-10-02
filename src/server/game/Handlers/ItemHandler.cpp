@@ -1207,15 +1207,15 @@ void WorldSession::HandleUseCritterItem(WorldPackets::Item::UseCritterItem& useC
     if (!item)
         return;
 
-    for (ItemEffectEntry const* itemEffect : item->GetEffects())
-   {
-        if (itemEffect->TriggerType != ITEM_SPELLTRIGGER_ON_LEARN)
-            continue;
-
-        if (BattlePetSpeciesEntry const* speciesEntry = BattlePets::BattlePetMgr::GetBattlePetSpeciesBySpell(uint32(itemEffect->SpellID)))
-            GetBattlePetMgr()->AddPet(speciesEntry->ID, BattlePets::BattlePetMgr::SelectPetDisplay(speciesEntry),
-                BattlePets::BattlePetMgr::RollPetBreed(speciesEntry->ID), BattlePets::BattlePetMgr::GetDefaultPetQuality(speciesEntry->ID));
-    }
+    //for (ItemEffectEntry const* itemEffect : item->GetEffects())
+    //{
+    //    if (itemEffect->TriggerType != ITEM_SPELLTRIGGER_ON_LEARN)
+    //        continue;
+    //
+    //    if (BattlePetSpeciesEntry const* speciesEntry = BattlePets::BattlePetMgr::GetBattlePetSpeciesBySpell(uint32(itemEffect->SpellID)))
+    //        GetBattlePetMgr()->AddPet(speciesEntry->ID, BattlePets::BattlePetMgr::SelectPetDisplay(speciesEntry),
+    //            BattlePets::BattlePetMgr::RollPetBreed(speciesEntry->ID), BattlePets::BattlePetMgr::GetDefaultPetQuality(speciesEntry->ID));
+    //}
 
     _player->DestroyItem(item->GetBagSlot(), item->GetSlot(), true);
 }

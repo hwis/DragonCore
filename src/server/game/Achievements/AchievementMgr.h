@@ -72,6 +72,7 @@ protected:
 protected:
     std::unordered_map<uint32, CompletedAchievementData> _completedAchievements;
     uint32 _achievementPoints;
+    uint32 _achievementBattlePetPoints;
 };
 
 class TC_GAME_API PlayerAchievementMgr : public AchievementMgr

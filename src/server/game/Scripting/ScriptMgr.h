@@ -787,6 +787,9 @@ class TC_GAME_API PlayerScript : public ScriptObject
 
         // Called when a player choose a response from a PlayerChoice
         virtual void OnPlayerChoiceResponse(Player* player, uint32 choiceId, uint32 responseId);
+
+        // Called when a pet battle is finished
+        void OnPetBattleFinish(Player* player);
 };
 
 class TC_GAME_API AccountScript : public ScriptObject
@@ -1231,6 +1234,7 @@ class TC_GAME_API ScriptMgr
         void OnPlayerRepop(Player* player);
         void OnMovieComplete(Player* player, uint32 movieId);
         void OnPlayerChoiceResponse(Player* player, uint32 choiceId, uint32 responseId);
+    	void OnPetBattleFinish(Player* player);
 
     public: /* AccountScript */
 

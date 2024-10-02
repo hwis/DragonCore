@@ -1185,7 +1185,7 @@ struct BattlePetAbilityTurnMeta
         { FT_SHORT, 1, false },
         { FT_BYTE, 1, false },
         { FT_BYTE, 1, false },
-        { FT_BYTE, 1, false },
+        { FT_BYTE, 1, true },
         { FT_SHORT, 1, false },
     };
 

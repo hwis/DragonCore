@@ -31,6 +31,8 @@
 #include "BattlefieldMgr.h"
 #include "BattlegroundMgr.h"
 #include "BattlenetRpcErrorCodes.h"
+#include "BattlePetDataStore.h"
+#include "BattlePetSystem.h"
 #include "BlackMarketMgr.h"
 #include "CalendarMgr.h"
 #include "ChannelMgr.h"
@@ -2548,7 +2550,9 @@ bool World::SetInitialWorldSettings()
     sCharacterTemplateDataStore->LoadCharacterTemplates();
 
     TC_LOG_INFO("server.loading", "Loading battle pets info...");
-    BattlePets::BattlePetMgr::Initialize();
+    //BattlePets::BattlePetMgr::Initialize();
+    sBattlePetDataStore->Initialize();
+    sWildBattlePetMgr->Load();
 
     TC_LOG_INFO("server.loading", "Loading scenarios");
     sScenarioMgr->LoadDB2Data();
@@ -3878,14 +3882,14 @@ void World::UpdateAreaDependentAuras()
         }
 }
 
-bool World::IsBattlePetJournalLockAcquired(ObjectGuid battlenetAccountGuid)
-{
-    for (auto&& sessionForBnet : Trinity::Containers::MapEqualRange(m_sessionsByBnetGuid, battlenetAccountGuid))
-        if (sessionForBnet.second->GetBattlePetMgr()->HasJournalLock())
-            return true;
-
-    return false;
-}
+//bool World::IsBattlePetJournalLockAcquired(ObjectGuid battlenetAccountGuid)
+//{
+//    for (auto&& sessionForBnet : Trinity::Containers::MapEqualRange(m_sessionsByBnetGuid, battlenetAccountGuid))
+//        if (sessionForBnet.second->GetBattlePetMgr()->HasJournalLock())
+//            return true;
+//
+//    return false;
+//}
 
 bool World::IsPvPRealm() const
 {

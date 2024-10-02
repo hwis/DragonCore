@@ -29,7 +29,9 @@ namespace WorldPackets
         {
             None = 0,
             Battlegrounds = 1,
-            Lfg = 2
+            Lfg = 2,
+            PvPPetBattle = 3,
+            PetBattle = 5,
         };
 
         struct RideTicket
