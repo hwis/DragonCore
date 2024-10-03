@@ -34,6 +34,7 @@
 
 enum AdvancedFlyingSpells
 {
+    SPELL_BASE_DRAGONRIDE       = 376777,
     SPELL_DRAGONRIDER_ENERGIZE  = 372606,
     SPELL_VIGOR_CACHE           = 433547,
     SPELL_RIDING_ABROAD         = 432503, // TODO outside of dragon isles
@@ -49,7 +50,7 @@ class spell_af_skyriding : public AuraScript
 {
     void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-		if (GetCaster()->HasAura(SWITCH_AF_DRAGONRIDING))
+		if (GetCaster()->HasAura(SPELL_BASE_DRAGONRIDE) && !GetCaster()->HasAura(SWITCH_AF_REGULAR))
 		{
 			GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, TRIGGERED_FULL_MASK);	
 			GetTarget()->SetPower(POWER_ALTERNATE_MOUNT, GetTarget()->GetPower(POWER_ALTERNATE_MOUNT), true);
