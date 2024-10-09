@@ -24,6 +24,8 @@
 #include "Containers.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "PathGenerator.h"
+#include "MotionMaster.h"
 #include "Spell.h"
 #include "SpellAuraEffects.h"
 #include "SpellHistory.h"
@@ -56,7 +58,16 @@ enum EvokerSpells
     SPELL_EVOKER_PERMEATING_CHILL_TALENT        = 370897,
     SPELL_EVOKER_PYRE_DAMAGE                    = 357212,
     SPELL_EVOKER_SCOURING_FLAME                 = 378438,
-    SPELL_EVOKER_SOAR_RACIAL                    = 369536
+    SPELL_EVOKER_SOAR_RACIAL                    = 369536,
+    SPELL_EVOKER_VISAGE                         = 372014,
+    SPELL_EVOKER_ALTERED_FORM                   = 97709,
+    SPELL_EVOKER_HATRED                         = 118328,
+    SPELL_EVOKER_SKYWARD_ASCENT                 = 372610,
+    SPELL_EVOKER_SURGE_FORWARD                  = 372608,
+    SPELL_EVOKER_DEEP_BREATH                    = 357210,
+    SPELL_EVOKER_DEEP_BREATH_DAMAGE             = 353759,
+    SPELL_EVOKER_DEEP_BREATH_EFFECT             = 362010,
+    SPELL_EVOKER_DEEP_BREATH_END                = 362019,
 };
 
 enum EvokerSpellLabels
@@ -208,6 +219,52 @@ class spell_evo_fire_breath_damage : public SpellScript
     {
         CalcDamage += SpellCalcDamageFn(spell_evo_fire_breath_damage::AddBonusUpfrontDamage);
         OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_evo_fire_breath_damage::RemoveUnusedEffect, EFFECT_2, TARGET_UNIT_CONE_CASTER_TO_DEST_ENEMY);
+    }
+};
+
+// 369536 - Soar
+class spell_evo_soar : public SpellScript
+{
+    void HandleOnCast()
+    {
+        Unit* caster = GetCaster();
+        caster->GetMotionMaster()->MoveJump(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 30.0f, 20.0f, 10.0f);
+    }
+    
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+    }
+};
+
+// 351239 - Visage (Racial)
+class spell_evo_cosmic_visage : public SpellScript
+{
+    void HandleOnCast()
+    {
+        Unit* caster = GetCaster();
+        
+        if (caster->HasAura(SPELL_EVOKER_VISAGE))
+        {
+            caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE);
+            caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, true);
+            caster->SendPlaySpellVisual(caster, SPELL_EVOKER_HATRED, 0, 0, 60, false);
+            caster->SetDisplayId(108590);
+        }
+        else
+        {
+            if (caster->HasAura(SPELL_EVOKER_ALTERED_FORM))
+                caster->RemoveAurasDueToSpell(SPELL_EVOKER_ALTERED_FORM);
+            
+            caster->CastSpell(caster, SPELL_EVOKER_VISAGE, true);
+            caster->SendPlaySpellVisual(caster, SPELL_EVOKER_HATRED, 0, 0, 60, false);
+            caster->SetDisplayId(104597);
+        }
+    }
+
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_cosmic_visage::HandleOnCast);
     }
 };
 
@@ -363,6 +420,54 @@ class spell_evo_scouring_flame : public SpellScript
     }
 };
 
+// 357210 - Deep Breath
+class spell_evo_deep_breath : public SpellScript
+{
+    SpellCastResult CheckCast()
+    {
+        if (WorldLocation const* dest = GetExplTargetDest())
+        {
+            if (GetCaster()->HasUnitMovementFlag(MOVEMENTFLAG_ROOT))
+                return SPELL_FAILED_ROOTED;
+            
+            if (GetCaster()->GetMap()->Instanceable())
+            {
+                float range = GetSpellInfo()->GetMaxRange(true, GetCaster()) * 1.5f;
+                
+                PathGenerator genPath(GetCaster());
+                genPath.SetPathLengthLimit(range);
+
+                bool result = genPath.CalculatePath(dest->GetPositionX(), dest->GetPositionY(), dest->GetPositionZ(), false);
+                if (genPath.GetPathType() & PATHFIND_SHORT)
+                    return SPELL_FAILED_OUT_OF_RANGE;
+                else if (!result || genPath.GetPathType() & PATHFIND_NOPATH)
+                    return SPELL_FAILED_NOPATH;
+            }
+            else if (dest->GetPositionZ() > GetCaster()->GetPositionZ() + 4.0f)
+                return SPELL_FAILED_NOPATH;
+
+            return SPELL_CAST_OK;
+        } 
+        
+        return SPELL_FAILED_NO_VALID_TARGETS;   
+    }
+
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        Unit* caster = GetCaster();
+        WorldLocation const* dest = GetExplTargetDest();
+        PathGenerator path(caster);
+        path.CalculatePath(dest->GetPositionX(), dest->GetPositionY(), dest->GetPositionZ(), false);
+        caster->GetMotionMaster()->MoveCharge(path, 15);
+    }
+
+    void Register() override
+    {
+        OnCheckCast += SpellCheckCastFn(spell_evo_deep_breath::CheckCast);
+        OnEffectHit += SpellEffectFn(spell_evo_deep_breath::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -375,4 +480,7 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_permeating_chill);
     RegisterSpellScript(spell_evo_pyre);
     RegisterSpellScript(spell_evo_scouring_flame);
+    RegisterSpellScript(spell_evo_soar);
+    RegisterSpellScript(spell_evo_cosmic_visage);
+    RegisterSpellScript(spell_evo_deep_breath);
 }
