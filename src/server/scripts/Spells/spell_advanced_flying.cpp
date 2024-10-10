@@ -40,7 +40,8 @@ enum AdvancedFlyingSpells
     SPELL_RIDING_ABROAD         = 432503, // TODO outside of dragon isles
     SPELL_ENERGY_WIDGET         = 423624,
 	SWITCH_AF_REGULAR			= 404468,
-	SWITCH_AF_DRAGONRIDING		= 404464
+	SWITCH_AF_DRAGONRIDING		= 404464,
+    SPELL_THRILL_OF_SKIES       = 377234,
 };
 
 // 373646 - Soar (Racial)
@@ -100,6 +101,7 @@ class spell_af_energy : public AuraScript
                         newAmount -= 100;
 
                         caster->CastSpell(caster, SPELL_DRAGONRIDER_ENERGIZE, TRIGGERED_FULL_MASK);
+                        
 
                         if (AuraEffect* amountAurEff = caster->GetAuraEffect(SPELL_VIGOR_CACHE, EFFECT_0))
                             amountAurEff->SetAmount(caster->GetPower(POWER_ALTERNATE_MOUNT));
@@ -124,6 +126,10 @@ class spell_af_energy : public AuraScript
 					newMaxPower = 6;
 				}
 
+                if (caster->IsInAir() && !caster->IsInWater() && !caster->HasAura(SPELL_THRILL_OF_SKIES))
+                    caster->CastSpell(caster, SPELL_THRILL_OF_SKIES, TRIGGERED_FULL_MASK);
+                else caster->RemoveAurasDueToSpell(SPELL_THRILL_OF_SKIES);
+
 				caster->SetMaxPower(POWER_ALTERNATE_MOUNT, newMaxPower);
             }
         }
@@ -144,8 +150,8 @@ class spell_af_energy : public AuraScript
 private:
     bool ShouldRegenEnergy(Unit const* caster) const
     {
-        if (caster->GetPower(POWER_ALTERNATE_MOUNT) == caster->GetMaxPower(POWER_ALTERNATE_MOUNT))
-            return false;
+        //if (caster->GetPower(POWER_ALTERNATE_MOUNT) == caster->GetMaxPower(POWER_ALTERNATE_MOUNT))
+        //    return false;
 
         FlightCapabilityEntry const* flightCapabilityEntry = sFlightCapabilityStore.LookupEntry(caster->GetFlightCapabilityID());
         if (!flightCapabilityEntry)
