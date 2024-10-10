@@ -88,6 +88,12 @@ class spell_af_energy : public AuraScript
     {
         if (Unit* caster = GetCaster())
         {
+            if (!caster->IsInAir())
+            {   
+                caster->RemoveAurasDueToSpell(369536);
+                caster->RemoveAurasDueToSpell(430747);
+            }
+
             if (ShouldRegenEnergy(caster))
             {
                 if (AuraEffect* subAmountAurEff = caster->GetAuraEffect(SPELL_VIGOR_CACHE, EFFECT_1))
@@ -127,8 +133,11 @@ class spell_af_energy : public AuraScript
 				}
 
                 if (caster->IsInAir() && !caster->IsInWater() && !caster->HasAura(SPELL_THRILL_OF_SKIES))
+                {
                     caster->CastSpell(caster, SPELL_THRILL_OF_SKIES, TRIGGERED_FULL_MASK);
+                }
                 else caster->RemoveAurasDueToSpell(SPELL_THRILL_OF_SKIES);
+
 
 				caster->SetMaxPower(POWER_ALTERNATE_MOUNT, newMaxPower);
             }
