@@ -88,7 +88,7 @@ class spell_af_energy : public AuraScript
     {
         if (Unit* caster = GetCaster())
         {
-            if (!caster->IsInAir())
+            if (!caster->IsInAir() && caster->IsInWater())
             {   
                 caster->RemoveAurasDueToSpell(369536);
                 caster->RemoveAurasDueToSpell(430747);
