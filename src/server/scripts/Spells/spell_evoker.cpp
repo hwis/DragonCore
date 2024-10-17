@@ -24,6 +24,8 @@
 #include "Containers.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "AreaTrigger.h"
+#include "AreaTriggerAI.h"
 #include "PathGenerator.h"
 #include "MotionMaster.h"
 #include "Spell.h"
@@ -228,12 +230,18 @@ class spell_evo_soar : public SpellScript
     void HandleOnCast()
     {
         Unit* caster = GetCaster();
-        caster->GetMotionMaster()->MoveJump(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 30.0f, 20.0f, 10.0f);
+        caster->GetMotionMaster()->MoveJump(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 40.0f, 30.0f, 10.0f);
+    }
+
+    void HandleAfterCast()
+    {
+        GetCaster()->CastSpell(GetCaster(), 430747, true);
     }
     
     void Register() override
     {
         OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_soar::HandleAfterCast);
     }
 };
 
@@ -468,6 +476,18 @@ class spell_evo_deep_breath : public SpellScript
     }
 };
 
+// areatrigger 23318
+struct areatrigger_evo_emerald_blossom : AreaTriggerAI
+{
+    areatrigger_evo_emerald_blossom(AreaTrigger* at) : AreaTriggerAI(at) { }
+    
+    void OnRemove() override
+    {
+        if (Unit* caster = at->GetCaster())
+            caster->CastSpell(at->GetPosition(), 355916);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -483,4 +503,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_soar);
     RegisterSpellScript(spell_evo_cosmic_visage);
     RegisterSpellScript(spell_evo_deep_breath);
+    RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
 }
