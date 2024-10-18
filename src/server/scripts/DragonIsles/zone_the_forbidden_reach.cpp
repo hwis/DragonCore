@@ -194,6 +194,7 @@ struct npc_dervishian_192889 : public ScriptedAI
         if (!player->HasSpell(369536))
         {
             player->LearnSpell(369536, false);
+            player->LearnSpell(376777, false);
         }
 
         player->TalkedToCreature(me->GetEntry(), ObjectGuid::Empty);
@@ -201,6 +202,55 @@ struct npc_dervishian_192889 : public ScriptedAI
         SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, me->GetGUID());
 
         return true;
+    }
+};
+
+struct npc_emberthal_182258 : public ScriptedAI
+{
+    npc_emberthal_182258(Creature* creature) : ScriptedAI(creature) { }
+    
+    bool OnGossipHello(Player* player) override
+    {
+        ClearGossipMenuFor(player);
+
+        if (me->IsQuestGiver())
+            player->PrepareQuestMenu(me->GetGUID());
+
+        if (player->GetQuestStatus(65701) != QUEST_STATUS_REWARDED)
+            player->SendPlayerChoice(player->GetGUID(), 688);
+
+        SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, me->GetGUID());
+        
+        return true;
+    }
+};
+
+struct npc_kodeti_192893 : public ScriptedAI
+{
+    npc_kodeti_192893(Creature* creature) : ScriptedAI(creature) { }
+    
+    bool OnGossipHello(Player* player) override
+    {
+        ClearGossipMenuFor(player);
+
+        player->TalkedToCreature(me->GetEntry(), ObjectGuid::Empty);
+        
+        SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, me->GetGUID());
+        return true;
+    }
+};
+
+class q_final_orders_65100 : public QuestScript
+{
+public:
+    q_final_orders_65100() : QuestScript("q_final_orders_65100") { }
+
+    void OnQuestStatusChange(Player* player, Quest const* quest, QuestStatus /*oldStatus*/, QuestStatus newStatus)
+    {
+        if(quest->GetQuestId() == 65100) {
+            if(newStatus == QUEST_STATUS_REWARDED)
+                player->GetTeam() == ALLIANCE ? player->TeleportTo(0, -9103.20f, 406.78f, 92.64f, 0.58f) : player->TeleportTo(1, 1352.28f, -4373.56f, 26.15f, 0.08f);
+        }
     }
 };
 
@@ -212,4 +262,7 @@ void AddSC_zone_the_forbidden_reach()
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
     RegisterCreatureAI(npc_dervishian_192889);
+    RegisterCreatureAI(npc_emberthal_182258);
+    RegisterCreatureAI(npc_kodeti_192893);
+    new q_final_orders_65100();
 }
