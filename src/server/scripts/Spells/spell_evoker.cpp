@@ -70,6 +70,8 @@ enum EvokerSpells
     SPELL_EVOKER_DEEP_BREATH_DAMAGE             = 353759,
     SPELL_EVOKER_DEEP_BREATH_EFFECT             = 362010,
     SPELL_EVOKER_DEEP_BREATH_END                = 362019,
+    SPELL_EVOKER_VERDANT_EMBRANCE_HEAL          = 361195,
+    SPELL_EVOKER_VERDANT_EMBRANCE_JUMP          = 373514,
 };
 
 enum EvokerSpellLabels
@@ -476,6 +478,30 @@ class spell_evo_deep_breath : public SpellScript
     }
 };
 
+// 360995
+class spell_evo_verdant_embrace : public SpellScript
+{
+    void HandleOnCast()
+    {
+        Unit* caster = GetCaster();
+        //Unit* target = GetHitUnit();
+        caster->CastSpell(caster, 370115, true);
+    }
+
+    void HandleAfterCast()
+    {
+        Unit* caster = GetCaster();
+        Unit* target = GetHitUnit();
+        caster->CastSpell(target, SPELL_EVOKER_VERDANT_EMBRANCE_HEAL, true);
+    }
+    
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_verdant_embrace::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_verdant_embrace::HandleAfterCast);
+    }
+};
+
 // areatrigger 23318
 struct areatrigger_evo_emerald_blossom : AreaTriggerAI
 {
@@ -504,4 +530,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_cosmic_visage);
     RegisterSpellScript(spell_evo_deep_breath);
     RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
+    RegisterSpellScript(spell_evo_verdant_embrace);
 }
