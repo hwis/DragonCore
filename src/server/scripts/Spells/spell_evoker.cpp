@@ -24,6 +24,8 @@
 #include "Containers.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "PathGenerator.h"
+#include "MotionMaster.h"
 #include "AreaTrigger.h"
 #include "AreaTriggerAI.h"
 #include "Spell.h"
@@ -250,6 +252,21 @@ class spell_evo_glide : public SpellScript
     }
 };
 
+// 369536 - Soar
+class spell_evo_soar : public SpellScript
+{
+    void HandleOnCast()
+    {
+        Unit* caster = GetCaster();
+        caster->GetMotionMaster()->MoveJump(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 30.0f, 20.0f, 10.0f);
+    }
+
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+    }
+};
+
 // 361469 - Living Flame (Red)
 class spell_evo_living_flame : public SpellScript
 {
@@ -390,4 +407,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_pyre);
     RegisterSpellScript(spell_evo_scouring_flame);
     RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
+    RegisterSpellScript(spell_evo_soar);
 }
