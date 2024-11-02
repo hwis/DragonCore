@@ -60,7 +60,8 @@ enum EvokerSpells
     SPELL_EVOKER_PERMEATING_CHILL_TALENT        = 370897,
     SPELL_EVOKER_PYRE_DAMAGE                    = 357212,
     SPELL_EVOKER_SCOURING_FLAME                 = 378438,
-    SPELL_EVOKER_SOAR_RACIAL                    = 369536
+    SPELL_EVOKER_SOAR_RACIAL                    = 369536,
+    SPELL_EVOKER_VERDANT_EMBRACE_HEAL           = 361195
 };
 
 enum EvokerSpellLabels
@@ -393,6 +394,28 @@ struct areatrigger_evo_emerald_blossom : AreaTriggerAI
             caster->CastSpell(at->GetPosition(), 355916);
     }
 };
+    
+// 360995
+class spell_evo_verdant_embrace : public SpellScript
+{
+    void HandleOnCast()
+    {
+        GetCaster()->CastSpell(nullptr, 370115, false);
+    }
+
+    void HandleAfterCast()
+    {
+        Unit* caster = GetCaster();
+        Unit* target = GetHitUnit();
+        caster->CastSpell(target, SPELL_EVOKER_VERDANT_EMBRACE_HEAL, false);
+    }
+    
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_verdant_embrace::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_verdant_embrace::HandleAfterCast);
+    }
+};
 
 void AddSC_evoker_spell_scripts()
 {
@@ -408,4 +431,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_scouring_flame);
     RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_soar);
+    RegisterSpellScript(spell_evo_verdant_embrace);
 }
