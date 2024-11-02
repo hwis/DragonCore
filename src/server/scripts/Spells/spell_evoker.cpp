@@ -262,9 +262,15 @@ class spell_evo_soar : public SpellScript
         caster->GetMotionMaster()->MoveJump(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 30.0f, 20.0f, 10.0f);
     }
 
+    void HandleAfterCast()
+    {
+        GetCaster()->CastSpell(GetCaster(), 430747, true);
+    }
+
     void Register() override
     {
         OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_soar::HandleAfterCast);
     }
 };
 
