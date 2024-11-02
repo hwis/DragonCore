@@ -1084,7 +1084,8 @@ class TC_GAME_API Unit : public WorldObject
         bool IsFrozen() const { return HasAuraState(AURA_STATE_FROZEN); }
 
         bool isTargetableForAttack(bool checkFakeDeath = true) const;
-
+        
+        bool IsInAir() const;
         bool IsInWater() const;
         bool IsUnderWater() const;
         bool IsOnOceanFloor() const;
