@@ -24,6 +24,8 @@
 #include "Containers.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "AreaTrigger.h"
+#include "AreaTriggerAI.h"
 #include "Spell.h"
 #include "SpellAuraEffects.h"
 #include "SpellHistory.h"
@@ -363,6 +365,18 @@ class spell_evo_scouring_flame : public SpellScript
     }
 };
 
+// areatrigger 23318
+struct areatrigger_evo_emerald_blossom : AreaTriggerAI
+{
+    areatrigger_evo_emerald_blossom(AreaTrigger* at) : AreaTriggerAI(at) { }
+
+    void OnRemove() override
+    {
+        if (Unit* caster = at->GetCaster())
+            caster->CastSpell(at->GetPosition(), 355916);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -375,4 +389,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_permeating_chill);
     RegisterSpellScript(spell_evo_pyre);
     RegisterSpellScript(spell_evo_scouring_flame);
+    RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
 }
