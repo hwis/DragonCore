@@ -53,7 +53,7 @@ class spell_af_skyriding : public AuraScript
 		if (GetCaster()->HasAura(SPELL_BASE_DRAGONRIDE) && !GetCaster()->HasAura(SWITCH_AF_REGULAR))
 		{
 			GetTarget()->CastSpell(GetTarget(), SPELL_ENERGY_WIDGET, TRIGGERED_FULL_MASK);	
-			//GetTarget()->SetPower(POWER_ALTERNATE_MOUNT, GetTarget()->GetPower(POWER_ALTERNATE_MOUNT), true);
+			GetTarget()->SetPower(POWER_ALTERNATE_MOUNT, GetTarget()->GetPower(POWER_ALTERNATE_MOUNT), true);
 		}
     }
 
@@ -124,12 +124,6 @@ class spell_af_energy : public AuraScript
                     newMaxPower = 6;
                 }
 
-                if (caster->IsInAir() && !caster->IsInWater() && !caster->HasAura(SPELL_THRILL_OF_SKIES))
-                {
-                    caster->CastSpell(caster, SPELL_THRILL_OF_SKIES, TRIGGERED_FULL_MASK);
-                }
-                else caster->RemoveAurasDueToSpell(SPELL_THRILL_OF_SKIES);
-
                 caster->SetMaxPower(POWER_ALTERNATE_MOUNT, newMaxPower);
             }
         }
@@ -154,6 +148,94 @@ private:
             return false;
 
         return true;
+    }
+};
+
+// 374763 - Lift off
+// 372610 - Skyward Ascent (Dragonriding)
+class spell_af_skyward_ascent : public SpellScript
+{
+    void HandleHitTarget(SpellEffIndex effIndex)
+    {
+        if (Player* caster = GetCaster()->ToPlayer())
+        {
+            uint32 ascentSpeed = uint32(GetSpellValue()->EffectBasePoints[effIndex]);
+            caster->AddMoveImpulse(Position(0, 0, float(ascentSpeed) / 10));
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_af_skyward_ascent::HandleHitTarget, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+// 372608 - Surge Forward
+class spell_af_surge_forward : public SpellScript
+{
+
+    SpellCastResult CheckCast()
+    {
+        Unit* caster = GetCaster();
+
+        if (!caster->IsInAir())
+            return SPELL_FAILED_NOT_ON_GROUND;
+
+        return SPELL_CAST_OK;
+    }
+
+    void HandleHitTarget(SpellEffIndex /*effIndex*/)
+    {
+        if (Player* caster = GetCaster()->ToPlayer())
+        {
+            float SURGE_SPEED = 14.0f;
+
+            float destX = caster->GetPositionX() + SURGE_SPEED * std::cos(caster->GetOrientation());
+            float destY = caster->GetPositionY() + SURGE_SPEED * std::sin(caster->GetOrientation());
+            float destZ = caster->GetPositionZ() + SURGE_SPEED * std::tan(caster->m_movementInfo.pitch);
+
+            caster->AddMoveImpulse(Position(destX - caster->GetPositionX(), destY - caster->GetPositionY(), destZ - caster->GetPositionZ()));
+        }
+    }
+
+    void Register() override
+    {   
+        OnCheckCast += SpellCheckCastFn(spell_af_surge_forward::CheckCast);
+        OnEffectHitTarget += SpellEffectFn(spell_af_surge_forward::HandleHitTarget, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+// 361584 - Whirling Surge
+class spell_af_whirling_surge : public SpellScript
+{
+    SpellCastResult CheckCast()
+    {
+        Unit* caster = GetCaster();
+        
+        if (!caster->IsInAir())
+            return SPELL_FAILED_NOT_ON_GROUND;
+
+        return SPELL_CAST_OK;
+    }
+    
+    void HandleHitTarget(SpellEffIndex /*effIndex*/)
+    {
+        if (Player* caster = GetCaster()->ToPlayer())
+        {
+            float SURGE_SPEED = 60.0f;
+
+            float destX = caster->GetPositionX() + SURGE_SPEED * std::cos(caster->GetOrientation());
+            float destY = caster->GetPositionY() + SURGE_SPEED * std::sin(caster->GetOrientation());
+            float destZ = caster->GetPositionZ() + SURGE_SPEED * std::tan(caster->m_movementInfo.pitch);
+
+            caster->AddMoveImpulse(Position(destX - caster->GetPositionX(), destY - caster->GetPositionY(), destZ - caster->GetPositionZ()));
+        }
+    }
+
+    void Register() override
+    {
+        OnCheckCast += SpellCheckCastFn(spell_af_whirling_surge::CheckCast);
+        OnEffectHitTarget += SpellEffectFn(spell_af_whirling_surge::HandleHitTarget, EFFECT_0, SPELL_EFFECT_APPLY_AURA);
     }
 };
 
@@ -193,5 +275,8 @@ void AddSC_advanced_flying_spell_scripts()
 {
     RegisterSpellScript(spell_af_skyriding);
     RegisterSpellScript(spell_af_energy);
-	RegisterSpellScript(spell_switch_flight);
+    RegisterSpellScript(spell_af_skyward_ascent);
+    RegisterSpellScript(spell_af_surge_forward);
+    RegisterSpellScript(spell_af_whirling_surge);
+    RegisterSpellScript(spell_switch_flight);
 }
