@@ -13,7 +13,7 @@ public:
         
     void Register() override
     {
-        OnEffectHitTarget += SpellEffectFn(spell_410148_and_410137::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+        OnEffectHitTarget += SpellEffectFn(spell_410148_and_410137::HandleDummy, EFFECT_0, SPELL_EFFECT_TELEPORT_UNITS);
     }
 };
 
