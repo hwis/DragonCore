@@ -409,17 +409,15 @@ class spell_evo_verdant_embrace : public SpellScript
         GetCaster()->CastSpell(nullptr, 370115, false);
     }
 
-    void HandleAfterCast()
+    void HandleDummy(SpellEffIndex /*effIndex*/)
     {
-        Unit* caster = GetCaster();
-        Unit* target = GetHitUnit();
-        caster->CastSpell(target, SPELL_EVOKER_VERDANT_EMBRACE_HEAL, false);
+        GetCaster()->CastSpell(GetHitUnit(), SPELL_EVOKER_VERDANT_EMBRACE_HEAL, false);
     }
     
     void Register() override
     {
         OnCast += SpellCastFn(spell_evo_verdant_embrace::HandleOnCast);
-        AfterCast += SpellCastFn(spell_evo_verdant_embrace::HandleAfterCast);
+        OnEffectHitTarget += SpellEffectFn(spell_evo_verdant_embrace::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 };
 
