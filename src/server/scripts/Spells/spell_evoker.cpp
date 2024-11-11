@@ -61,7 +61,10 @@ enum EvokerSpells
     SPELL_EVOKER_PYRE_DAMAGE                    = 357212,
     SPELL_EVOKER_SCOURING_FLAME                 = 378438,
     SPELL_EVOKER_SOAR_RACIAL                    = 369536,
-    SPELL_EVOKER_VERDANT_EMBRACE_HEAL           = 361195
+    SPELL_EVOKER_VERDANT_EMBRACE_HEAL           = 361195,
+    SPELL_EVOKER_VISAGE                         = 372014,
+    SPELL_EVOKER_ALTERED_FORM                   = 97709,
+    SPELL_EVOKER_HATRED                         = 118328,
 };
 
 enum EvokerSpellLabels
@@ -421,6 +424,36 @@ class spell_evo_verdant_embrace : public SpellScript
     }
 };
 
+// 351239 - Visage (Racial)
+class spell_evo_cosmic_visage : public SpellScript
+{
+    void HandleOnCast()
+    {
+        Unit* caster = GetCaster();
+        
+        if (caster->HasAura(SPELL_EVOKER_VISAGE))
+        {
+            caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE);
+            caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, true);
+            caster->SendPlaySpellVisual(caster, SPELL_EVOKER_HATRED, 0, 0, 60, false);
+            caster->SetDisplayId(108590);
+        }
+        else
+        {
+            if (caster->HasAura(SPELL_EVOKER_ALTERED_FORM))
+                caster->RemoveAurasDueToSpell(SPELL_EVOKER_ALTERED_FORM);
+            
+            caster->CastSpell(caster, SPELL_EVOKER_VISAGE, true);
+            caster->SendPlaySpellVisual(caster, SPELL_EVOKER_HATRED, 0, 0, 60, false);
+            caster->SetDisplayId(104597);
+        }
+    }
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_cosmic_visage::HandleOnCast);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -436,4 +469,5 @@ void AddSC_evoker_spell_scripts()
     RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_soar);
     RegisterSpellScript(spell_evo_verdant_embrace);
+    RegisterSpellScript(spell_evo_cosmic_visage);
 }
