@@ -424,6 +424,22 @@ class spell_evo_verdant_embrace : public SpellScript
     }
 };
 
+// 359073 - Eternity Surge
+class spell_evo_eternity_surge : public SpellScript
+{
+    void OnComplete(int32 completedStageCount) const
+    {
+        GetCaster()->CastSpell(GetExplTargetUnit(), 359077, CastSpellExtraArgs()
+            .SetTriggeringSpell(GetSpell())
+            .SetTriggerFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR));
+    }
+
+    void Register() override
+    {
+        OnEmpowerCompleted += SpellOnEmpowerStageCompletedFn(spell_evo_eternity_surge::OnComplete);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -439,4 +455,5 @@ void AddSC_evoker_spell_scripts()
     RegisterAreaTriggerAI(areatrigger_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_soar);
     RegisterSpellScript(spell_evo_verdant_embrace);
+    RegisterSpellScript(spell_evo_eternity_surge);
 }
