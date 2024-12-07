@@ -172,6 +172,91 @@ enum DemonHunterSpells
     SPELL_DH_VENGEFUL_RETREAT_TRIGGER              = 198793,
 };
 
+// 197922 - Fel Rush Ground
+class spell_dh_fel_rush_ground : public AuraScript
+{
+    void AfterRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+    {
+        GetCaster()->SetDisableGravity(false);
+    }
+
+    void Register() override
+    {
+        AfterEffectRemove += AuraEffectRemoveFn(spell_dh_fel_rush_ground::AfterRemove, EFFECT_6, SPELL_AURA_MOD_MINIMUM_SPEED_RATE, AURA_EFFECT_HANDLE_SEND_FOR_CLIENT_MASK);
+    }
+};
+
+// 197923 - Fel Rush Air
+class spell_dh_fel_rush_air : public AuraScript
+{
+    void AfterRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+    {
+        if (Unit* caster = GetCaster())
+            if (!caster->HasAura(SPELL_DH_FEL_RUSH_WATER_AIR))
+                caster->SetDisableGravity(false);
+    }
+
+    void Register() override
+    {
+        AfterEffectRemove += AuraEffectRemoveFn(spell_dh_fel_rush_air::AfterRemove, EFFECT_9, SPELL_AURA_MOD_MINIMUM_SPEED_RATE, AURA_EFFECT_HANDLE_SEND_FOR_CLIENT_MASK);
+    }
+};
+
+// 195072 - Fel Rush
+class spell_dh_fel_rush : public SpellScript
+{
+    void HandleOnGround(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster()) 
+        {
+            if (!caster->IsFalling() || caster->IsInWater())
+            {
+                caster->RemoveAurasDueToSpell(SPELL_DH_GLIDE);
+                caster->CastSpell(caster, SPELL_DH_FEL_RUSH_GROUND, true);
+                if (GetHitUnit())
+                    caster->CastSpell(GetHitUnit(), SPELL_DH_FEL_RUSH_DMG, true);
+            }
+            caster->GetSpellHistory()->AddCooldown(GetSpellInfo()->Id, 0, 750ms);
+        }
+    }
+
+    void HandleInAir(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if(caster->IsFalling())
+            {
+                caster->RemoveAurasDueToSpell(SPELL_DH_GLIDE);
+                caster->SetDisableGravity(true);
+                caster->CastSpell(caster, SPELL_DH_FEL_RUSH_WATER_AIR, true);
+                if (GetHitUnit())
+                    caster->CastSpell(GetHitUnit(), SPELL_DH_FEL_RUSH_DMG, true);
+            }
+            caster->GetSpellHistory()->AddCooldown(GetSpellInfo()->Id, 0, 750ms);
+        }   
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dh_fel_rush::HandleOnGround, EFFECT_0, SPELL_EFFECT_DUMMY);
+        OnEffectHitTarget += SpellEffectFn(spell_dh_fel_rush::HandleInAir, EFFECT_1, SPELL_EFFECT_DUMMY);
+    }
+};
+
+// 344865 - Fel Rush without spec in start zone
+class spell_dh_fel_rush_nospec : public SpellScript
+{
+    void HandleOnCast()
+    {
+        GetCaster()->CastSpell(nullptr, SPELL_DH_FEL_RUSH, true);
+    }
+        
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_dh_fel_rush_nospec::HandleOnCast);
+    }
+};
+
 // 344862 - Chaos Strike without spec in start zone
 class spell_dh_chaos_strike_nospec : public SpellScript
 {
@@ -494,6 +579,10 @@ void AddSC_demon_hunter_spell_scripts()
 {
     RegisterSpellScript(spell_dh_chaos_strike);
     RegisterSpellScript(spell_dh_chaos_strike_nospec);
+    RegisterSpellScript(spell_dh_fel_rush);
+    RegisterSpellScript(spell_dh_fel_rush_nospec);
+    RegisterSpellScript(spell_dh_fel_rush_ground);
+    RegisterSpellScript(spell_dh_fel_rush_air);
 
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_SILENCE_AOE>("areatrigger_dh_sigil_of_silence");
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_MISERY_AOE>("areatrigger_dh_sigil_of_misery");
