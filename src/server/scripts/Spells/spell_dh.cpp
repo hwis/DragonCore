@@ -172,6 +172,20 @@ enum DemonHunterSpells
     SPELL_DH_VENGEFUL_RETREAT_TRIGGER              = 198793,
 };
 
+// 344862 - Chaos Strike without spec in start zone
+class spell_dh_chaos_strike_nospec : public SpellScript
+{
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        GetCaster()->CastSpell(nullptr, SPELL_DH_CHAOS_STRIKE, true);
+    }
+    
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dh_chaos_strike_nospec::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 // 197125 - Chaos Strike
 class spell_dh_chaos_strike : public AuraScript
 {
@@ -479,6 +493,7 @@ class spell_dh_soul_furnace_conduit : public AuraScript
 void AddSC_demon_hunter_spell_scripts()
 {
     RegisterSpellScript(spell_dh_chaos_strike);
+    RegisterSpellScript(spell_dh_chaos_strike_nospec);
 
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_SILENCE_AOE>("areatrigger_dh_sigil_of_silence");
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_MISERY_AOE>("areatrigger_dh_sigil_of_misery");
