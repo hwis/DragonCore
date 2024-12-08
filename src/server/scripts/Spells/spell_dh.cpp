@@ -172,6 +172,21 @@ enum DemonHunterSpells
     SPELL_DH_VENGEFUL_RETREAT_TRIGGER              = 198793,
 };
 
+// Allow spec on level 10
+class DemonHunterAllowSpec : public PlayerScript
+{
+public:
+    DemonHunterAllowSpec() : PlayerScript("DemonHunterAllowSpec") { }
+    
+    void OnLevelChanged(Player* player, uint8 oldLevel) override
+    {
+        if (player->GetClass() == CLASS_DEMON_HUNTER && player->GetLevel() >= 10)
+        {
+            player->LearnSpell(218386, false);
+        }
+    }
+};
+
 // 197922 - Fel Rush Ground
 class spell_dh_fel_rush_ground : public AuraScript
 {
@@ -583,6 +598,8 @@ void AddSC_demon_hunter_spell_scripts()
     RegisterSpellScript(spell_dh_fel_rush_nospec);
     RegisterSpellScript(spell_dh_fel_rush_ground);
     RegisterSpellScript(spell_dh_fel_rush_air);
+
+    new DemonHunterAllowSpec();
 
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_SILENCE_AOE>("areatrigger_dh_sigil_of_silence");
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_MISERY_AOE>("areatrigger_dh_sigil_of_misery");
