@@ -172,6 +172,53 @@ enum DemonHunterSpells
     SPELL_DH_VENGEFUL_RETREAT_TRIGGER              = 198793,
 };
 
+// 232893 - Felblade
+class spell_dh_felblade : public SpellScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_DH_FELBLADE_CHARGE });
+    }
+
+    void HandleCharge(SpellEffIndex /*effIndex*/)
+    {
+        if (GetCaster()->GetDistance2d(GetHitUnit()) <= 15.0f)
+        {
+            GetCaster()->CastSpell(GetHitUnit(), SPELL_DH_FELBLADE_CHARGE, CastSpellExtraArgsInit{
+                .TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR,
+                .TriggeringSpell = GetSpell()
+            });
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dh_felblade::HandleCharge, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+// 213241 - Felblade Charge
+class spell_dh_felblade_charge : public SpellScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_DH_FEL_BARRAGE_DMG });
+    }
+
+    void HandleDamage(SpellEffIndex /*effIndex*/)
+    {
+        GetCaster()->CastSpell(GetHitUnit(), SPELL_DH_FELBLADE_DMG, CastSpellExtraArgsInit{
+            .TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR,
+            .TriggeringSpell = GetSpell()
+        });
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dh_felblade_charge::HandleDamage, EFFECT_0, SPELL_EFFECT_CHARGE);
+    }
+};
+
 // 198013 - Eye Beam
 class spell_dh_eye_beam : public AuraScript
 {
@@ -622,7 +669,8 @@ void AddSC_demon_hunter_spell_scripts()
     RegisterSpellScript(spell_dh_fel_rush_ground);
     RegisterSpellScript(spell_dh_fel_rush_air);
     RegisterSpellScript(spell_dh_eye_beam);
-
+    RegisterSpellScript(spell_dh_felblade);
+    RegisterSpellScript(spell_dh_felblade_charge);
     new DemonHunterAllowSpec();
 
     new areatrigger_dh_generic_sigil<SPELL_DH_SIGIL_OF_SILENCE_AOE>("areatrigger_dh_sigil_of_silence");
