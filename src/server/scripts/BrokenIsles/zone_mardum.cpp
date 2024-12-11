@@ -1967,6 +1967,26 @@ CreatureAI* DemonHunterHiddenNoMoreAISelector(Creature* creature)
     return new NullCreatureAI(creature);
 };
 
+struct npc_doom_commander_beliash : public ScriptedAI
+{
+    npc_doom_commander_beliash(Creature* creature) :ScriptedAI(creature) { }
+
+    enum doomCommanderBeliash
+    {
+        BELIASH_KILL_CREDIT = 106003,
+        LEARN_SPELL_AFTER_KILL = 195439,
+    };
+
+    void JustDied(Unit* killer) override
+    {
+        if(killer->IsPlayer())
+        {
+            killer->ToPlayer()->KilledMonsterCredit(BELIASH_KILL_CREDIT, ObjectGuid::Empty);
+            killer->ToPlayer()->LearnSpell(LEARN_SPELL_AFTER_KILL, true);
+        }
+    }
+};
+
 void AddSC_zone_mardum()
 {
     // Creature
@@ -1980,6 +2000,7 @@ void AddSC_zone_mardum()
     RegisterCreatureAI(npc_inquisitor_baleful_molten_shore);
     RegisterCreatureAI(npc_baleful_beaming_eye);
     RegisterCreatureAI(npc_sevis_brightflame_shivarra_gateway);
+    RegisterCreatureAI(npc_doom_commander_beliash);
 
     // AISelector
     new FactoryCreatureScript<CreatureAI, &KaynSunfuryNearLegionBannerAISelector>("npc_kayn_sunfury_ashtongue_intro");
