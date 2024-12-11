@@ -1987,6 +1987,27 @@ struct npc_doom_commander_beliash : public ScriptedAI
     }
 };
 
+
+struct npc_fel_lord_caza : public ScriptedAI
+{
+    npc_fel_lord_caza(Creature* creature) : ScriptedAI(creature) { }
+    
+    enum felLordCaza
+    {
+        CAZA_KILL_CREDIT = 106014,
+        LEARN_SPELL_AFTER_KILL = 195441,
+    };
+
+    void JustDied(Unit* killer) override
+    {
+        if(killer->IsPlayer())
+        {
+            killer->ToPlayer()->KilledMonsterCredit(CAZA_KILL_CREDIT, ObjectGuid::Empty);
+            killer->ToPlayer()->LearnSpell(LEARN_SPELL_AFTER_KILL, true);
+        }
+    }
+};
+
 void AddSC_zone_mardum()
 {
     // Creature
@@ -2001,6 +2022,7 @@ void AddSC_zone_mardum()
     RegisterCreatureAI(npc_baleful_beaming_eye);
     RegisterCreatureAI(npc_sevis_brightflame_shivarra_gateway);
     RegisterCreatureAI(npc_doom_commander_beliash);
+    RegisterCreatureAI(npc_fel_lord_caza);
 
     // AISelector
     new FactoryCreatureScript<CreatureAI, &KaynSunfuryNearLegionBannerAISelector>("npc_kayn_sunfury_ashtongue_intro");
