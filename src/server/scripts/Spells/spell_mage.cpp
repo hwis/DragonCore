@@ -914,34 +914,6 @@ class spell_mage_ice_barrier : public AuraScript
     }
 };
 
-// 45438 - Ice Block
-class spell_mage_ice_block : public SpellScript
-{
-    bool Validate(SpellInfo const* /*spellInfo*/) override
-    {
-        return ValidateSpellInfo({ SPELL_MAGE_EVERWARM_SOCKS });
-    }
-
-    void PreventStunWithEverwarmSocks(WorldObject*& target)
-    {
-        if (GetCaster()->HasAura(SPELL_MAGE_EVERWARM_SOCKS))
-            target = nullptr;
-    }
-
-    void PreventEverwarmSocks(WorldObject*& target)
-    {
-        if (!GetCaster()->HasAura(SPELL_MAGE_EVERWARM_SOCKS))
-            target = nullptr;
-    }
-
-    void Register() override
-    {
-        OnObjectTargetSelect += SpellObjectTargetSelectFn(spell_mage_ice_block::PreventStunWithEverwarmSocks, EFFECT_0, TARGET_UNIT_CASTER);
-        OnObjectTargetSelect += SpellObjectTargetSelectFn(spell_mage_ice_block::PreventEverwarmSocks, EFFECT_5, TARGET_UNIT_CASTER);
-        OnObjectTargetSelect += SpellObjectTargetSelectFn(spell_mage_ice_block::PreventEverwarmSocks, EFFECT_6, TARGET_UNIT_CASTER);
-    }
-};
-
 // Ice Lance - 30455
 class spell_mage_ice_lance : public SpellScript
 {
@@ -1541,7 +1513,6 @@ void AddSC_mage_spell_scripts()
     RegisterSpellScript(spell_mage_frostbolt);
     RegisterSpellScript(spell_mage_hyper_impact);
     RegisterSpellScript(spell_mage_ice_barrier);
-    RegisterSpellScript(spell_mage_ice_block);
     RegisterSpellScript(spell_mage_ice_lance);
     RegisterSpellScript(spell_mage_ice_lance_damage);
     RegisterSpellScript(spell_mage_ignite);
