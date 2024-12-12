@@ -999,6 +999,11 @@ struct npc_inquisitor_baleful_molten_shore : public ScriptedAI
 {
     npc_inquisitor_baleful_molten_shore(Creature* creature) : ScriptedAI(creature), _castedLegionAegis(false) { }
 
+    enum balefulMoltenShore
+    {
+        LEARN_SPELL_AFTER_KILL = 195447,
+    };
+
     void JustAppeared() override
     {
         // Blizz use a personal spawn for every DH on Quest: 39049 which leads to issues
@@ -1074,6 +1079,7 @@ struct npc_inquisitor_baleful_molten_shore : public ScriptedAI
             {
                 tapper->CastSpell(tapper, SPELL_BALEFUL_KILL_CREDIT, false);
                 tapper->CastSpell(tapper, SPELL_BALEFUL_TAKING_POWER, false);
+                tapper->LearnSpell(LEARN_SPELL_AFTER_KILL, true);
             }
         }
     }
