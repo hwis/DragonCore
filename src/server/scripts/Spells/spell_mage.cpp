@@ -287,11 +287,11 @@ class spell_mage_blazing_barrier : public AuraScript
         return ValidateSpellInfo({ SPELL_MAGE_BLAZING_BARRIER_TRIGGER });
     }
 
-    void CalculateAmount(AuraEffect const* /*aurEff*/, int32& amount, bool& canBeRecalculated)
+    void CalculateAmount(AuraEffect const* /*aurEff*/, int32& amount, bool& /*canBeRecalculated*/)
     {
-        canBeRecalculated = false;
-        if (Unit* caster = GetCaster())
-            amount = int32(caster->SpellBaseHealingBonusDone(GetSpellInfo()->GetSchoolMask()) * 7.0f);
+        amount = CalculatePct(GetUnitOwner()->GetMaxHealth(), 20);
+        if (Player const* player = GetUnitOwner()->ToPlayer())
+            AddPct(amount, player->GetRatingBonusValue(CR_VERSATILITY_DAMAGE_DONE) + player->GetTotalAuraModifier(SPELL_AURA_MOD_VERSATILITY));
     }
 
     void HandleProc(AuraEffect* /*aurEff*/, ProcEventInfo& eventInfo)
