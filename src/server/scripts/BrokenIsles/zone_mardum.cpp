@@ -29,6 +29,8 @@
 #include "PhasingHandler.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "GameObject.h"
+#include "GameObjectAI.h"
 #include "ScriptedCreature.h"
 #include "ScriptedGossip.h"
 #include "SpellAuras.h"
@@ -2014,6 +2016,51 @@ struct npc_fel_lord_caza : public ScriptedAI
     }
 };
 
+class go_mardum_illidari_banner : public GameObjectScript
+{
+public:
+    go_mardum_illidari_banner() : GameObjectScript("go_mardum_illidari_banner") { }
+
+    struct go_mardum_illidari_bannerAI : public GameObjectAI
+    {
+        go_mardum_illidari_bannerAI(GameObject* go) : GameObjectAI(go) { }
+    
+        bool OnGossipHello(Player* player) override
+        {
+            uint32 devastatorEntry = 0;
+            uint32 killCreditEntry = 0;
+            
+            switch (me->GetEntry())
+            {
+            case 243968:
+                devastatorEntry = 96732;
+                killCreditEntry = 96734;
+                break;
+            case 243967:
+                devastatorEntry = 96731;
+                killCreditEntry = 96733;
+                break;
+            case 243965:
+                devastatorEntry = 93762;
+                killCreditEntry = 96692;
+                break;
+            default:
+                break;
+            }
+    
+            player->KilledMonsterCredit(devastatorEntry);
+            player->KilledMonsterCredit(killCreditEntry);
+    
+            return false;
+        }
+    };
+    
+    GameObjectAI* GetAI(GameObject* go) const override
+    {
+        return new go_mardum_illidari_bannerAI(go);
+    }
+};
+
 void AddSC_zone_mardum()
 {
     // Creature
@@ -2029,6 +2076,9 @@ void AddSC_zone_mardum()
     RegisterCreatureAI(npc_sevis_brightflame_shivarra_gateway);
     RegisterCreatureAI(npc_doom_commander_beliash);
     RegisterCreatureAI(npc_fel_lord_caza);
+
+    // GameObject
+    new go_mardum_illidari_banner();
 
     // AISelector
     new FactoryCreatureScript<CreatureAI, &KaynSunfuryNearLegionBannerAISelector>("npc_kayn_sunfury_ashtongue_intro");
