@@ -2061,6 +2061,40 @@ public:
     }
 };
 
+enum DemonHunterChoices
+{
+    PLAYER_CHOICE_DH_SPEC_SELECTION = 231,
+    PLAYER_CHOICE_DH_SPEC_SELECTION_HAVOC = 78, // responseIdentifier havoc
+    PLAYER_CHOICE_DH_SPEC_SELECTION_VENGEANCE = 79  // responseIdentifier vengeance
+};
+
+// quest Fel Secrets id 40051
+class demon_hunter_spec_choice : public PlayerScript
+{
+public:
+    demon_hunter_spec_choice() : PlayerScript("demon_hunter_spec_choice") { }
+
+    void OnPlayerChoiceResponse(Player* player, uint32 choiceID, uint32 responseID)
+    {
+        if (choiceID != PLAYER_CHOICE_DH_SPEC_SELECTION)
+            return;
+        
+        TC_LOG_INFO("server.worldserver", "ChoiceID is: {}, responseID is: {}", choiceID, responseID);
+       
+        switch (responseID)
+        {
+        case PLAYER_CHOICE_DH_SPEC_SELECTION_HAVOC:
+            player->CastSpell(player, 194939, true);
+            break;
+        case PLAYER_CHOICE_DH_SPEC_SELECTION_VENGEANCE:
+            player->CastSpell(player, 194940, true);
+            break;
+        default:
+            break;
+        }
+    }
+};
+
 void AddSC_zone_mardum()
 {
     // Creature
@@ -2079,6 +2113,9 @@ void AddSC_zone_mardum()
 
     // GameObject
     new go_mardum_illidari_banner();
+
+    // PlayerScript
+    new demon_hunter_spec_choice();
 
     // AISelector
     new FactoryCreatureScript<CreatureAI, &KaynSunfuryNearLegionBannerAISelector>("npc_kayn_sunfury_ashtongue_intro");
