@@ -137,7 +137,9 @@ enum DruidSpells
     SPELL_DRUID_THRASH_BEAR_AURA               = 192090,
     SPELL_DRUID_THRASH_CAT                     = 106830,
     SPELL_DRUID_YSERAS_GIFT_HEAL_PARTY         = 145110,
-    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109
+    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109,
+    SPELL_DRUID_CENARION_WARD                  = 102351,
+    SPELL_DRUID_CENARION_WARD_HEAL             = 102352,
 };
 
 // 774 - Rejuvenation
@@ -2400,6 +2402,31 @@ class spell_dru_overgrowth : public SpellScript
     }
 };
 
+// 102351 - Cenarion Ward
+class spell_dru_cenarion_ward : public AuraScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_DRUID_CENARION_WARD_HEAL });
+    }
+
+    void HandleProc(AuraEffect const* aurEff, ProcEventInfo const& eventInfo)
+    {
+        PreventDefaultAction();
+        DamageInfo const* dmgInfo = eventInfo.GetDamageInfo();
+        if(!dmgInfo || !dmgInfo->GetDamage())
+            return;
+
+        Unit* caster = GetTarget();
+        caster->CastSpell(eventInfo.GetActionTarget(), SPELL_DRUID_CENARION_WARD_HEAL, CastSpellExtraArgs(aurEff));
+    }
+
+    void Register() override
+    {
+        OnEffectProc += AuraEffectProcFn(spell_dru_cenarion_ward::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2476,4 +2503,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
     RegisterSpellScript(spell_dru_rake);
     RegisterSpellScript(spell_dru_overgrowth);
+    RegisterSpellScript(spell_dru_cenarion_ward);
 }
