@@ -140,6 +140,9 @@ enum DruidSpells
     SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109,
     SPELL_DRUID_CENARION_WARD                  = 102351,
     SPELL_DRUID_CENARION_WARD_HEAL             = 102352,
+    SPELL_DRUID_NATURE_SWIFTNESS               = 132158,
+    SPELL_DRUID_PREDATORY_SWIFTNESS            = 16974,
+    SPELL_DRUID_PREDATORY_SWIFTNESS_AURA       = 69369,
 };
 
 // 774 - Rejuvenation
@@ -2427,6 +2430,27 @@ class spell_dru_cenarion_ward : public AuraScript
     }
 };
 
+// 8936 - Regrowth
+class spell_dru_regrowth : public SpellScript
+{
+    void HandleOnCast(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (caster->HasAura(SPELL_DRUID_NATURE_SWIFTNESS))
+                caster->RemoveAurasDueToSpell(SPELL_DRUID_NATURE_SWIFTNESS);
+            
+            if (caster->HasAura(SPELL_DRUID_PREDATORY_SWIFTNESS))
+                caster->RemoveAurasDueToSpell(SPELL_DRUID_PREDATORY_SWIFTNESS_AURA);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHit += SpellEffectFn(spell_dru_regrowth::HandleOnCast, EFFECT_0, SPELL_EFFECT_HEAL);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2504,4 +2528,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_rake);
     RegisterSpellScript(spell_dru_overgrowth);
     RegisterSpellScript(spell_dru_cenarion_ward);
+    RegisterSpellScript(spell_dru_regrowth);
 }
