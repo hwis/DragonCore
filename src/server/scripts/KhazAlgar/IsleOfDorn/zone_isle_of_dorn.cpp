@@ -25,6 +25,21 @@
 #include "ScriptedCreature.h"
 #include "TemporarySummon.h"
 
+// Teleport Scroll
+class spell_tele_to_silithus : public SpellScript
+{
+    void HandleDummy(SpellEffIndex /*effindex*/)
+    {
+        Player* player = GetCaster()->ToPlayer();
+        player->TeleportTo(1, -7089.506f, 1297.188f, -93.406f, 4.56f);
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_tele_to_silithus::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 enum PreciousGemsData
 {
     NPC_NATALIA_PEARCES_FREYWOLD            = 223637,
@@ -108,6 +123,8 @@ public:
 
 void AddSC_zone_isle_of_dorn()
 {
+    RegisterSpellScript(spell_tele_to_silithus);
+
     // Conversation
     RegisterConversationAI(conversation_natalia_pearces_accept_precious_gems);
     RegisterConversationAI(conversation_natalia_pearces_complete_precious_gems);
