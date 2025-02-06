@@ -16,6 +16,7 @@
  */
 
 // This is where scripts' loading functions should be declared:
+void AddSC_zone_isle_of_dorn();
 // Nerub'ar Palace
 void AddSC_instance_nerubar_palace();
 void AddSC_boss_ulgrax_the_devourer();
@@ -24,6 +25,7 @@ void AddSC_boss_ulgrax_the_devourer();
 // void Add${NameOfDirectory}Scripts()
 void AddKhazAlgarScripts()
 {
+    AddSC_zone_isle_of_dorn();
     // Nerub'ar Palace
     AddSC_instance_nerubar_palace();
     AddSC_boss_ulgrax_the_devourer();
