@@ -103,6 +103,7 @@ enum DruidSpells
     SPELL_DRUID_INNERVATE_RANK_2               = 326228,
     SPELL_DRUID_INFUSION                       = 37238,
     SPELL_DRUID_LANGUISH                       = 71023,
+    SPELL_DRUID_LIFEBLOOM                      = 33763,
     SPELL_DRUID_LIFEBLOOM_FINAL_HEAL           = 33778,
     SPELL_DRUID_LUNAR_INSPIRATION_OVERRIDE     = 155627,
     SPELL_DRUID_MANGLE                         = 33917,
@@ -134,7 +135,14 @@ enum DruidSpells
     SPELL_DRUID_THRASH_BEAR_AURA               = 192090,
     SPELL_DRUID_THRASH_CAT                     = 106830,
     SPELL_DRUID_YSERAS_GIFT_HEAL_PARTY         = 145110,
-    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109
+    SPELL_DRUID_YSERAS_GIFT_HEAL_SELF          = 145109,
+    SPELL_DRUID_SWIFTMEND                      = 18562,
+    SPELL_DRUID_SOUL_OF_THE_FOREST             = 158478,
+    SPELL_DRUID_SOUL_OF_THE_FOREST_AURA        = 114108,
+    SPELL_DRUID_REFORESTATION                  = 392356,
+    SPELL_DRUID_REFORESTATION_AURA             = 392360,
+    SPELL_DRUID_VERDANT_INFUSION               = 392410,
+    SPELL_DRUID_WILD_GROWTH                    = 48438
 };
 
 // 774 - Rejuvenation
@@ -2325,6 +2333,79 @@ class spell_dru_yseras_gift_group_heal : public SpellScript
     }
 };
 
+// 18562 - Swiftmend
+class spell_dru_swiftmend : public SpellScript
+{
+    void HandleOnCast(SpellEffIndex /*effIndex*/) const
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST))
+                caster->CastSpell(caster, SPELL_DRUID_SOUL_OF_THE_FOREST_AURA, CastSpellExtraArgsInit{
+                    .TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_IGNORE_CAST_IN_PROGRESS
+                });
+
+            if (!caster->HasAura(SPELL_DRUID_VERDANT_INFUSION))
+            {
+                if(caster->HasAura(SPELL_DRUID_REJUVENATION))
+                    caster->RemoveAurasDueToSpell(SPELL_DRUID_REJUVENATION);
+                else if (caster->HasAura(SPELL_DRUID_REGROWTH))
+                    caster->RemoveAurasDueToSpell(SPELL_DRUID_REGROWTH);
+                else if (caster->HasAura(SPELL_DRUID_WILD_GROWTH))
+                    caster->RemoveAurasDueToSpell(SPELL_DRUID_WILD_GROWTH);
+            }
+            else
+            {
+                if (Aura* regrowth = GetHitUnit()->GetAura(SPELL_DRUID_REGROWTH, GetCaster()->GetGUID()))
+                    regrowth->SetDuration(regrowth->GetDuration() + 8000, true);
+
+                if (Aura* wild_growth = GetHitUnit()->GetAura(SPELL_DRUID_WILD_GROWTH, GetCaster()->GetGUID()))
+                    wild_growth->SetDuration(wild_growth->GetDuration() + 8000, true);
+
+                if (Aura* rejuvenation = GetHitUnit()->GetAura(SPELL_DRUID_REJUVENATION, GetCaster()->GetGUID()))
+                    rejuvenation->SetDuration(rejuvenation->GetDuration() + 8000, true);
+
+                if (Aura* lifebloom = GetHitUnit()->GetAura(SPELL_DRUID_LIFEBLOOM, GetCaster()->GetGUID()))
+                    lifebloom->SetDuration(lifebloom->GetDuration() + 8000, true);
+            }
+
+            if (caster->HasAura(SPELL_DRUID_REFORESTATION))
+            {
+                caster->CastSpell(caster, SPELL_DRUID_REFORESTATION_AURA, CastSpellExtraArgsInit{
+                    .TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR
+                });
+
+                if (Aura* Reforestation = caster->GetAura(SPELL_DRUID_REFORESTATION_AURA, GetCaster()->GetGUID()))
+                {
+                    if (AuraEffect* ReforestationAurEff = caster->GetAuraEffect(SPELL_DRUID_REFORESTATION_AURA, EFFECT_0, GetCaster()->GetGUID()))
+                    {
+                        static int32 amount = ReforestationAurEff->GetAmount();
+                        ReforestationAurEff->SetAmount(++amount);
+
+                        if (ReforestationAurEff->GetAmount() >= 3)
+                        {
+                            caster->CastSpell(caster, SPELL_DRUID_INCARNATION_TREE_OF_LIFE, CastSpellExtraArgsInit{
+                                .TriggerFlags = TRIGGERED_FULL_MASK | TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR
+                            });
+
+                            amount = 0;
+                            Reforestation->Remove();
+                        }   
+
+                        if (Aura* tree = caster->GetAura(SPELL_DRUID_INCARNATION, GetCaster()->GetGUID()))
+                            tree->SetDuration(10000, true);
+                    }
+                }   
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_swiftmend::HandleOnCast, EFFECT_0, SPELL_EFFECT_HEAL);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2399,4 +2480,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellAndAuraScriptPair(spell_dru_wild_growth, spell_dru_wild_growth_aura);
     RegisterSpellScript(spell_dru_yseras_gift);
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
+    RegisterSpellScript(spell_dru_swiftmend);
 }
