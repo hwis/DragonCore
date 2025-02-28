@@ -47,7 +47,7 @@ INSERT INTO `spell_target_position` (`ID`, `EffectIndex`, `OrderIndex`, `MapID`,
 -- sai
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN(78529) AND `source_type` IN(5);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `Difficulties`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param_string`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `action_param7`, `action_param_string`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_param_string`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-(78529, 5, 0, 0, '', 47, 0, 100, 0, 0, 0, 0, 0, 0, '', 85, 429500, 2, 0, 0, 0, 0, 0, NULL, 7, 0, 0, 0, 0, NULL, 0, 0, 0, 0, 'On Quest accepted - Cast Spell');
+(78529, 5, 0, 0, '', 47, 0, 100, 0, 0, 0, 0, 0, 0, '', 85, 429500, 0, 0, 0, 0, 0, 0, NULL, 7, 0, 0, 0, 0, NULL, 0, 0, 0, 0, 'On Quest accepted - Cast Spell');
 
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN(214298);
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `Difficulties`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param_string`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `action_param7`, `action_param_string`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_param_string`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
@@ -56,3 +56,30 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `Diffic
 (214298, 0, 2, 3, '', 61, 0, 100, 0, 0, 0, 0, 0, 0, '', 83, 16777216, 0, 0, 0, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, 0, 0, 0, 0, 'On Link - Remove Npc Flag'),
 (214298, 0, 3, 0, '', 61, 0, 100, 0, 0, 0, 0, 0, 0, '', 41, 3000, 0, 0, 0, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, 0, 0, 0, 0, 'On link Despawn');
 
+-- Added quest Slay the Saboteurs (78530)
+
+DELETE FROM `creature_queststarter` WHERE (`id`=211994 AND `quest`=78530);
+INSERT INTO `creature_queststarter` (`id`, `quest`, `VerifiedBuild`) VALUES 
+(211994, 78530, 56819);
+
+DELETE FROM `creature_questender` WHERE (`id`=211994 AND `quest`=78530);
+INSERT INTO `creature_questender` (`id`, `quest`, `VerifiedBuild`) VALUES 
+(211994, 78530, 56819);
+
+DELETE FROM `quest_template_addon` WHERE `ID` IN(78530);
+INSERT INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `BreadcrumbForQuestId`, `RewardMailTemplateID`, `RewardMailDelay`, `RequiredSkillID`, `RequiredSkillPoints`, `RequiredMinRepFaction`, `RequiredMaxRepFaction`, `RequiredMinRepValue`, `RequiredMaxRepValue`, `ProvidedItemCount`, `SpecialFlags`, `ScriptName`) VALUES 
+(78530, 0, 0, 0, 78529, 78532, -78530, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartQuest');
+
+-- Added quest Urgent Recovery (78531)
+
+DELETE FROM `creature_queststarter` WHERE (`id`=211993 AND `quest`=78531);
+INSERT INTO `creature_queststarter` (`id`, `quest`, `VerifiedBuild`) VALUES 
+(211993, 78531, 56819);
+
+DELETE FROM `creature_questender` WHERE (`id`=211993 AND `quest`=78531);
+INSERT INTO `creature_questender` (`id`, `quest`, `VerifiedBuild`) VALUES 
+(211993, 78531, 56819);
+
+DELETE FROM `quest_template_addon` WHERE `ID` IN(78531);
+INSERT INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `BreadcrumbForQuestId`, `RewardMailTemplateID`, `RewardMailDelay`, `RequiredSkillID`, `RequiredSkillPoints`, `RequiredMinRepFaction`, `RequiredMaxRepFaction`, `RequiredMinRepValue`, `RequiredMaxRepValue`, `ProvidedItemCount`, `SpecialFlags`, `ScriptName`) VALUES 
+(78531, 0, 0, 0, 78529, 78532, -78530, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartQuest');
