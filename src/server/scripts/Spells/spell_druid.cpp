@@ -55,6 +55,8 @@ enum DruidSpells
     SPELL_DRUID_BRAMBLES_REFLECT               = 203958,
     SPELL_DRUID_BRISTLING_FUR_GAIN_RAGE        = 204031,
     SPELL_DRUID_CAT_FORM                       = 768,
+    SPELL_DRUID_CENARION_WARD                  = 102351,
+    SPELL_DRUID_CENARION_WARD_HEAL             = 102352,
     SPELL_DRUID_CULTIVATION                    = 200390,
     SPELL_DRUID_CULTIVATION_HEAL               = 200389,
     SPELL_DRUID_CURIOUS_BRAMBLEPATCH           = 330670,
@@ -2479,6 +2481,31 @@ private:
     bool m_stealthed = false;
 };
 
+// 102351 - Cenarion Ward
+class spell_dru_cenarion_ward : public AuraScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_DRUID_CENARION_WARD_HEAL });
+    }
+
+    void HandleProc(AuraEffect const* aurEff, ProcEventInfo const& eventInfo)
+    {
+        PreventDefaultAction();
+        DamageInfo const* dmgInfo = eventInfo.GetDamageInfo();
+        if(!dmgInfo || !dmgInfo->GetDamage())
+            return;
+
+        Unit* caster = GetTarget();
+        caster->CastSpell(eventInfo.GetActionTarget(), SPELL_DRUID_CENARION_WARD_HEAL, CastSpellExtraArgs(aurEff));
+    }
+
+    void Register() override
+    {
+        OnEffectProc += AuraEffectProcFn(spell_dru_cenarion_ward::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2556,4 +2583,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_swiftmend);
     RegisterSpellScript(spell_dru_overgrowth);
     RegisterSpellScript(spell_dru_rake);
+    RegisterSpellScript(spell_dru_cenarion_ward);
 }
