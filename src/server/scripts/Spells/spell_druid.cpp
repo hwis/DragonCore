@@ -112,6 +112,8 @@ enum DruidSpells
     SPELL_DRUID_NATURES_GRACE_TALENT           = 450347,
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
+    SPELL_DRUID_RAKE                           = 1822,
+    SPELL_DRUID_RAKE_STUN                      = 163505,
     SPELL_DRUID_OVERGROWTH                     = 203651,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
     SPELL_DRUID_PROWL                          = 5215,
@@ -2439,6 +2441,44 @@ class spell_dru_overgrowth : public SpellScript
     }
 };
 
+// 1822 - SPELL_DRUID_RAKE
+class spell_dru_rake : public SpellScript
+{
+    bool Load() override
+    {
+        Unit* caster = GetCaster();
+        if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && caster->HasAura(405834))
+            m_stealthed = true;
+
+        if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && caster->HasAura(231052))
+            m_stealthed = true;
+
+        return true;
+}
+
+    void HandleOnHit(SpellEffIndex /*effIndex*/)
+    {
+        Unit* caster = GetCaster();
+        Unit* target = GetExplTargetUnit();
+        if (!caster || !target)
+            return;
+
+        if (m_stealthed)
+        {
+            SetHitDamage(GetHitDamage() * 1.6);
+            caster->CastSpell(target, SPELL_DRUID_RAKE_STUN, true);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_rake::HandleOnHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+    }
+
+private:
+    bool m_stealthed = false;
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2515,4 +2555,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
     RegisterSpellScript(spell_dru_swiftmend);
     RegisterSpellScript(spell_dru_overgrowth);
+    RegisterSpellScript(spell_dru_rake);
 }
