@@ -46,6 +46,8 @@ enum WarriorSpells
     SPELL_WARRIOR_COLOSSUS_SMASH_AURA               = 208086,
     SPELL_WARRIOR_CRITICAL_THINKING_ENERGIZE        = 392776,
     SPELL_WARRIOR_EXECUTE                           = 20647,
+    SPELL_WARRIOR_EXECUTIONER_PRECISION_AURA        = 386633,
+    SPELL_WARRIOR_EXHILARATING_BLOWS_AURA           = 383226,
     SPELL_WARRIOR_FUELED_BY_VIOLENCE_HEAL           = 383104,
     SPELL_WARRIOR_GLYPH_OF_THE_BLAZING_TRAIL        = 123779,
     SPELL_WARRIOR_GLYPH_OF_HEROIC_LEAP              = 159708,
@@ -490,7 +492,7 @@ class spell_warr_item_t10_prot_4p_bonus : public AuraScript
     }
 };
 
-// 12294 - Mortal Strike 7.1.5
+// 12294 - Mortal Strike
 class spell_warr_mortal_strike : public SpellScript
 {
     bool Validate(SpellInfo const* /*spellInfo*/) override
@@ -498,15 +500,27 @@ class spell_warr_mortal_strike : public SpellScript
         return ValidateSpellInfo({ SPELL_WARRIOR_MORTAL_WOUNDS });
     }
 
-    void HandleDummy(SpellEffIndex /*effIndex*/)
+    void HandleDamage(SpellEffIndex /*effIndex*/)
     {
         if (Unit* target = GetHitUnit())
-            GetCaster()->CastSpell(target, SPELL_WARRIOR_MORTAL_WOUNDS, true);
+            GetCaster()->CastSpell(target, SPELL_WARRIOR_MORTAL_WOUNDS, CastSpellExtraArgsInit{
+                .TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR,
+                .TriggeringSpell = GetSpell()
+            });
+
+        if (Aura* exhilaratingBlows = GetCaster()->GetAura(SPELL_WARRIOR_EXHILARATING_BLOWS_AURA))
+            exhilaratingBlows.Remove();
+
+        if (Aura* overpower = GetCaster()->GetAura(SPELL_WARRIOR_OVERPOWER))
+            overpower.Remove();
+
+        if (Aura* executionerPrecision = GetHitUnit()->GetAura(SPELL_WARRIOR_EXECUTIONER_PRECISION_AURA))
+            executionerPrecision.Remove();
     }
 
     void Register() override
     {
-        OnEffectHitTarget += SpellEffectFn(spell_warr_mortal_strike::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+        OnEffectHitTarget += SpellEffectFn(spell_warr_mortal_strike::HandleDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
     }
 };
 
