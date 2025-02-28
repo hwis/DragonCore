@@ -33,7 +33,7 @@ UPDATE `creature_template` SET `npcflag`=3, `AIName`='SmartAI' WHERE `entry` IN(
 UPDATE `creature_template` SET `npcflag`=3, `AIName`='SmartAI' WHERE `entry` IN(214669);
 
 -- gossip and npc_text
-DELETE FROM `creature_template_gossip` WHERE `CreatureID`=214669 AND `MenuID`=34132;
+DELETE FROM `creature_template_gossip` WHERE `CreatureID`=214669 AND `MenuID`=34132; -- Brann
 INSERT INTO `creature_template_gossip` (`CreatureID`, `MenuID`, `VerifiedBuild`) VALUES (214669, 34132, 56513);
 DELETE FROM `gossip_menu` WHERE `MenuID`=34132 AND `TextID`=214669;
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`, `VerifiedBuild`) VALUES (34132, 214669, 56819);
@@ -43,7 +43,17 @@ INSERT INTO `npc_text` (`ID`, `Probability0`, `Probability1`, `Probability2`, `P
 DELETE FROM `gossip_menu_option` WHERE `MenuID`=34132 AND `OptionID`=0;
 INSERT INTO `gossip_menu_option` (`MenuID`, `GossipOptionID`, `OptionID`, `OptionNpc`, `OptionText`, `OptionBroadcastTextID`, `Language`, `Flags`, `ActionMenuID`, `ActionPoiID`, `GossipNpcOptionID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `SpellID`, `OverrideIconID`, `VerifiedBuild`) VALUES 
 (34132, 121542, 0, 0, 'Magni\'s hurt. Moira needs you both in the Portrait Room.', 0, 0, 1, 0, 0, NULL, 0, 0, NULL, 0, NULL, NULL, 56513);
---
+-- Moyra
+DELETE FROM `creature_template_gossip` WHERE `CreatureID`=214651 AND `MenuID`=34131;
+INSERT INTO `creature_template_gossip` (`CreatureID`, `MenuID`, `VerifiedBuild`) VALUES (214651, 34131, 56513);
+DELETE FROM `gossip_menu` WHERE `MenuID`=34131 AND `TextID`=214651;
+INSERT INTO `gossip_menu` (`MenuID`, `TextID`, `VerifiedBuild`) VALUES (34131, 214651, 56819);
+DELETE FROM `gossip_menu_option` WHERE `MenuID`=34131 AND `OptionID`=0;
+INSERT INTO `gossip_menu_option` (`MenuID`, `GossipOptionID`, `OptionID`, `OptionNpc`, `OptionText`, `OptionBroadcastTextID`, `Language`, `Flags`, `ActionMenuID`, `ActionPoiID`, `GossipNpcOptionID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `SpellID`, `OverrideIconID`, `VerifiedBuild`) VALUES (34131, 121870, 0, 0, '<Stay awhile and listen.>', 137786, 0, 0, 0, 0, NULL, 0, 0, NULL, 0, NULL, NULL, 56513);
+DELETE FROM `gossip_menu_option` WHERE `MenuID`=34131 AND `OptionID`=1;
+INSERT INTO `gossip_menu_option` (`MenuID`, `GossipOptionID`, `OptionID`, `OptionNpc`, `OptionText`, `OptionBroadcastTextID`, `Language`, `Flags`, `ActionMenuID`, `ActionPoiID`, `GossipNpcOptionID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `SpellID`, `OverrideIconID`, `VerifiedBuild`) VALUES (34131, 124080, 1, 0, 'Tell me more about yourself.', 0, 0, 0, 0, 0, NULL, 0, 0, NULL, 0, NULL, NULL, 56513);
+DELETE FROM `npc_text` WHERE `ID`=214651;
+INSERT INTO `npc_text` (`ID`, `Probability0`, `Probability1`, `Probability2`, `Probability3`, `Probability4`, `Probability5`, `Probability6`, `Probability7`, `BroadcastTextID0`, `BroadcastTextID1`, `BroadcastTextID2`, `BroadcastTextID3`, `BroadcastTextID4`, `BroadcastTextID5`, `BroadcastTextID6`, `BroadcastTextID7`, `VerifiedBuild`) VALUES (214651, 1, 0, 0, 0, 0, 0, 0, 0, 256572, 0, 0, 0, 0, 0, 0, 0, 56819);
 
 -- conditions
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=15 AND `SourceGroup`=34132 AND `SourceEntry`=0 AND `SourceId`=0 AND `ElseGroup`=0 AND `ConditionTypeOrReference`=47 AND `ConditionTarget`=0 AND `ConditionValue1`=80500;
