@@ -112,6 +112,7 @@ enum DruidSpells
     SPELL_DRUID_NATURES_GRACE_TALENT           = 450347,
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
+    SPELL_DRUID_OVERGROWTH                     = 203651,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
     SPELL_DRUID_PROWL                          = 5215,
     SPELL_DRUID_REGROWTH                       = 8936,
@@ -2406,6 +2407,38 @@ class spell_dru_swiftmend : public SpellScript
     }
 };
 
+// 203651 Overgrowth
+class spell_dru_overgrowth : public SpellScript
+{
+    enum
+    {
+        SPELL_DRUID_REJUVENATION = 774,
+        SPELL_DRUID_WILD_GROWTH = 48438,
+        SPELL_DRUID_LIFE_BLOOM = 33763,
+        SPELL_DRUID_REGROWTH = 8936
+    };
+
+    void HandleDummy(SpellEffIndex /*effIndex*/)
+    {
+        if (Unit* caster = GetCaster())
+        {
+            if (Unit* target = GetHitUnit())
+            {
+                caster->SendPlaySpellVisual(caster, 38314, 0, 0, 0.f, false);
+                caster->AddAura(SPELL_DRUID_REJUVENATION, target);
+                caster->AddAura(SPELL_DRUID_WILD_GROWTH, target);
+                caster->AddAura(SPELL_DRUID_LIFE_BLOOM, target);
+                caster->AddAura(SPELL_DRUID_REGROWTH, target);
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_overgrowth::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     RegisterSpellScript(spell_dru_abundance);
@@ -2481,4 +2514,5 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_yseras_gift);
     RegisterSpellScript(spell_dru_yseras_gift_group_heal);
     RegisterSpellScript(spell_dru_swiftmend);
+    RegisterSpellScript(spell_dru_overgrowth);
 }
