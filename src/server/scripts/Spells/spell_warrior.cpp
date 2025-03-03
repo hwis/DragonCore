@@ -61,6 +61,7 @@ enum WarriorSpells
     SPELL_WARRIOR_IMPROVED_HEROIC_LEAP              = 157449,
     SPELL_WARRIOR_MORTAL_STRIKE                     = 12294,
     SPELL_WARRIOR_MORTAL_WOUNDS                     = 213667,
+    SPELL_WARRIOR_OVERPOWER                         = 7384,
     SPELL_WARRIOR_RALLYING_CRY                      = 97463,
     SPELL_WARRIOR_SHIELD_BLOCK_AURA                 = 132404,
     SPELL_WARRIOR_SHIELD_CHARGE_EFFECT              = 385953,
@@ -73,6 +74,7 @@ enum WarriorSpells
     SPELL_WARRIOR_STRATEGIST                        = 384041,
     SPELL_WARRIOR_SWEEPING_STRIKES_EXTRA_ATTACK_1   = 12723,
     SPELL_WARRIOR_SWEEPING_STRIKES_EXTRA_ATTACK_2   = 26654,
+    SPELL_WARRIOR_TACTICIAN_CD                      = 199854,
     SPELL_WARRIOR_TAUNT                             = 355,
     SPELL_WARRIOR_TRAUMA_EFFECT                     = 215537,
     SPELL_WARRIOR_VICTORIOUS                        = 32216,
@@ -763,6 +765,23 @@ class spell_warr_trauma : public AuraScript
     }
 };
 
+// 184783 - Tactician
+class spell_warr_tactician : public AuraScript
+{
+    void HandleOnProc(AuraEffect const* aurEff, ProcEventInfo const& /*eventInfo*/)
+    {
+        PreventDefaultAction();
+        
+        GetTarget()->GetSpellHistory()->ResetCooldown(SPELL_WARRIOR_OVERPOWER, true);
+        GetTarget()->CastSpell(GetTarget(), SPELL_WARRIOR_TACTICIAN_CD, CastSpellExtraArgs(aurEff));
+    }
+    
+    void Register() override
+    {
+        OnEffectProc += AuraEffectProcFn(spell_warr_tactician::HandleOnProc, EFFECT_0, SPELL_AURA_PROC_TRIGGER_SPELL);
+    }
+};
+
 // 28845 - Cheat Death
 class spell_warr_t3_prot_8p_bonus : public AuraScript
 {
@@ -857,6 +876,7 @@ void AddSC_warrior_spell_scripts()
     RegisterSpellScript(spell_warr_strategist);
     RegisterSpellScript(spell_warr_sudden_death);
     RegisterSpellScript(spell_warr_sweeping_strikes);
+    RegisterSpellScript(spell_warr_tactician);
     RegisterSpellScript(spell_warr_trauma);
     RegisterSpellScript(spell_warr_t3_prot_8p_bonus);
     RegisterSpellScript(spell_warr_victorious_state);
