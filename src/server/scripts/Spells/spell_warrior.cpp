@@ -511,13 +511,13 @@ class spell_warr_mortal_strike : public SpellScript
             });
 
         if (Aura* exhilaratingBlows = GetCaster()->GetAura(SPELL_WARRIOR_EXHILARATING_BLOWS_AURA))
-            exhilaratingBlows.Remove();
+            exhilaratingBlows->Remove();
 
         if (Aura* overpower = GetCaster()->GetAura(SPELL_WARRIOR_OVERPOWER))
-            overpower.Remove();
+            overpower->Remove();
 
         if (Aura* executionerPrecision = GetHitUnit()->GetAura(SPELL_WARRIOR_EXECUTIONER_PRECISION_AURA))
-            executionerPrecision.Remove();
+            executionerPrecision->Remove();
     }
 
     void Register() override
