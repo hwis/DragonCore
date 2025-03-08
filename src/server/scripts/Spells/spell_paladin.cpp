@@ -110,6 +110,9 @@ enum PaladinSpells
     SPELL_PALADIN_SEAL_OF_RIGHTEOUSNESS          = 25742,
     SPELL_PALADIN_SHIELD_OF_THE_RIGHTEOUS_ARMOR  = 132403,
     SPELL_PALADIN_SHIELD_OF_VENGEANCE_DAMAGE     = 184689,
+    SPELL_PALADIN_TEMPLAR_STRIKES                = 406646,
+    SPELL_PALADIN_TEMPLAR_STRIKES_TRIGGERED      = 406648,
+    SPELL_PALADIN_TEMPLAR_SLASH                  = 406647,
     SPELL_PALADIN_TEMPLAR_VERDICT_DAMAGE         = 224266,
     SPELL_PALADIN_T30_2P_HEARTFIRE_DAMAGE        = 408399,
     SPELL_PALADIN_T30_2P_HEARTFIRE_HEAL          = 408400,
@@ -1523,6 +1526,26 @@ class spell_pal_steed_of_liberty : public AuraScript
     }
 };
 
+// 406647 - Templar Slash
+class spell_pal_templar_slash : public SpellScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_PALADIN_TEMPLAR_SLASH });
+    }
+
+    void HandleDamage(SpellEffIndex /*effIndex*/)
+    {
+        if (Aura* templarStrikes = GetCaster()->GetAura(SPELL_PALADIN_TEMPLAR_STRIKES_TRIGGERED))
+            templarStrikes->Remove();
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_pal_templar_slash::HandleDamage, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+    }
+};
+
 // 85256 - Templar's Verdict
 class spell_pal_templar_s_verdict : public SpellScript
 {
@@ -1780,6 +1803,7 @@ void AddSC_paladin_spell_scripts()
     RegisterSpellScript(spell_pal_shield_of_the_righteous);
     RegisterSpellScript(spell_pal_shield_of_vengeance);
     RegisterSpellScript(spell_pal_steed_of_liberty);
+    RegisterSpellScript(spell_pal_templar_slash);
     RegisterSpellScript(spell_pal_templar_s_verdict);
     RegisterSpellScript(spell_pal_t3_6p_bonus);
     RegisterSpellScript(spell_pal_t8_2p_bonus);
