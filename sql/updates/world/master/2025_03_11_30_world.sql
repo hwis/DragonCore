@@ -2497,777 +2497,526 @@ INSERT INTO `creature_addon` (`guid`, `PathId`, `mount`, `MountCreatureID`, `Sta
 (@CGUID+1242, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, '');
 
 -- creature template
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=8193, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192490; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193914; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=131, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193915; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193928; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187263; 
-UPDATE `creature_template` SET `faction`=3305, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187543; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187971; 
-UPDATE `creature_template` SET `faction`=2757, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=188205; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x100, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=188266; 
-UPDATE `creature_template` SET `faction`=3308, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187542; 
-UPDATE `creature_template` SET `faction`=2757, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x0, `VehicleId`=7582 WHERE `entry`=180673; 
-UPDATE `creature_template` SET `faction`=3305, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=7636 WHERE `entry`=187414; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`=197899;
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184288; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194531; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194534; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194488; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194484; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194369; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194393; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194397; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=194493; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=16777216, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194659; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194538; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194539; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194537; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194536; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=128, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194470; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184639; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`=198362; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194490; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194378; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=196091; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=198748; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194437; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=8013 WHERE `entry`=198363; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x140, `unit_flags2`=0x800, `unit_flags3`=0x1, `VehicleId`=0 WHERE `entry`=194650; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=65665, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187412; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189037; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189022; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=4227, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189021; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190575; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=188904; 
-UPDATE `creature_template` SET `faction`=534, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=197743; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189002; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=194668; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 190741; 
-UPDATE `creature_template` SET `faction`=1712, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 191104; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x40, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184853; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193001; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193026; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=1073741824, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189094; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=1073741824, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193024; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=82, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192048; 
-UPDATE `creature_template` SET `faction`=3309, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192407; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x4800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187261; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194238; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=65537, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193393; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=128, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192210; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192055; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192558; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=192563; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192565; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190571; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190577; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x4800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193838; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x4800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187257; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=128, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192207; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184450; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189058; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189063; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189062; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=189060; 
-UPDATE `creature_template` SET `faction`=1732, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=185773; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193913; 
-UPDATE `creature_template` SET `faction`=1732, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=185774; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=190535; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=198398; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193858; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=129, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=198848; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=131, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=198846; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=2, `unit_flags`=0x300, `unit_flags2`=0x4800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184449; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189061; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189059; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187196; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x41000000, `VehicleId`=0 WHERE `entry`=193707; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184451; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=2, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184452; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=82, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192549; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187193; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187194; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=2, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187251; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187252; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194236; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=197285; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 189801; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 189798; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193876; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=195577; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=3, `unit_flags`=0x340, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193362; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187125; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187121; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=187123; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187255; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`=180538; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187254; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x1, `VehicleId`=0 WHERE `entry`=197503; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x40, `unit_flags2`=0x800, `unit_flags3`=0x4000000, `VehicleId`=0 WHERE `entry`=187111; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190565; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=16777216, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187157; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x4000800, `unit_flags3`=0x41000000, `VehicleId`=0 WHERE `entry`=202585; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x4000800, `unit_flags3`=0x41000000, `VehicleId`=0 WHERE `entry`=194982; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187253; 
-UPDATE `creature_template` SET `faction`=3276, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=193917; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x4000800, `unit_flags3`=0x41000000, `VehicleId`=0 WHERE `entry`=194695; 
-UPDATE `creature_template` SET `faction`=2136, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=195242; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192104; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190753; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=16777216, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187151; 
-UPDATE `creature_template` SET `faction`=2136, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x4000000, `VehicleId`=0 WHERE `entry`=184867; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x8000000, `VehicleId`=0 WHERE `entry`=184851; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192103; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=188028; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 195241; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x340, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 194688; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=191150; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=128, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=191161; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194671; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194685; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194652; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=1073741824, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189093; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=3, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189035; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=197284; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=198146; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194674; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=187135; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=195830; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194681; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187235; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187234; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=4224, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187236; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187229; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184870; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187143; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=195502; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=195597; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 193806; 
-UPDATE `creature_template` SET `faction`=16, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 184862; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x8000000, `VehicleId`=0 WHERE `entry`=184855; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x1, `unit_flags3`=`VehicleId`= 7695 WHERE `entry`= 187120; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 195260; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=195884; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 195639; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`= 187061; 
-UPDATE `creature_template` SET `faction`=2136, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=0 WHERE `entry`=184861; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x8000000, `VehicleId`=0 WHERE `entry`=184856; 
-UPDATE `creature_template` SET `faction`=2031, `npcflag`=65665, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=187403; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 193811; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 188057; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184841; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=4224, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184844; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=83, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190524; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x1000000, `VehicleId`=0 WHERE `entry`=191148; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 193816; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 184842; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184845; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184859; 
-UPDATE `creature_template` SET `faction`=2575, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x4000000, `VehicleId`=0 WHERE `entry`=188027; 
-UPDATE `creature_template` SET `faction`=31, `npcflag`=1073741824, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=61158; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=128, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190526; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192143; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192142; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192153; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=187062; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=190516; 
-UPDATE `creature_template` SET `faction`=188, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=60761; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x1000000, `VehicleId`=0 WHERE `entry`=190532; 
-UPDATE `creature_template` SET `faction`=2575, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x4000000, `VehicleId`=0 WHERE `entry`=191060; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=8012 WHERE `entry`=196954; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x1, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 195795; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 184857; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x40, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192132; 
-UPDATE `creature_template` SET `faction`=2575, `npcflag`=0, `unit_flags`=0x40, `unit_flags2`=0x800, `unit_flags3`=0x4000000, `VehicleId`=0 WHERE `entry`=187140; 
-UPDATE `creature_template` SET `faction`=14, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 190587; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`= 192148; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 190056; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x0, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 184869; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192149; 
-UPDATE `creature_template` SET `faction`=190, `npcflag`=0, `unit_flags`=0x40, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=192151; 
-UPDATE `creature_template` SET `faction`=2358, `npcflag`=0, `unit_flags`=0x800, `unit_flags2`=0x1, `unit_flags3`=`VehicleId`= 0 WHERE `entry`= 195796; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`= 198368; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x4000800, `unit_flags3`=0x1000000, `VehicleId`=0 WHERE `entry`=194056; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`=180701; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194577; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194115; 
-UPDATE `creature_template` SET `faction`=3272, `npcflag`=0, `unit_flags`=0x200, `unit_flags2`=0x800, `unit_flags3`=0x800000, `VehicleId`=0 WHERE `entry`=198750; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=189554; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=1, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=194055; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184814; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000300, `unit_flags2`=0x800, `unit_flags3`=0x40000000, `VehicleId`=8014 WHERE `entry`=198367; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x40000001, `VehicleId`=0 WHERE `entry`=197611; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x0, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184286; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184813; 
-UPDATE `creature_template` SET `faction`=3270, `npcflag`=0, `unit_flags`=0x300, `unit_flags2`=0x800, `unit_flags3`=0x0, `VehicleId`=0 WHERE `entry`=184812; 
-UPDATE `creature_template` SET `faction`=35, `npcflag`=0, `unit_flags`=0x2000000, `unit_flags2`=0x4000800, `unit_flags3`=0x1, `VehicleId`=0 WHERE `entry`= 184807;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 60761;
+UPDATE `creature_template` SET `faction` = 31, `npcflag` = 1073741824, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 61158;
+UPDATE `creature_template` SET `faction` = 2757, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 0, `VehicleId` = 7582 WHERE `entry` = 180673;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 67110912, `unit_flags3` = 1073741825, `VehicleId` = 0 WHERE `entry` = 180701;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 2, `unit_flags` = 768, `unit_flags2` = 18432, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184449;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184450;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184451;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 2, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184452;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184812;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184813;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184814;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184841;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184842;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 4224, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184844;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184845;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 134217728, `VehicleId` = 0 WHERE `entry` = 184851;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184853;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 134217728, `VehicleId` = 0 WHERE `entry` = 184855;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 134217728, `VehicleId` = 0 WHERE `entry` = 184856;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184857;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184859;
+UPDATE `creature_template` SET `faction` = 2136, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 1073741824, `VehicleId` = 0 WHERE `entry` = 184861;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184862;
+UPDATE `creature_template` SET `faction` = 2136, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 67108864, `VehicleId` = 0 WHERE `entry` = 184867;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184869;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184870;
+UPDATE `creature_template` SET `faction` = 1732, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 185773;
+UPDATE `creature_template` SET `faction` = 1732, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 185774;
+UPDATE `creature_template` SET `faction` = 3272, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 8388608, `VehicleId` = 0 WHERE `entry` = 187061;
+UPDATE `creature_template` SET `faction` = 3272, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 8388608, `VehicleId` = 0 WHERE `entry` = 187062;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 67108864, `VehicleId` = 0 WHERE `entry` = 187111;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 1, `VehicleId` = 7695 WHERE `entry` = 187120;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187121;
+UPDATE `creature_template` SET `faction` = 3272, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 8388608, `VehicleId` = 0 WHERE `entry` = 187123;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187125;
+UPDATE `creature_template` SET `faction` = 3272, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 8388608, `VehicleId` = 0 WHERE `entry` = 187135;
+UPDATE `creature_template` SET `faction` = 2575, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 67108864, `VehicleId` = 0 WHERE `entry` = 187140;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187143;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 16777216, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187151;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 16777216, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187157;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187193;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187194;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187196;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187229;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187234;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187235;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 4224, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187236;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 2, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187251;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187252;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187253;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187254;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187255;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 18432, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187257;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 18432, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187261;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187263;
+UPDATE `creature_template` SET `faction` = 2031, `npcflag` = 65665, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187403;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 65665, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187412;
+UPDATE `creature_template` SET `faction` = 3305, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 7636 WHERE `entry` = 187414;
+UPDATE `creature_template` SET `faction` = 3308, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187542;
+UPDATE `creature_template` SET `faction` = 3305, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187543;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187971;
+UPDATE `creature_template` SET `faction` = 2575, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 67108864, `VehicleId` = 0 WHERE `entry` = 188027;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188028;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188057;
+UPDATE `creature_template` SET `faction` = 2757, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188205;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 256, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188266;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188904;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189002;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 4227, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189021;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189022;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189035;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189037;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189058;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189059;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 1073741824, `VehicleId` = 0 WHERE `entry` = 189060;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189061;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189062;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189063;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 1073741824, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189093;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 1073741824, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189094;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189554;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189798;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189801;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190056;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190516;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190524;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 128, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190526;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 0 WHERE `entry` = 190532;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 1073741824, `VehicleId` = 0 WHERE `entry` = 190535;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190565;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190571;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190575;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190577;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190587;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190741;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 190753;
+UPDATE `creature_template` SET `faction` = 2575, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 67108864, `VehicleId` = 0 WHERE `entry` = 191060;
+UPDATE `creature_template` SET `faction` = 1712, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191104;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 0 WHERE `entry` = 191148;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191150;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 128, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191161;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 82, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192048;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192055;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192103;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192104;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192132;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192142;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192143;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192148;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192149;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192151;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192153;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 128, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192207;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 128, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192210;
+UPDATE `creature_template` SET `faction` = 3309, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192407;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 8193, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192490;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 82, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192549;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192558;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 1073741824, `VehicleId` = 0 WHERE `entry` = 192563;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192565;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193001;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 1073741824, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193024;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193026;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 3, `unit_flags` = 832, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193362;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 65537, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193393;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 1090519040, `VehicleId` = 0 WHERE `entry` = 193707;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193806;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193811;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193816;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 18432, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193838;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193858;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193876;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193913;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193914;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 131, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193915;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193917;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193928;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194236;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194238;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 320, `unit_flags2` = 2048, `unit_flags3` = 1, `VehicleId` = 0 WHERE `entry` = 194650;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194652;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 1073741824, `VehicleId` = 0 WHERE `entry` = 194668;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194671;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194674;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194681;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194685;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 832, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194688;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 67110912, `unit_flags3` = 1090519040, `VehicleId` = 0 WHERE `entry` = 194695;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 67110912, `unit_flags3` = 1090519040, `VehicleId` = 0 WHERE `entry` = 194982;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195241;
+UPDATE `creature_template` SET `faction` = 2136, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195242;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195260;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 512, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195502;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195577;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195597;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195639;
+UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 1, `VehicleId` = 0 WHERE `entry` = 195795;
+UPDATE `creature_template` SET `faction` = 2358, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 1, `VehicleId` = 0 WHERE `entry` = 195796;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 195830;
+UPDATE `creature_template` SET `faction` = 3272, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 8388608, `VehicleId` = 0 WHERE `entry` = 195884;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 8012 WHERE `entry` = 196954;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197284;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197285;
+UPDATE `creature_template` SET `faction` = 534, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197743;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 67110912, `unit_flags3` = 1073741825, `VehicleId` = 0 WHERE `entry` = 197899;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198146;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198398;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 131, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198846;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 129, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198848;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 67110912, `unit_flags3` = 1090519040, `VehicleId` = 0 WHERE `entry` = 202585;
 
 -- creature template difficulty
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=180538; -- Sessile, Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x10000000 WHERE `entry`=180673; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=180701; -- Sessile, Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184286; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184288; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=184449;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=184450;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=184451; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=184452; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184639; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x0 WHERE `entry`=184807;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184812; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184813; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184814; -- CanSwim
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=184841;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000100 WHERE `entry`=184842;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=184844;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000100 WHERE `entry`=184845;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184851;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x10000000 WHERE `entry`=184853;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=184855; -- CanSwim, Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x30000000 WHERE `entry`=184856; -- CanSwim, Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184857;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000100 WHERE `entry`=184859;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=184861; -- Sessile, CanSwim, Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184862;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184867;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=184869;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=184870;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=185773;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=185774;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=187061;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=187062;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187111;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=187120;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187121;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=187123;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187125;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=187135;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x10000000 WHERE `entry`=187140;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187143;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187151;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=187157;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187193;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187194;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187196;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187229;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187234;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187235;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187236;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187251;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187252;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x30000000 WHERE `entry`=187253;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187254;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187255;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187257;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=187261;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=187263;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187403;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=187412;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=187414;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=187542;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=187543;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=187971;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=188027;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=188028;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=188057;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x10000000 WHERE `entry`=188205;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2294, `StaticFlags1`=0x10000000 WHERE `entry`=188266;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=188904;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189002;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189021;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189022;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189035;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189037;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189058;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189059;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=189060;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=189061;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=189062;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=189063;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=189093;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=189094;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=189554;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x30000000 WHERE `entry`=189798;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x30000000 WHERE `entry`=189801;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190056;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190516;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190524;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190526;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x20000000 WHERE `entry`=190532; -- Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x20000100 WHERE `entry`=190535; -- Floating
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190565;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=190571;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190575;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=190577;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x10000000 WHERE `entry`=190587;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=190741;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x0 WHERE `entry`=190753;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x10000000 WHERE `entry`=191060;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x10000000 WHERE `entry`=191104;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x20000000 WHERE `entry`=191148;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=191150;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=191161;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=192048;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x30000000 WHERE `entry`=192055;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=192103;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=192104;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192132;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192142;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=81 , `StaticFlags1`=0x10000000 WHERE `entry`=192143;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192148;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192149;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192151;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=81 , `StaticFlags1`=0x10000000 WHERE `entry`=192153;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=192207;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=192210;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=192407;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=192490;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=192549;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=192558;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x20000100, `StaticFlags3`=0x2000000 WHERE `entry`=192563;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=192565;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=193001;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=193024;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=193026;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2285, `StaticFlags1`=0x10000000 WHERE `entry`=193362;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=193393;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x20000100 WHERE `entry`=193707;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=193806;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=193811;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=193816;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=193838;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=193858;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=193876;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=193913;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=193914;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=193915;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=193917;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=193928;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194055;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=194056;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194115;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=194236;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=194238;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194369;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194378;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194393;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194397;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194437;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000, `StaticFlags3`=0x2000000 WHERE `entry`=194470;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194484;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194488;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194490;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=194493;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194531;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194534;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194536;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194537;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194538;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=194539;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194577;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=194650;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x0 WHERE `entry`=194652;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=81 , `StaticFlags1`=0x10000000 WHERE `entry`=194659;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000100 WHERE `entry`=194668;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194671;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194674;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194681;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=194685;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x0 WHERE `entry`=194688;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=194695;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=194982;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195241;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195242;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=81 , `StaticFlags1`=0x0 WHERE `entry`=195260;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x10000000 WHERE `entry`=195502;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195577;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195597;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195639;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x30000000 WHERE `entry`=195795;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x30000000 WHERE `entry`=195796;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=195830;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=195884;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=196091;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=196954;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x0 WHERE `entry`=197284;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x0 WHERE `entry`=197285;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x0 WHERE `entry`=197503;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=197611;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=197743;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=197899;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x10000000 WHERE `entry`=198146;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x20000100 WHERE `entry`=198362;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x20000100, `StaticFlags3`=0x2000000 WHERE `entry`=198363;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x20000100, `StaticFlags3`=0x2000000 WHERE `entry`=198367;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2307, `StaticFlags1`=0x20000100 WHERE `entry`=198368;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2151, `StaticFlags1`=0x0 WHERE `entry`=198398;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=198748;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=883 , `StaticFlags1`=0x10000000 WHERE `entry`=198750;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x0 WHERE `entry`=198846;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2309, `StaticFlags1`=0x10000000 WHERE `entry`=198848;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=2078, `StaticFlags1`=0x20000100 WHERE `entry`=202585;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=81 , `StaticFlags1`=0x0 WHERE `entry`=60761;
-UPDATE `creature_template_difficulty` SET `ContentTuningID`=371 , `StaticFlags1`=0x0 WHERE `entry`=61158;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 60761;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 61158;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 180673;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 180701;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184449;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184450;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184451;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184452;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184812;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184813;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184814;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184841;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435712, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184842;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184844;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435712, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184845;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184851;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184853;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184855;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184856;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184857;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435712, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184859;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184861;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184862;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184867;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184869;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184870;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 185773;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 185774;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 883, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187061;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 883, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187062;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187111;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187120;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187121;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 883, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187123;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187125;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 883, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187135;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187140;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187143;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187151;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187157;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187193;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187194;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187196;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187229;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187234;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187235;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187236;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187251;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187252;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187253;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187254;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187255;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187257;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187261;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187263;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187403;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187412;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187414;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187542;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187543;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187971;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188027;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188028;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188057;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188205;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2294, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188266;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188904;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189002;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189021;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189022;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189035;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189037;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189058;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189059;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189060;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189061;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189062;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189063;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189093;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189094;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189554;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189798;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189801;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190056;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190516;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190524;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190526;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 536870912, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190532;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190535;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190565;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190571;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190575;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190577;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190587;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190741;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 190753;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191060;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191104;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 536870912, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191148;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191150;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191161;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192048;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192055;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192103;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192104;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192132;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192142;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192143;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192148;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192149;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192151;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192153;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192207;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192210;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192407;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192490;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192549;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192558;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 192563;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192565;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193001;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193024;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193026;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2285, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193362;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193393;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193707;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193806;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193811;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193816;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193838;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193858;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193876;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193913;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193914;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193915;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193917;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193928;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194236;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194238;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194650;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194652;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194668;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194671;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194674;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194681;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194685;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194688;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194695;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194982;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195241;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195242;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195260;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195502;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195577;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195597;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195639;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195795;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195796;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195830;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 883, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 195884;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 196954;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197284;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2307, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197285;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197743;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197899;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198146;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198398;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 198846;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198848;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 202585;
 
 -- creatire static flags override
 DELETE FROM `creature_static_flags_override` WHERE `SpawnId` BETWEEN @CGUID+10 AND @CGUID+1465;
-INSERT INTO `creature_static_flags_override` (`SpawnId`, `DifficultyId`, `StaticFlags1`, `StaticFlags2`, `StaticFlags3`, `StaticFlags4`, `StaticFlags5`, `StaticFlags6`, `StaticFlags7`, `StaticFlags8`) VALUES 
-(@CGUID+10, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+16, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+17, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+18, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+25, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+83, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+87, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+113, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+114, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+132, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+146, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+147, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+148, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+149, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+152, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+156, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+158, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+159, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+161, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+164, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+170, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+182, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+183, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+194, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+196, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+198, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+204, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+205, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+214, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+283, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+292, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+314, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+317, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+318, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+319, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+329, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+338, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+344, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+345, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+346, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+368, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+371, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+373, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+399, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+407, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+419, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+400, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+425, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+426, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+427, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+445, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+480, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+481, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+484, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+516, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+517, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+580, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+645, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+699, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+700, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+713, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+719, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+722, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+727, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+728, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+747, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+757, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+760, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+761, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+764, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+768, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+772, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+774, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+794, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+796, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+877, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+878, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+880, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+881, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+884, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+887, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+888, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+892, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+893, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+895, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+901, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+908, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+909, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+917, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+932, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+934, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+942, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+945, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+950, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+952, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+958, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+959, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+978, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+998, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1000, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1001, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1029, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1030, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1031, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1042, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1051, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1052, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1072, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1073, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1074, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1087, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1090, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1091, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1106, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1107, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1111, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1124, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1196, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1197, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1198, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1269, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1272, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1286, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1305, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1306, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1307, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1318, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1319, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1320, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1333, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1335, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1336, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1337, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1339, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1340, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1362, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1383, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1384, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1385, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1425, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1426, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1427, 0, 0x20000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- Floating
-(@CGUID+1431, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1434, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL), -- CanSwim
-(@CGUID+1465, 0, 0x10000000, NULL, NULL, NULL, NULL, NULL, NULL, NULL); -- CanSwim
 
 -- creature template addon
-DELETE FROM `creature_template_addon` WHERE `entry` IN(180538, 180673, 180701, 184286, 184288, 184449, 184450, 184451, 184452, 184639, 184807, 184812, 184813, 184814, 184841, 184842, 184844, 184845, 184851, 184853, 184855, 184856, 184857, 184859, 184861, 184862, 184867, 184869, 184870, 185773, 185774, 187061, 187062, 187111, 187120, 187121, 187123, 187125, 187135, 187140, 187143, 187151, 187157, 187193, 187194, 187196, 187229, 187234, 187235, 187236, 187251, 187252, 187253, 187254, 187255, 187257, 187261, 187263, 187403, 187412, 187414, 187542, 187543, 187971, 188027, 188028, 188057, 188205, 188266, 188904, 189002, 189021, 189022, 189035, 189037, 189058, 189059, 189060, 189061, 189062, 189063, 189093, 189094, 189554, 189798, 189801, 190056, 190516, 190524, 190526, 190532, 190535, 190565, 190571, 190575, 190577, 190587, 190741, 190753, 191060, 191104, 191148, 191150, 191161, 192048, 192055, 192103, 192104, 192132, 192142, 192143, 192148, 192149, 192151, 192153, 192207, 192210, 192407, 192490, 192549, 192558, 192563, 192565, 193001, 193024, 193026, 193362, 193393, 193707, 193806, 193811, 193816, 193838, 193858, 193876, 193913, 193914, 193915, 193917, 193928, 194055, 194056, 194115, 194236, 194238, 194369, 194378, 194393, 194397, 194437, 194470, 194484, 194488, 194490, 194493, 194531, 194534, 194536, 194537, 194538, 194539, 194577, 194650, 194652, 194659, 194668, 194671, 194674, 194681, 194685, 194688, 194695, 194982, 195241, 195242, 195260, 195502, 195577, 195597, 195639, 195795, 195796, 195830, 195884, 196091, 196954, 197284, 197285, 197503, 197611, 197743, 197899, 198146, 198362, 198363, 198367, 198368, 198398, 198748, 198750, 198846, 198848, 202585, 60761, 61158);
+DELETE FROM `creature_template_addon` WHERE `entry` IN(60761,61158,180673,180701,184449,184450,184451,184452,184812,184813,184814,184841,184842,184844,184845,184851,184853,184855,184856,184857,184859,184861,184862,184867,184869,184870,185773,185774,187061,187062,187111,187120,187121,187123,187125,187135,187140,187143,187151,187157,187193,187194,187196,187229,187234,187235,187236,187251,187252,187253,187254,187255,187257,187261,187263,187403,187412,187414,187542,187543,187971,188027,188028,188057,188205,188266,188904,189002,189021,189022,189035,189037,189058,189059,189060,189061,189062,189063,189093,189094,189554,189798,189801,190056,190516,190524,190526,190532,190535,190565,190571,190575,190577,190587,190741,190753,191060,191104,191148,191150,191161,192048,192055,192103,192104,192132,192142,192143,192148,192149,192151,192153,192207,192210,192407,192490,192549,192558,192563,192565,193001,193024,193026,193362,193393,193707,193806,193811,193816,193838,193858,193876,193913,193914,193915,193917,193928,194236,194238,194650,194652,194668,194671,194674,194681,194685,194688,194695,194982,195241,195242,195260,195502,195577,195597,195639,195795,195796,195830,195884,196954,197284,197285,197743,197899,198146,198398,198846,198848,202585);
 
-INSERT INTO `creature_template_addon` (`entry`, `PathId`, `mount`, `StandState`, `AnimTier`, `VisFlags`, `SheathState`, `PvpFlags`, `emote`, `aiAnimKit`, `movementAnimKit`, `meleeAnimKit`, `visibilityDistanceType`, `auras`) VALUES
-(180538, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 3, ''), -- 180538
-(180673, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 180673
-(180701, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 180701
-(184286, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 4, '372471'), -- 184286 - 372471
-(184288, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ''), -- 184288
-(184449, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184449
-(184450, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184450
-(184451, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184451
-(184452, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184452
-(184639, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369689'), -- 184639 - 369689
-(184807, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, ''), -- 184807
-(184812, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '372471'), -- 184812 - 372471
-(184813, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184813
-(184814, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184814
-(184841, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '378042 337501'), -- 184841 - 378042, 337501
-(184842, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'), -- 184842 - 337501
-(184844, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'), -- 184844 - 337501
-(184845, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'), -- 184845 - 337501
-(184851, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184851
-(184853, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184853
-(184855, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184855
-(184856, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184856
-(184857, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '365868'), -- 184857 - 365868
-(184859, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'), -- 184859 - 337501
-(184861, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184861
-(184862, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373362'), -- 184862 - 373362
-(184867, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184867
-(184869, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 184869
-(184870, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '378042'), -- 184870 - 378042
-(185773, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '228928'), -- 185773 - 228928
-(185774, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '228928'), -- 185774 - 228928
-(187061, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 187061
-(187062, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 187062
-(187111, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187111
-(187120, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, '373750'), -- 187120 - 373750
-(187121, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369812'), -- 187121 - 369812
-(187123, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 187123
-(187125, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187125
-(187135, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 187135
-(187140, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187140
-(187143, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187143
-(187151, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187151
-(187157, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, '370063'), -- 187157 - 370063
-(187193, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'), -- 187193 - 371815
-(187194, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'), -- 187194 - 371815
-(187196, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'), -- 187196 - 371815
-(187229, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187229
-(187234, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187234
-(187235, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187235
-(187236, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187236
-(187251, 0, 0, 0, 0, 0, 1, 0, 0, 14931, 0, 0, 0, '382510'), -- 187251 - 382510
-(187252, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187252
-(187253, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187253
-(187254, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187254
-(187255, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187255
-(187257, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187257
-(187261, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374319'), -- 187261 - 374319
-(187263, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374208'), -- 187263 - 374208
-(187403, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187403
-(187412, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 187412
-(187414, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187414
-(187542, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187542
-(187543, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187543
-(187971, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 187971
-(188027, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '368927'), -- 188027 - 368927
-(188028, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'), -- 188028 - 159474
-(188057, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 188057
-(188205, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 188205
-(188266, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371842'), -- 188266 - 371842
-(188904, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '122236'), -- 188904 - 122236
-(189002, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '383066 372471'), -- 189002 - 383066, 372471
-(189021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 189021
-(189022, 0, 0, 0, 0, 0, 1, 0, 0, 14931, 0, 0, 0, '382510'), -- 189022 - 382510
-(189035, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189035
-(189037, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 189037
-(189058, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 189058
-(189059, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '383066 372471'), -- 189059 - 383066, 372471
-(189060, 0, 0, 0, 0, 0, 1, 0, 0, 14000, 0, 0, 0, '370411'), -- 189060 - 370411
-(189061, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189061
-(189062, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189062
-(189063, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189063
-(189093, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189093
-(189094, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189094
-(189554, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189554
-(189798, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '125467'), -- 189798 - 125467
-(189801, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 189801
-(190056, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373366'), -- 190056 - 373366
-(190516, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374171'), -- 190516 - 374171
-(190524, 0, 0, 0, 0, 0, 1, 0, 0, 24592, 0, 0, 0, '374191'), -- 190524 - 374191
-(190526, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 190526
-(190532, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 190532
-(190535, 0, 0, 0, 0, 0, 1, 0, 0, 14000, 0, 0, 0, '374211'), -- 190535 - 374211
-(190565, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'), -- 190565 - 159474
-(190571, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '374127'), -- 190571 - 374127
-(190575, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 190575
-(190577, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 190577
-(190587, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374315'), -- 190587 - 374315
-(190741, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'), -- 190741 - 159474
-(190753, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, '370243'), -- 190753 - 370243
-(191060, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 191060
-(191104, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '151597'), -- 191104 - 151597
-(191148, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 191148
-(191150, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '375314'), -- 191150 - 375314
-(191161, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 191161
-(192048, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192048
-(192055, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, '177766 376969'), -- 192055 - 177766, 376969
-(192103, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192103
-(192104, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192104
-(192132, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192132
-(192142, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192142
-(192143, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192143
-(192148, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192148
-(192149, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192149
-(192151, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192151
-(192153, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192153
-(192207, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192207
-(192210, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192210
-(192407, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'), -- 192407 - 159474
-(192490, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192490
-(192549, 0, 0, 8, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192549
-(192558, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192558
-(192563, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '386924 386939'), -- 192563 - 386924, 386939
-(192565, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 192565
-(193001, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193001
-(193024, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193024
-(193026, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193026
-(193362, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 193362
-(193393, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193393
-(193707, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193707
-(193806, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193806
-(193811, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373366'), -- 193811 - 373366
-(193816, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '385801'), -- 193816 - 385801
-(193838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '286996'), -- 193838 - 286996
-(193858, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '396292'), -- 193858 - 396292
-(193876, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 193876
-(193913, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '382660'), -- 193913 - 382660
-(193914, 0, 0, 0, 0, 0, 0, 0, 0, 15430, 0, 0, 0, ''), -- 193914
-(193915, 0, 0, 0, 0, 0, 0, 0, 0, 15430, 0, 0, 0, ''), -- 193915
-(193917, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369391'), -- 193917 - 369391
-(193928, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '382661'), -- 193928 - 382661
-(194055, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194055
-(194056, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194056
-(194115, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, '384573'), -- 194115 - 384573
-(194236, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '383207'), -- 194236 - 383207
-(194238, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369391'), -- 194238 - 369391
-(194369, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194369
-(194378, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, '237594'), -- 194378 - 237594
-(194393, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, '383667'), -- 194393 - 383667
-(194397, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, '275283'), -- 194397 - 275283
-(194437, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, '374148'), -- 194437 - 374148
-(194470, 0, 0, 0, 0, 0, 1, 1, 0, 16425, 0, 0, 0, ''), -- 194470
-(194484, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194484
-(194488, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194488
-(194490, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194490
-(194493, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '389730'), -- 194493 - 389730
-(194531, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, ''), -- 194531
-(194534, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, ''), -- 194534
-(194536, 0, 0, 5, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194536
-(194537, 0, 0, 5, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194537
-(194538, 0, 0, 5, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194538
-(194539, 0, 0, 0, 3, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194539
-(194577, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194577
-(194650, 0, 89712, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194650
-(194652, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194652
-(194659, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194659
-(194668, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194668
-(194671, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 194671
-(194674, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '273097'), -- 194674 - 273097
-(194681, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '277936'), -- 194681 - 277936
-(194685, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194685
-(194688, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 194688
-(194695, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '384378'), -- 194695 - 384378
-(194982, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '385044'), -- 194982 - 385044
-(195241, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195241
-(195242, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195242
-(195260, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195260
-(195502, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '386221'), -- 195502 - 386221
-(195577, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195577
-(195597, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195597
-(195639, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195639
-(195795, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '373750'), -- 195795 - 373750
-(195796, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '373750 373776'), -- 195796 - 373750, 373776
-(195830, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 195830
-(195884, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 195884
-(196091, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 196091
-(196954, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 196954
-(197284, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 197284
-(197285, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 197285
-(197503, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, ''), -- 197503
-(197611, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, ''), -- 197611
-(197743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''), -- 197743
-(197899, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 197899
-(198146, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '381296'), -- 198146 - 381296
-(198362, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 198362
-(198363, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 198363
-(198367, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 198367
-(198368, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 198368
-(198398, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 198398
-(198748, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 198748
-(198750, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''), -- 198750
-(198846, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374153'), -- 198846 - 374153
-(198848, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '372740'), -- 198848 - 372740
-(202585, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, ''), -- 202585
-(60761, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''), -- 60761
-(61158, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''); -- 61158
+INSERT INTO `creature_template_addon` (`entry`, `PathId`, `mount`, `MountCreatureID`, `StandState`, `AnimTier`, `VisFlags`, `SheathState`, `PvPFlags`, `emote`, `aiAnimKit`, `movementAnimKit`, `meleeAnimKit`, `visibilityDistanceType`, `auras`) VALUES
+(60761, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(61158, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(180673, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(180701, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184449, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184450, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184451, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184452, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184812, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '372471'),
+(184813, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184814, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184841, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184842, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'),
+(184844, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184845, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'),
+(184851, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184853, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184855, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184856, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184857, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '365868'),
+(184859, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '337501'),
+(184861, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184862, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373362'),
+(184867, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184869, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(184870, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '378042'),
+(185773, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '228928'),
+(185774, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '228928'),
+(187061, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(187062, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(187111, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187120, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, '373750'),
+(187121, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187123, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(187125, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187135, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(187140, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187143, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187151, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187157, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187193, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'),
+(187194, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'),
+(187196, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371815'),
+(187229, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187234, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187235, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187236, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187251, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14931, 0, 0, 0, '382510'),
+(187252, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187253, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187254, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187255, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187257, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187261, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374319'),
+(187263, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187403, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187412, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(187414, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187542, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187543, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(187971, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(188027, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '368927'),
+(188028, 0, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'),
+(188057, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(188205, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(188266, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '371842'),
+(188904, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '122236'),
+(189002, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '383066 372471'),
+(189021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(189022, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14931, 0, 0, 0, '382510'),
+(189035, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189037, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(189058, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(189059, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '383066 372471'),
+(189060, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14000, 0, 0, 0, '370411'),
+(189061, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189062, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189063, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189093, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189094, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189554, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(189798, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '125467'),
+(189801, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(190056, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373366'),
+(190516, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374171'),
+(190524, 0, 0, 0, 0, 0, 0, 1, 0, 0, 24592, 0, 0, 0, '374191'),
+(190526, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(190532, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(190535, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14000, 0, 0, 0, '374211'),
+(190565, 0, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'),
+(190571, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '374127'),
+(190575, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(190577, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(190587, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374315'),
+(190741, 0, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'),
+(190753, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, '370243'),
+(191060, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(191104, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(191148, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(191150, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '375314'),
+(191161, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192048, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192055, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, '177766 376969'),
+(192103, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192104, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192132, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192142, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192143, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192148, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192149, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192151, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192153, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192207, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192210, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192407, 0, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, '159474'),
+(192490, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192549, 0, 0, 0, 8, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192558, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(192563, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '386924 386939'),
+(192565, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193001, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193024, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193026, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193362, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(193393, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193707, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193806, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193811, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '373366'),
+(193816, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '385801'),
+(193838, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '286996'),
+(193858, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '396292'),
+(193876, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(193913, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '382660'),
+(193914, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15430, 0, 0, 0, ''),
+(193915, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15430, 0, 0, 0, ''),
+(193917, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369391'),
+(193928, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '382661'),
+(194236, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '383207'),
+(194238, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '369391'),
+(194650, 0, 89712, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(194652, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(194668, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(194671, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(194674, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '273097'),
+(194681, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '277936'),
+(194685, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(194688, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(194695, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '384378'),
+(194982, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '385044'),
+(195241, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195242, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195260, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195502, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '386221'),
+(195577, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195597, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195639, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195795, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, ''),
+(195796, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, ''),
+(195830, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(195884, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, ''),
+(196954, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(197284, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(197285, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(197743, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(197899, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(198146, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '381296'),
+(198398, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, ''),
+(198846, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '374153'),
+(198848, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, '372740'),
+(202585, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 4, '');
 
 -- gameobject
 DELETE FROM `gameobject` WHERE `map`=2444 AND `areaId`=17322;
