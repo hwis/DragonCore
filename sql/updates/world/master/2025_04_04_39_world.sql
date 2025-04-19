@@ -4,7 +4,7 @@ SET @CGUID := 9016450;
 SET @OGUID := 9016450;
 
 -- creature
-DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+58;
+DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+190;
 INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curHealthPct`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `ScriptName`, `StringId`, `VerifiedBuild`) VALUES 
 (@CGUID+1, 194462, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 961.127, 895.158, 125.952, 2.27371, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
 (@CGUID+2, 186869, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 987.773, 834.799, 124.08, 3.20092, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
@@ -64,6 +64,141 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficult
 (@CGUID+56, 193623, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 1017.02, 1049.27, 25.0578, 4.05856, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
 (@CGUID+57, 194444, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 1067.95, 1161.32, 30.0247, 2.80534, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
 (@CGUID+58, 194081, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 975.644, 1176.92, 110.851, 2.99836, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466);
+
+-- creature not in sniff
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curHealthPct`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `ScriptName`, `StringId`, `VerifiedBuild`) VALUES 
+(@CGUID+59, 187708, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 924.823, 873.42, 155.853, 2.60445, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+60, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 920.337, 871.156, 171.894, 1.84922, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+61, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 924.455, 870.722, 147.437, 2.77446, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+62, 188015, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1022.73, 970.512, 114.154, 1.21292, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+63, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 922.92, 871.91, 161.245, 2.01934, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+64, 198305, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 966.694, 901.71, 127.298, 1.45933, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+65, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 947.177, 831.376, 161.344, 0.0349081, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+66, 197412, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 975.911, 899.201, 127.55, 4.2111, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+67, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1000.98, 823.536, 124.134, 4.38032, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+68, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 936.66, 899.469, 124.859, 2.66949, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+69, 184814, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1000.66, 821.688, 124.134, 1.34202, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+70, 189635, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1020.7, 881.753, 113.93, 5.29252, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+71, 197441, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 954.823, 897.273, 126.564, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+72, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.174, 874.523, 128.401, 4.27408, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+73, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 903.022, 773.954, 145.391, 3.48333, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+74, 188908, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1057.84, 862.875, 108.591, 1.63671, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+75, 187700, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 935.252, 879.017, 128.217, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+76, 194471, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 943.689, 827.328, 130.312, 1.2906, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+77, 187699, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 931.674, 871.221, 129.779, 1.83581, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+78, 189069, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 958.667, 918.852, 125.598, 2.03835, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+79, 197272, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.939, 897.295, 127.614, 2.06072, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+80, 197275, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.243, 898.601, 127.6, 5.20231, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+81, 192843, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 939.851, 832.708, 130.136, 0.267707, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+82, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 862.864, 818.852, 193.146, 4.42487, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+83, 193115, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 974.733, 896.696, 127.566, 2.1352, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+84, 194586, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 940.212, 811.464, 128.485, 5.22544, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+85, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 923.774, 869.983, 150.446, 2.75714, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+86, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 922.748, 869.057, 152.393, 1.90287, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+87, 194529, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1007.31, 838.913, 123.944, 2.64366, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+88, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 921.283, 871.172, 165.286, 2.04329, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+89, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.514, 873.372, 142.34, 3.20519, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+90, 184814, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.332, 833.712, 124.282, 0.582444, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+91, 197765, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 961.319, 913.679, 124.981, 1.92345, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+92, 188265, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1005.31, 831.701, 124.1, 2.8888, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+93, 197760, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 958.53, 915.825, 125.343, 5.62755, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+94, 198304, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 967.464, 902.443, 127.359, 2.69955, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+95, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 917.719, 963.77, 110.7, 2.38728, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+96, 187710, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.769, 871.849, 135.39, 2.90474, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+97, 189226, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 979.26, 896.556, 127.589, 4.19118, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+98, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 990.875, 841.649, 124.054, 6.13024, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+99, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1046.71, 898.076, 113.817, 2.08166, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+100, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, -1.3241, -0.517081, 0.171398, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+101, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 852.354, 787.417, 222.153, 2.23328, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+102, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.611, 873.979, 140.029, 2.42976, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+103, 198364, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 932.998, 828.998, 130.339, 6.10954, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+104, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 930.122, 865.286, 128.438, 4.35251, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+105, 188900, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1016.64, 870.429, 114.547, 0.708849, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+106, 187408, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 944.012, 846.615, 129.613, 4.29529, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+107, 188910, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.943, 865.561, 129.59, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+108, 194440, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 936.153, 880.698, 129.077, 5.97366, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+109, 188905, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1013.98, 872.816, 115.163, 1.35697, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+110, 188906, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1015.11, 875.424, 115.123, 4.30342, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+111, 198160, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.293, 895.306, 125.736, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+112, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.696, 888.306, 129.542, 1.14782, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+113, 196109, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1102.2, 1153.2, 171.995, 4.29925, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+114, 191705, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 836.3, 1241.61, 182.345, 4.27527, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+115, 191805, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 629.387, 1116.39, 216.74, 6.10762, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+116, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, -0.714129, -0.429363, -0.0674554, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+117, 187708, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 924.823, 873.42, 155.853, 2.60445, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+118, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 924.455, 870.722, 147.437, 2.77446, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+119, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 922.92, 871.91, 161.245, 2.01934, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+120, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, -1.01451, -0.462455, 0.725979, 0, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+121, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 923.774, 869.983, 150.446, 2.75714, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+122, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 922.748, 869.057, 152.393, 1.90287, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+123, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.514, 873.372, 142.34, 3.20519, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+124, 187710, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.769, 871.849, 135.39, 2.90474, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+125, 187709, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.611, 873.979, 140.029, 2.42976, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+126, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1000.98, 823.536, 124.134, 4.38032, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+127, 184814, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1000.66, 821.688, 124.134, 1.34202, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+128, 188104, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 988.523, 774.26, 128.221, 0.991024, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+129, 188104, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 987.523, 776.903, 127.611, 2.43933, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+130, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 905.929, 777.633, 145.391, 5.05724, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+131, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 977.762, 773.396, 129.227, 5.56483, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+132, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 981.955, 783.335, 131.639, 6.15809, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+133, 188265, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1005.31, 831.701, 124.1, 2.8888, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+134, 188104, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 981.54, 794.63, 128.976, 4.48013, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+135, 187705, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 974.017, 785.837, 130.09, 3.13794, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+136, 187707, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 973.976, 782.49, 130.08, 2.71258, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+137, 194586, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 940.212, 811.464, 128.485, 5.22544, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+138, 194529, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1007.31, 838.913, 123.944, 2.64366, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+139, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 978.597, 789.181, 129.443, 1.41824, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+140, 184813, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 971.505, 796.163, 129.601, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+141, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 920.337, 871.156, 171.894, 1.84922, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+142, 187711, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 921.283, 871.172, 165.286, 2.04329, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+143, 184814, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.332, 833.712, 124.282, 0.582444, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+144, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 860.662, 820.503, 193.136, 5.72838, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+145, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, -0.714129, -0.429363, -0.0674554, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+146, 194471, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 943.689, 827.328, 130.312, 1.2906, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+147, 191639, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 853.951, 786.04, 222.153, 5.45042, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+148, 192843, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 939.851, 832.708, 130.136, 0.267707, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+149, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 956.143, 840.788, 127.85, 0.669096, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+150, 187399, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 943.255, 844.906, 129.633, 1.03574, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+151, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 941.649, 860.022, 128.331, 1.10584, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+152, 99403, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 963.57, 871.453, 125.822, 6.15813, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+153, 198364, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 974.69, 867.496, 125.743, 3.63347, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+154, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 930.122, 865.286, 128.438, 4.35251, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+155, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 938.255, 871.467, 127.307, 4.44281, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+156, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 937.846, 869.984, 127.422, 1.52494, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+157, 188910, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 925.943, 865.561, 129.59, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+158, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 928.672, 873.547, 130.119, 5.54346, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+159, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.174, 874.523, 128.401, 4.27408, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+160, 188900, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1016.64, 870.429, 114.547, 0.708849, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+161, 194440, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 936.153, 880.698, 129.077, 5.97366, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+162, 188905, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1013.98, 872.816, 115.163, 1.35697, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+163, 188906, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1015.11, 875.424, 115.123, 4.30342, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+164, 197412, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 975.911, 899.201, 127.55, 4.2111, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+165, 189635, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1020.7, 881.753, 113.93, 5.29252, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+166, 197441, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 954.823, 897.273, 126.564, 0, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+167, 187444, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 963.394, 898.776, 126.066, 3.16759, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+168, 197272, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.939, 897.295, 127.614, 2.06072, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+169, 197275, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 986.243, 898.601, 127.6, 5.20231, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+170, 198305, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 966.694, 901.71, 127.298, 1.45933, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+171, 198304, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 967.464, 902.443, 127.359, 2.69955, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+172, 189065, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 962.247, 909.653, 125.802, 1.91865, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+173, 198157, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 936.823, 896.965, 125.219, 3.42202, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+174, 197765, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 961.319, 913.679, 124.981, 1.92345, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+175, 197760, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 1, 960.417, 914.583, 125.569, 5.03371, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+176, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 969.344, 917.026, 126.033, 1.61387, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+177, 189070, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 960.13, 919.832, 125.853, 2.51808, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+178, 189069, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 958.667, 918.852, 125.598, 2.03835, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+179, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 931.677, 879.887, 129.322, 4.34341, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+180, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 931.677, 879.887, 129.322, 4.34341, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+181, 188015, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1022.73, 970.512, 114.154, 1.21292, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+182, 187193, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1051.32, 956.41, 113.52, 4.38194, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+183, 187193, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1053.33, 951.155, 113.122, 1.83968, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+184, 187193, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1049.99, 953.658, 113.772, 0.538689, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+185, 187193, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 1054.16, 954.273, 113.221, 3.97102, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+186, 187194, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.899, 877.16, 128.319, 3.40885, 7200, 10, 0, 100, 1, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+187, 184812, 2444, 13644, 13732, ' 0', 0, 0, 0, -1, 0, 0, 933.899, 877.16, 128.319, 3.40885, 7200, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+188, 193121, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 973.146, 899.081, 127.455, 4.4504, 300, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+189, 193547, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 1034.67, 994.262, 112.292, 2.75721, 300, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466),
+(@CGUID+190, 197478, 2444, 13644, 13732, '0', 0, 0, 0, -1, 0, 0, 967.97, 887.904, 127.527, 5.51535, 300, 0, 0, 100, 0, NULL, NULL, NULL, NULL, '', NULL, 59466);
 
 -- creature addon
 DELETE FROM `creature_addon` WHERE `guid` BETWEEN @CGUID+1 AND @CGUID+58;
@@ -196,6 +331,80 @@ UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, 
 UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194444;
 UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 3, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194462;
 UPDATE `creature_template` SET `faction` = 14, `npcflag` = 0, `unit_flags` = 64, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 196385;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 99403;
+UPDATE `creature_template` SET `faction` = 2070, `npcflag` = 3, `unit_flags` = 832, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188905;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187194;
+UPDATE `creature_template` SET `faction` = 2136, `npcflag` = 0, `unit_flags` = 67108864, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188104;
+UPDATE `creature_template` SET `faction` = 2070, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188906;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188103;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184813;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 131, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188900;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 2, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187705;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188015;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187276;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187193;
+UPDATE `creature_template` SET `faction` = 1727, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188908;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187699;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187707;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 7559 WHERE `entry` = 187708;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 4227, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187700;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 7559 WHERE `entry` = 187711;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 65667, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187408;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 186869;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 131, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188265;
+UPDATE `creature_template` SET `faction` = 474, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 188910;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184814;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 184812;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 66177, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187399;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 7559 WHERE `entry` = 187710;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 7559 WHERE `entry` = 187709;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 128, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 187444;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 4227, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189065;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189069;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189070;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 131, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189226;
+UPDATE `creature_template` SET `faction` = 2575, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189307;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 256, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 189635;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191639;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2099200, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191705;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2099200, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191805;
+UPDATE `creature_template` SET `faction` = 188, `npcflag` = 0, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 191809;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192298;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 8193, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 192843;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193115;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 83, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193121;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193506;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193513;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193516;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 1, `unit_flags` = 0, `unit_flags2` = 0, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 193547;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194075;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194078;
+UPDATE `creature_template` SET `faction` = 190, `npcflag` = 0, `unit_flags` = 67108864, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194079;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194081;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108864, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194086;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194087;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194088;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194089;
+UPDATE `creature_template` SET `faction` = 94, `npcflag` = 2199023255553, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 0 WHERE `entry` = 194440;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108864, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194444;
+UPDATE `creature_template` SET `faction` = 3276, `npcflag` = 3, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194462;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194471;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194529;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 194586;
+UPDATE `creature_template` SET `faction` = 16, `npcflag` = 0, `unit_flags` = 67108928, `unit_flags2` = 2099200, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 196109;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197272;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197275;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 16777216, `unit_flags` = 768, `unit_flags2` = 67110912, `unit_flags3` = 16777216, `VehicleId` = 0 WHERE `entry` = 197412;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33554432, `unit_flags2` = 100665344, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197441;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 3, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197478;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 0, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 197760;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 0, `unit_flags` = 33555200, `unit_flags2` = 2048, `unit_flags3` = 16777217, `VehicleId` = 0 WHERE `entry` = 197765;
+UPDATE `creature_template` SET `faction` = 1727, `npcflag` = 1, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198157;
+UPDATE `creature_template` SET `faction` = 1727, `npcflag` = 1, `unit_flags` = 0, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198160;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198304;
+UPDATE `creature_template` SET `faction` = 3270, `npcflag` = 1, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198305;
+UPDATE `creature_template` SET `faction` = 35, `npcflag` = 16777216, `unit_flags` = 768, `unit_flags2` = 2048, `unit_flags3` = 0, `VehicleId` = 0 WHERE `entry` = 198364;
+
 
 -- creature template difficulty
 UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2150, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 186869;
@@ -230,3 +439,150 @@ UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags
 UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194444;
 UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194462;
 UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2304, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 196385;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2152, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198364;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2152, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198364;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 198305;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 198305;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 198304;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 805306624, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 198304;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198160;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198160;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198157;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 198157;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197765;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197765;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197760;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197760;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197478;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197478;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 181, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197441;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 181, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197441;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 197412;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 197412;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197275;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197275;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197272;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 197272;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 196109;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 196109;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194586;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194586;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 194529;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2309, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 194529;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194471;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194471;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194462;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194462;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194444;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194444;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 194440;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 194440;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194089;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194089;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194088;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194088;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194087;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194087;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194086;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194086;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194081;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194081;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194079;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194079;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194078;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194078;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194075;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 194075;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193547;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193547;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193516;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193516;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193513;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193513;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193506;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193506;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193121;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193121;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193115;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 193115;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192843;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192843;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192298;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 192298;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191809;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191809;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2308, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191805;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2308, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191805;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2308, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191705;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2308, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191705;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191639;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 191639;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189635;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189635;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189307;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 81, `StaticFlags1` = 805306368, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189307;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 189226;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 189226;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189070;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189070;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189069;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189069;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189065;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189065;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188910;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188910;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188908;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188908;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188906;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188906;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188905;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188905;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188900;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188900;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188265;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2277, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188265;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188104;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188104;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188103;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188103;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188015;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 188015;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187711;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187711;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187710;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187710;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187709;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187709;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187708;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 536871168, `StaticFlags2` = 0, `StaticFlags3` = 33554432 WHERE `Entry` = 187708;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187707;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187707;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187705;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187705;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187700;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187700;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187699;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187699;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187444;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2078, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187444;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187408;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187408;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187399;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187399;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187276;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187276;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187194;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187194;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187193;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 187193;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2150, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 186869;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2150, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 186869;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184814;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184814;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184813;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184813;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184812;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 2151, `StaticFlags1` = 268435456, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 184812;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 371, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 99403;
+UPDATE `creature_template_difficulty` SET `ContentTuningID` = 0, `StaticFlags1` = 0, `StaticFlags2` = 0, `StaticFlags3` = 0 WHERE `Entry` = 189226;
+
