@@ -1881,24 +1881,24 @@ public:
         return ValidateSpellInfo({ _damageSpellId, _healingSpellId });
     }
 
-    SpellCastResult CheckCast() const
-    {
-        Unit* caster = GetCaster();
-
-        if (Unit* target = GetExplTargetUnit())
-        {
-            if (!caster->IsFriendlyTo(target))
-            {
-                if (!caster->IsValidAttackTarget(target))
-                    return SPELL_FAILED_BAD_TARGETS;
-
-                if (!caster->isInFront(target))
-                    return SPELL_FAILED_UNIT_NOT_INFRONT;
-            }
-        }
-
-        return SPELL_CAST_OK;
-    }
+//    SpellCastResult CheckCast() const
+//    {
+//        Unit* caster = GetCaster();
+//
+//        if (Unit* target = GetExplTargetUnit())
+//        {
+//            if (!caster->IsFriendlyTo(target))
+//            {
+//                if (!caster->IsValidAttackTarget(target))
+//                    return SPELL_FAILED_BAD_TARGETS;
+//
+//                if (!caster->isInFront(target))
+//                    return SPELL_FAILED_UNIT_NOT_INFRONT;
+//            }
+//        }
+//
+//        return SPELL_CAST_OK;
+//    }
 
     void HandleDummy(SpellEffIndex /*effIndex*/) const
     {
@@ -1917,7 +1917,7 @@ public:
 
     void Register() override
     {
-        OnCheckCast += SpellCheckCastFn(spell_pri_penance::CheckCast);
+        //OnCheckCast += SpellCheckCastFn(spell_pri_penance::CheckCast);
         OnEffectHitTarget += SpellEffectFn(spell_pri_penance::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 
