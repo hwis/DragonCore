@@ -37,6 +37,7 @@ enum MonkSpells
     SPELL_MONK_CRACKLING_JADE_LIGHTNING_CHI_PROC        = 123333,
     SPELL_MONK_CRACKLING_JADE_LIGHTNING_KNOCKBACK       = 117962,
     SPELL_MONK_CRACKLING_JADE_LIGHTNING_KNOCKBACK_CD    = 117953,
+    SPELL_MONK_ENVELOPING_MIST                          = 124682,
     SPELL_MONK_JADE_WALK                                = 450552,
     SPELL_MONK_MORTAL_WOUNDS                            = 115804,
     SPELL_MONK_POWER_STRIKE_PROC                        = 129914,
@@ -123,6 +124,23 @@ class spell_monk_crackling_jade_lightning_knockback_proc_aura : public AuraScrip
         DoCheckProc += AuraCheckProcFn(spell_monk_crackling_jade_lightning_knockback_proc_aura::CheckProc);
         OnEffectProc += AuraEffectProcFn(spell_monk_crackling_jade_lightning_knockback_proc_aura::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
     }
+};
+
+// 124682 - Enveloping Mist
+class spell_monk_enveloping_mist : public SpellScript
+{
+    void OnPrecast() override
+    {
+        if (GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL) && GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->GetSpellInfo()->Id == SPELL_MONK_SOOTHING_MIST)
+        {
+            TriggerCastFlags castFlags = TriggerCastFlags(GetSpell()->GetTriggeredCastFlags() | TRIGGERED_CAST_DIRECTLY);
+            GetSpell()->SetTriggerCastFlags(castFlags);
+            SpellCastTargets targets = GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->m_targets;
+            GetSpell()->InitExplicitTargets(targets);
+        }
+    }
+
+    void Register() override { }
 };
 
 // 450553 - Jade Walk
@@ -691,6 +709,7 @@ void AddSC_monk_spell_scripts()
 {
     RegisterSpellScript(spell_monk_crackling_jade_lightning);
     RegisterSpellScript(spell_monk_crackling_jade_lightning_knockback_proc_aura);
+    RegisterSpellScript(spell_monk_enveloping_mist);
     RegisterSpellScript(spell_monk_jade_walk);
     RegisterSpellScript(spell_monk_life_cocoon);
     RegisterSpellScript(spell_monk_open_palm_strikes);
