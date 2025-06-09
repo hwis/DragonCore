@@ -235,23 +235,15 @@ public:
     }
 };
 
+// => need move to SAI
 struct npc_emberthal_182258 : public ScriptedAI
 {
     npc_emberthal_182258(Creature* creature) : ScriptedAI(creature) { }
-
-    bool OnGossipHello(Player* player) override
+    
+    void OnQuestAccept(Player* player, Quest const* quest) override
     {
-        ClearGossipMenuFor(player);
-
-        if (me->IsQuestGiver())
-            player->PrepareQuestMenu(me->GetGUID());
-
-        if (player->GetQuestStatus(65701) != QUEST_STATUS_COMPLETE)
+        if (quest->GetQuestId() == 65701)
             player->SendPlayerChoice(player->GetGUID(), 688);
-
-        SendGossipMenuFor(player, player->GetGossipTextId(me), me->GetGUID());
-
-        return true;
     }
 };
 
