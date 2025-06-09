@@ -180,6 +180,18 @@ struct at_dracthyr_stasis_feedback : AreaTriggerAI
     }
 };
 
+class q_final_orders_65100 : public QuestScript
+{
+public:
+    q_final_orders_65100() : QuestScript("q_final_orders_65100") { }
+
+    void OnQuestStatusChange(Player* player, Quest const* /*quest*/, QuestStatus /*oldStatus*/, QuestStatus newStatus)
+    {
+        if (newStatus == QUEST_STATUS_REWARDED)
+            player->GetTeam() == ALLIANCE ? player->TeleportTo(0, -9103.20f, 406.78f, 92.64f, 0.58f) : player->TeleportTo(1, 1352.28f, -4373.56f, 26.15f, 0.08f);
+    }
+};
+
 void AddSC_zone_the_forbidden_reach()
 {
     RegisterSpellScript(spell_dracthyr_login);
@@ -187,4 +199,5 @@ void AddSC_zone_the_forbidden_reach()
     RegisterSpellScript(spell_dracthyr_summon_dervishian);
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
+    new q_final_orders_65100();
 }
