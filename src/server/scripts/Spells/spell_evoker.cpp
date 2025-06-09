@@ -322,6 +322,21 @@ public:
             .SetTriggerFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR)
             .AddSpellMod(SPELLVALUE_DURATION_PCT, 100 * dotTicks)
             .SetCustomArg(data{ .EmpowerLevel = completedStageCount }));
+
+        switch(completedStageCount) // need for quest The Fire Within 64872
+        {
+        case 1:
+            GetCaster()->CastSpell(GetCaster(), 366903, TRIGGERED_FULL_MASK);
+            break;
+        case 2:
+            GetCaster()->CastSpell(GetCaster(), 366904, TRIGGERED_FULL_MASK);
+            break;
+        case 3:
+            GetCaster()->CastSpell(GetCaster(), 366905, TRIGGERED_FULL_MASK);
+            break;
+        default:
+            break;
+        }
     }
 
     void Register() override
