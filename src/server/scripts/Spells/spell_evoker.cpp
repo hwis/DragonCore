@@ -27,6 +27,8 @@
 #include "DB2Stores.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "PathGenerator.h"
+#include "MotionMaster.h"
 #include "Spell.h"
 #include "SpellAuraEffects.h"
 #include "SpellHistory.h"
@@ -445,6 +447,26 @@ class spell_evo_glide : public SpellScript
     }
 };
 
+// 369536 - Soar
+class spell_evo_soar : public SpellScript
+{
+    void HandleOnCast()
+    {
+        GetCaster()->GetMotionMaster()->MoveJump(GetCaster()->GetPositionX(), GetCaster()->GetPositionY(), GetCaster()->GetPositionZ() + 30.0f, 20.0f, 10.0f);
+    }
+
+    void HandleAfterCast()
+    {
+        GetCaster()->CastSpell(GetCaster(), 430747, true);        
+    }
+
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_soar::HandleAfterCast);
+    }
+};
+
 // 361469 - Living Flame (Red)
 class spell_evo_living_flame : public SpellScript
 {
@@ -690,6 +712,7 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_charged_blast);
     RegisterAreaTriggerAI(at_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_emerald_blossom_heal);
+    RegisterSpellScript(spell_evo_soar);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_azure_essence_burst", SPELL_EVOKER_AZURE_ESSENCE_BURST);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_ruby_essence_burst", SPELL_EVOKER_RUBY_ESSENCE_BURST);
     RegisterAreaTriggerAI(at_evo_firestorm);
