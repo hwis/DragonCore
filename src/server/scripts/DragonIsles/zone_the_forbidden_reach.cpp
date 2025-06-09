@@ -202,6 +202,51 @@ struct npc_dervishian_192889 : public ScriptedAI
     }
 };
 
+class evoker_spec_choice : public PlayerScript
+{
+public:
+    evoker_spec_choice() : PlayerScript("evoker_spec_choice") { }
+
+    void OnPlayerChoiceResponse(Player* player, uint32 choiceID, uint32 responseID)
+    {
+        if (choiceID != 688)
+            return;
+
+        switch (responseID)
+        {
+        case 1: // Devastation
+            player->CastSpell(player, 367960, true);
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1467))
+                player->ActivateTalentGroup(spec);
+            break;
+        case 2: // Preservation
+            player->CastSpell(player, 367959, true);
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1468))
+                player->ActivateTalentGroup(spec);
+            break;
+        case 3: // Augmentation
+            player->CastSpell(player, 413420, true);
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1473))
+                player->ActivateTalentGroup(spec);
+            break;
+        default:
+            break;
+        }
+    }
+};
+
+// => need move to SAI
+struct npc_emberthal_182258 : public ScriptedAI
+{
+    npc_emberthal_182258(Creature* creature) : ScriptedAI(creature) { }
+    
+    void OnQuestAccept(Player* player, Quest const* quest) override
+    {
+        if (quest->GetQuestId() == 65701)
+            player->SendPlayerChoice(player->GetGUID(), 688);
+    }
+};
+
 class q_final_orders_65100 : public QuestScript
 {
 public:
@@ -222,5 +267,7 @@ void AddSC_zone_the_forbidden_reach()
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
     RegisterCreatureAI(npc_dervishian_192889);
+    RegisterCreatureAI(npc_emberthal_182258);
+    new evoker_spec_choice();
     new q_final_orders_65100();
 }
