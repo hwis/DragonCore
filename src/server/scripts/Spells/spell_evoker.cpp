@@ -60,6 +60,8 @@ enum EvokerSpells
     SPELL_EVOKER_ESSENCE_BURST                  = 359618,
     SPELL_EVOKER_FIRESTORM_DAMAGE               = 369374,
     SPELL_EVOKER_ETERNITY_SURGE                 = 359073,
+    SPELL_EVOKER_ETERNITY_SURGE_DAMAGE          = 359077,
+    SPELL_EVOKER_ETERNITY_SURGE_LAUNCH          = 359090,
     SPELL_EVOKER_FIRE_BREATH                    = 357208,
     SPELL_EVOKER_FIRE_BREATH_DAMAGE             = 357209,
     SPELL_EVOKER_GLIDE_KNOCKBACK                = 358736,
@@ -718,6 +720,36 @@ class spell_evo_verdant_embrace_trigger_heal : public SpellScript
     }
 };
 
+// 359073 - Eternity Surge
+class spell_evo_eternity_surge : public SpellScript
+{
+    void OnComplete(int32 completedStageCount) const
+    {
+        CastSpellExtraArgs args;
+        args.SetTriggerFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+        args.SetTriggeringSpell(GetSpell());
+        args.AddSpellMod(SPELLVALUE_MAX_TARGETS, completedStageCount);
+
+        GetCaster()->CastSpell(nullptr, SPELL_EVOKER_ETERNITY_SURGE_LAUNCH, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+        switch(completedStageCount)
+        {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            GetCaster()->CastSpell(GetExplTargetUnit(), SPELL_EVOKER_ETERNITY_SURGE_DAMAGE, args);
+            break;
+        default:
+            break;
+        }
+    }
+
+    void Register() override
+    {
+        OnEmpowerCompleted += SpellOnEmpowerStageCompletedFn(spell_evo_eternity_surge::OnComplete);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -743,4 +775,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_snapfire_bonus_damage);
     RegisterSpellScript(spell_evo_verdant_embrace);
     RegisterSpellScript(spell_evo_verdant_embrace_trigger_heal);
+    RegisterSpellScript(spell_evo_eternity_surge);
 }
