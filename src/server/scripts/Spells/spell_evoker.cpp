@@ -39,6 +39,7 @@
 enum EvokerSpells
 {
     SPELL_EVOKER_AZURE_ESSENCE_BURST            = 375721,
+    SPELL_EVOKER_ALTERED_FORM                   = 97709,
     SPELL_EVOKER_BLAST_FURNACE                  = 375510,
     SPELL_EVOKER_BLESSING_OF_THE_BRONZE_DK      = 381732,
     SPELL_EVOKER_BLESSING_OF_THE_BRONZE_DH      = 381741,
@@ -77,7 +78,8 @@ enum EvokerSpells
     SPELL_EVOKER_SNAPFIRE                       = 370818,
     SPELL_EVOKER_SOAR_RACIAL                    = 369536,
     SPELL_EVOKER_VERDANT_EMBRACE_HEAL           = 361195,
-    SPELL_EVOKER_VERDANT_EMBRACE_JUMP           = 373514
+    SPELL_EVOKER_VERDANT_EMBRACE_JUMP           = 373514,
+    SPELL_EVOKER_VISAGE_REGEN_AURA              = 372014,
 };
 
 enum EvokerSpellLabels
@@ -750,6 +752,33 @@ class spell_evo_eternity_surge : public SpellScript
     }
 };
 
+// 351239 - Visage (Racial)
+class spell_evo_visage : public SpellScript
+{
+    void HandleTransform(SpellEffIndex /*effIndex*/) const
+    {
+        Unit* caster = GetCaster();
+
+        if (caster->HasAuraType(SPELL_AURA_WORGEN_ALTERED_FORM))
+        {
+            caster->RemoveAurasByType(SPELL_AURA_WORGEN_ALTERED_FORM);
+            caster->CastSpell(caster, SPELL_EVOKER_VISAGE_REGEN_AURA, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+            caster->SetDisplayId(104597, true);
+        }
+        else 
+        {
+            caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE_REGEN_AURA);
+            caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+            caster->SetDisplayId(108590, true);
+        }
+    }
+    
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_evo_visage::HandleTransform, EFFECT_0, SPELL_EFFECT_REMOVE_AURA_BY_SPELL_LABEL);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -776,4 +805,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_verdant_embrace);
     RegisterSpellScript(spell_evo_verdant_embrace_trigger_heal);
     RegisterSpellScript(spell_evo_eternity_surge);
+    RegisterSpellScript(spell_evo_visage);
 }
