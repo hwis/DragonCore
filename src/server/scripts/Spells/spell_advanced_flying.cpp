@@ -43,6 +43,7 @@ enum AdvancedFlyingSpells
     SWITCH_AF_REGULAR           = 404468,
     SWITCH_AF_DRAGONRIDING      = 404464,
     SPELL_THRILL_OF_SKIES       = 377234,
+    SPELL_OHNAHRAS_GUSTS        = 388367,
 };
 
 // 373646 - Soar (Racial)
@@ -192,6 +193,7 @@ class spell_af_surge_forward : public SpellScript
             float destZ = caster->GetPositionZ() + SURGE_SPEED * std::tan(caster->m_movementInfo.pitch);
 
             caster->AddMoveImpulse(Position(destX - caster->GetPositionX(), destY - caster->GetPositionY(), destZ - caster->GetPositionZ()));
+            caster->CastSpell(caster, SPELL_OHNAHRAS_GUSTS, TRIGGERED_FULL_MASK);
         }
     }
 
