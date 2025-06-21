@@ -116,6 +116,8 @@ enum DruidSpells
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
+    SPELL_DRUID_RAKE                           = 1822,
+    SPELL_DRUID_RAKE_STUN                      = 163505,
     SPELL_DRUID_PROWL                          = 5215,
     SPELL_DRUID_REGROWTH                       = 8936,
     SPELL_DRUID_REFORESTATION                  = 392356,
@@ -1561,6 +1563,36 @@ protected:
     bool ToCatForm() const override { return true; }
 };
 
+// 1822 - Rake
+class spell_dru_rake : public SpellScript
+{
+    bool Load() override
+    {
+        Unit* caster = GetCaster();
+        if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && (caster->HasAura(405834) || caster->HasAura(231052)))
+        {
+            m_stealthed = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    void HandleHit(SpellEffIndex /*effIndex*/) const
+    {
+        if (m_stealthed)
+            GetCaster()->CastSpell(GetHitUnit(), SPELL_DRUID_RAKE_STUN, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_rake::HandleHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+    }
+
+private:
+    bool m_stealthed = false;
+};
+
 // 1079 - Rip
 class spell_dru_rip : public AuraScript
 {
@@ -2473,6 +2505,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_omen_of_clarity_restoration);
     RegisterSpellScript(spell_dru_power_of_the_archdruid);
     RegisterSpellScript(spell_dru_prowl);
+    RegisterSpellScript(spell_dru_rake);
     RegisterSpellScript(spell_dru_rip);
     RegisterSpellAndAuraScriptPair(spell_dru_savage_roar, spell_dru_savage_roar_aura);
     RegisterSpellScript(spell_dru_shooting_stars);
