@@ -486,6 +486,34 @@ class spell_evo_soar : public SpellScript
     }
 };
 
+// 430747 - Soar Aura
+class spell_evo_soar_aura : public AuraScript
+{
+    // SpellAuraInterruptFlags2::Ground ???
+    void ForcePeriodic(AuraEffect const* /*aurEff*/, bool& isPeriodic, int32& amplitude)
+    {
+        isPeriodic = true;
+        amplitude = 100;
+    }
+    
+    void UpdateState(AuraEffect const* /*aurEff*/) const
+    {
+        Player* owner = GetUnitOwner()->ToPlayer();
+        if (owner->HasAura(430747))
+            if (!owner->IsInAir() || owner->IsInWater())
+            {
+                GetUnitOwner()->RemoveAurasDueToSpell(430747);
+                GetUnitOwner()->RemoveAurasDueToSpell(369536);
+            }
+    }
+
+    void Register() override
+    {
+        DoEffectCalcPeriodic += AuraEffectCalcPeriodicFn(spell_evo_soar_aura::ForcePeriodic, EFFECT_0, SPELL_AURA_MOUNTED);
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_evo_soar_aura::UpdateState, EFFECT_0, SPELL_AURA_MOUNTED);
+    }
+};
+
 // 361469 - Living Flame (Red)
 class spell_evo_living_flame : public SpellScript
 {
@@ -789,6 +817,7 @@ void AddSC_evoker_spell_scripts()
     RegisterAreaTriggerAI(at_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_emerald_blossom_heal);
     RegisterSpellScript(spell_evo_soar);
+    RegisterSpellScript(spell_evo_soar_aura);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_azure_essence_burst", SPELL_EVOKER_AZURE_ESSENCE_BURST);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_ruby_essence_burst", SPELL_EVOKER_RUBY_ESSENCE_BURST);
     RegisterAreaTriggerAI(at_evo_firestorm);
