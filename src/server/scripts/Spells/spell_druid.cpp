@@ -403,6 +403,21 @@ class spell_dru_cat_form : public AuraScript
     }
 };
 
+// 48629 - Cat Form Aura
+class spell_dru_cat_form_aura : public AuraScript
+{
+    void CalculateBrutalSlash(AuraEffect const* /*aurEff*/, int32& amount, bool& canBeRecalculated)
+    {
+        canBeRecalculated = false;
+        amount = 0;
+    }
+
+    void Register() override
+    {
+        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_dru_cat_form_aura::CalculateBrutalSlash, EFFECT_3, SPELL_AURA_OVERRIDE_ACTIONBAR_SPELLS);
+    }
+};
+
 // 102560 - Incarnation: Chosen of Elune
 // 194223 - Celestial Alignment
 // 383410 - Celestial Alignment
@@ -2502,6 +2517,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_brambles);
     RegisterSpellScript(spell_dru_bristling_fur);
     RegisterSpellScript(spell_dru_cat_form);
+    RegisterSpellScript(spell_dru_cat_form_aura);
     RegisterSpellScript(spell_dru_celestial_alignment);
     RegisterSpellScript(spell_dru_cenarion_ward);
     RegisterSpellScript(spell_dru_cultivation);
