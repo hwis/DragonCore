@@ -2184,32 +2184,13 @@ private:
 // 17 - Power Word: Shield
 class spell_pri_power_word_shield : public AuraScript
 {
-    bool Validate(SpellInfo const* /*spellInfo*/) override
-    {
-        return ValidateSpellInfo
-        ({
-            SPELL_PRIEST_STRENGTH_OF_SOUL,
-            SPELL_PRIEST_STRENGTH_OF_SOUL_EFFECT,
-            SPELL_PRIEST_ATONEMENT_EFFECT,
-            SPELL_PRIEST_TRINITY_EFFECT,
-            SPELL_PRIEST_SHIELD_DISCIPLINE,
-            SPELL_PRIEST_SHIELD_DISCIPLINE_EFFECT,
-            SPELL_PVP_RULES_ENABLED_HARDCODED
-        }) && ValidateSpellEffect({
-            { SPELL_PRIEST_MASTERY_GRACE, EFFECT_0 },
-            { SPELL_PRIEST_RAPTURE, EFFECT_1 },
-            { SPELL_PRIEST_BENEVOLENCE, EFFECT_0 },
-            { SPELL_PRIEST_DIVINE_AEGIS, EFFECT_1 }
-        });
-    }
-
     void CalculateAmount(AuraEffect const* auraEffect, int32& amount, bool& canBeRecalculated) const
     {
         canBeRecalculated = false;
-
+        
         if (Unit* caster = GetCaster())
         {
-            float modifiedAmount = caster->SpellBaseDamageBonusDone(GetSpellInfo()->GetSchoolMask()) * 3.36f;
+            float modifiedAmount = caster->SpellBaseDamageBonusDone(GetSpellInfo()->GetSchoolMask()) * 4.6f;
 
             if (Player* player = caster->ToPlayer())
             {
@@ -2254,6 +2235,10 @@ class spell_pri_power_word_shield : public AuraScript
             // Benevolence talent
             if (AuraEffect const* benevolenceEffect = caster->GetAuraEffect(SPELL_PRIEST_BENEVOLENCE, EFFECT_0))
                 AddPct(modifiedAmount, benevolenceEffect->GetAmount());
+
+            // Weal and Woe talent
+            if (AuraEffect const* wealandwoeEffect = caster->GetAuraEffect(390787, EFFECT_0))
+                AddPct(modifiedAmount, wealandwoeEffect->GetAmount());
 
             amount = modifiedAmount;
         }
