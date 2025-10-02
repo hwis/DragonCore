@@ -2966,6 +2966,11 @@ void AuraEffect::HandleModAdvFlying(AuraApplication const* aurApp, uint8 mode, b
     target->SetCanDoubleJump(apply || target->HasAura(SPELL_DH_DOUBLE_JUMP));
     target->SetCanFly(apply);
     target->SetCanAdvFly(apply);
+
+    if (apply)
+        target->CastSpell(target, 372773, TRIGGERED_FULL_MASK);
+    else
+        target->RemoveOwnedAura(372773, target->GetGUID());
 }
 
 void AuraEffect::HandleIgnoreMovementForces(AuraApplication const* aurApp, uint8 mode, bool apply) const

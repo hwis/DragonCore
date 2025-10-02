@@ -3302,6 +3302,12 @@ bool Unit::isInAccessiblePlaceFor(Creature const* c) const
     return true;
 }
 
+bool Unit::IsInAir() const
+{
+    float ground = GetFloorZ();
+    return (G3D::fuzzyGt(GetPositionZ(), ground + GetHoverOffset() + GROUND_HEIGHT_TOLERANCE) || G3D::fuzzyLt(GetPositionZ(), ground - GROUND_HEIGHT_TOLERANCE));
+}
+
 bool Unit::IsInWater() const
 {
     return GetLiquidStatus() & (LIQUID_MAP_IN_WATER | LIQUID_MAP_UNDER_WATER);
