@@ -34,6 +34,7 @@ void AddSC_xp_boost();
 // player
 void AddSC_chat_log();
 void AddSC_duel_reset();
+void AddSC_adv_flying_check();
 
 // The name of this function should match:
 // void Add${NameOfDirectory}Scripts()
@@ -58,4 +59,5 @@ void AddWorldScripts()
     AddSC_duel_reset();
     if (sWorld->getIntConfig(CONFIG_XP_BOOST_DAYMASK) != 0)
         AddSC_xp_boost();
+    AddSC_adv_flying_check();
 }
