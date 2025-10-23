@@ -180,6 +180,51 @@ struct at_dracthyr_stasis_feedback : AreaTriggerAI
     }
 };
 
+enum EvokerSpecSelection
+{
+    // Spells
+    SPELL_FORCE_DEVASTATION_SPEC    = 367960,
+    SPELL_FORCE_PRESERVATION_SPEC   = 367959,
+    SPELL_FORCE_AUGMENTATION_SPEC   = 413420,
+
+    // Playerchoice
+    PLAYER_CHOICE_RESPONSE_CHOOSE_DEVASTATION_SPEC = 3352,
+    PLAYER_CHOICE_RESPONSE_CHOOSE_PRESERVATION_SPEC = 3353,
+    PLAYER_CHOICE_RESPONSE_CHOOSE_AUGMENTATION_SPEC = 3500,
+};
+
+// 688 - Playerchoice
+class playerchoice_evoker_spec_selection : public PlayerChoiceScript
+{
+public:
+    playerchoice_evoker_spec_selection() : PlayerChoiceScript("playerchoice_evoker_spec_selection") { }
+
+    void OnResponse(WorldObject* /*object*/, Player* player, PlayerChoice const* /*choice*/, PlayerChoiceResponse const* response, uint16 /*clientIdentifier*/) override
+    {
+        if (response->ResponseId == PLAYER_CHOICE_RESPONSE_CHOOSE_DEVASTATION_SPEC)
+        {        
+            player->CastSpell(player, SPELL_FORCE_DEVASTATION_SPEC, CastSpellExtraArgsInit{ .TriggerFlags = TRIGGERED_FULL_MASK });
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1467))
+                player->ActivateTalentGroup(spec);
+        }
+
+        if (response->ResponseId == PLAYER_CHOICE_RESPONSE_CHOOSE_PRESERVATION_SPEC)
+        {        
+            player->CastSpell(player, SPELL_FORCE_PRESERVATION_SPEC, CastSpellExtraArgsInit{ .TriggerFlags = TRIGGERED_FULL_MASK });
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1468))
+                player->ActivateTalentGroup(spec);
+        }
+
+        if (response->ResponseId == PLAYER_CHOICE_RESPONSE_CHOOSE_AUGMENTATION_SPEC)
+        {                                                                                                                                   
+            player->CastSpell(player, SPELL_FORCE_AUGMENTATION_SPEC, CastSpellExtraArgsInit{ .TriggerFlags = TRIGGERED_FULL_MASK });
+            if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(1473))
+                player->ActivateTalentGroup(spec);
+        }
+
+    }
+};
+
 void AddSC_zone_the_forbidden_reach()
 {
     RegisterSpellScript(spell_dracthyr_login);
@@ -187,4 +232,7 @@ void AddSC_zone_the_forbidden_reach()
     RegisterSpellScript(spell_dracthyr_summon_dervishian);
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
+
+    // Playerchoice
+    new playerchoice_evoker_spec_selection();
 }
