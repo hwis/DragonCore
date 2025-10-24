@@ -225,6 +225,28 @@ public:
     }
 };
 
+struct npc_dervishian_192889 : public ScriptedAI
+{
+    npc_dervishian_192889(Creature* creature) : ScriptedAI(creature) { }
+    
+    bool OnGossipHello(Player* player) override
+    {
+        ClearGossipMenuFor(player);
+        
+        if (me->IsQuestGiver())
+            player->PrepareQuestMenu(me->GetGUID());
+
+        if (!player->HasSpell(369536)) // Soar
+            player->LearnSpell(369536, false);
+
+        player->TalkedToCreature(me->GetEntry(), ObjectGuid::Empty);
+        
+        SendGossipMenuFor(player, player->GetGossipTextId(me), me->GetGUID());
+        
+        return true;
+    }
+};
+
 void AddSC_zone_the_forbidden_reach()
 {
     RegisterSpellScript(spell_dracthyr_login);
@@ -232,6 +254,7 @@ void AddSC_zone_the_forbidden_reach()
     RegisterSpellScript(spell_dracthyr_summon_dervishian);
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
+    RegisterCreatureAI(npc_dervishian_192889);
 
     // Playerchoice
     new playerchoice_evoker_spec_selection();
