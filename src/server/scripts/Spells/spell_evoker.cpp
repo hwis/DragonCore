@@ -27,6 +27,8 @@
 #include "DB2Stores.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "PathGenerator.h"
+#include "MotionMaster.h"
 #include "Spell.h"
 #include "SpellAuraEffects.h"
 #include "SpellHistory.h"
@@ -517,6 +519,54 @@ class spell_evo_glide : public SpellScript
     }
 };
 
+// 369536 - Soar
+class spell_evo_soar : public SpellScript
+{
+    void HandleOnCast()
+    {
+        GetCaster()->GetMotionMaster()->MoveJump(GetCaster()->GetPositionX(), GetCaster()->GetPositionY(), GetCaster()->GetPositionZ() + 30.0f, 20.0f, 10.0f);
+    }
+
+    void HandleAfterCast()
+    {
+        GetCaster()->CastSpell(GetCaster(), 430747, TRIGGERED_FULL_MASK);
+    }
+
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_soar::HandleAfterCast);
+    }
+};
+
+// 430747 - Soar aura
+class spell_evo_soar_aura : public AuraScript
+{
+    // SpellAuraInterruptFlags2::Ground ???
+    void ForcePeriodic(AuraEffect const* /*auraEff*/, bool& isPeriodic, int32& amplitude)
+    {
+        isPeriodic = true;
+        amplitude = 100;
+    }
+
+    void UpdateState(AuraEffect const* /*aurEff*/) const
+    {
+        Player* owner = GetUnitOwner()->ToPlayer();
+        if (owner->HasAura(430747))
+            if (!owner->IsInAir() || owner->IsInWater())
+            {
+                GetUnitOwner()->RemoveAurasDueToSpell(430747);
+                GetUnitOwner()->RemoveAurasDueToSpell(369536);
+            }
+    }
+
+    void Register() override
+    {
+        DoEffectCalcPeriodic += AuraEffectCalcPeriodicFn(spell_evo_soar_aura::ForcePeriodic, EFFECT_0, SPELL_AURA_MOUNTED);
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_evo_soar_aura::UpdateState, EFFECT_0, SPELL_AURA_MOUNTED);
+    }
+};
+
 // 361469 - Living Flame (Red)
 class spell_evo_living_flame : public SpellScript
 {
@@ -805,6 +855,8 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_scouring_flame);
     RegisterSpellScript(spell_evo_snapfire);
     RegisterSpellScript(spell_evo_snapfire_bonus_damage);
+    RegisterSpellScript(spell_evo_soar);
+    RegisterSpellScript(spell_evo_soar_aura);
     RegisterSpellScript(spell_evo_verdant_embrace);
     RegisterSpellScript(spell_evo_verdant_embrace_trigger_heal);
 }
