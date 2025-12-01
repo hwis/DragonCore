@@ -382,6 +382,29 @@ class spell_dru_bristling_fur : public AuraScript
     }
 };
 
+// 48629 - Cat Form override spells
+class spell_dru_cat_form_override_spells : public AuraScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ 48629 });
+    }
+
+    void OnApply(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/) const
+    {
+        if (aurEff->GetEffIndex() == EFFECT_3)
+        {
+            GetAura()->GetEffect(EFFECT_3)->SetAmount(0);
+            GetAura()->GetEffect(EFFECT_3)->ChangeAmount(0, false);
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectApply += AuraEffectApplyFn(spell_dru_cat_form_override_spells::OnApply, EFFECT_3, SPELL_AURA_OVERRIDE_ACTIONBAR_SPELLS, AURA_EFFECT_HANDLE_REAL);
+    }
+};
+
 // 768 - CatForm - SPELL_DRUID_CAT_FORM
 class spell_dru_cat_form : public AuraScript
 {
@@ -2561,6 +2584,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_berserk);
     RegisterSpellScript(spell_dru_brambles);
     RegisterSpellScript(spell_dru_bristling_fur);
+    RegisterSpellScript(spell_dru_cat_form_override_spells);
     RegisterSpellScript(spell_dru_cat_form);
     RegisterSpellScript(spell_dru_celestial_alignment);
     RegisterSpellScript(spell_dru_cultivation);
