@@ -119,6 +119,7 @@ enum DruidSpells
     SPELL_DRUID_NATURES_GRACE_TALENT           = 450347,
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
+    SPELL_DRUID_OVERGROWTH                     = 203651,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
     SPELL_DRUID_PROWL                          = 5215,
     SPELL_DRUID_RAKE                           = 1822,
@@ -1565,6 +1566,35 @@ private:
     Optional<uint32> _removeOverrideSpell;
 };
 
+class spell_dru_overgrowth : public SpellScript
+{
+    void HandleDummy(SpellEffIndex /*effIndex*/) const
+    {
+        GetCaster()->SendPlaySpellVisual(GetCaster(), 38314, 0, 0, 0.f, false);
+        
+        for(const auto auras : overgrowth)
+        {
+            if (auras == SPELL_DRUID_LIFEBLOOM_2T)
+                if(!GetCaster()->HasAura(392301))
+                    continue;
+
+            if (auras == SPELL_DRUID_LIFEBLOOM)
+                if (GetCaster()->HasAura(392301))
+                    continue;
+
+            GetCaster()->AddAura(auras, GetHitUnit());
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_dru_overgrowth::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+
+private:
+	std::array<uint32, 5> const overgrowth = { SPELL_DRUID_REJUVENATION, SPELL_DRUID_WILD_GROWTH, SPELL_DRUID_LIFEBLOOM, SPELL_DRUID_LIFEBLOOM_2T, SPELL_DRUID_REGROWTH };
+};
+
 // 16864 - Omen of Clarity
 class spell_dru_omen_of_clarity : public AuraScript
 {
@@ -2664,6 +2694,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScriptWithArgs(spell_dru_new_moon, "spell_dru_new_moon", Optional<DruidSpells>(SPELL_DRUID_NEW_MOON_OVERRIDE), Optional<DruidSpells>());
     RegisterSpellScript(spell_dru_omen_of_clarity);
     RegisterSpellScript(spell_dru_omen_of_clarity_restoration);
+	RegisterSpellScript(spell_dru_overgrowth);
     RegisterSpellScript(spell_dru_power_of_the_archdruid);
     RegisterSpellScript(spell_dru_prowl);
     RegisterSpellScript(spell_dru_rake);
