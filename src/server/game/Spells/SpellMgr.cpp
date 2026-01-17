@@ -3387,6 +3387,11 @@ void SpellMgr::LoadSpellInfoCorrections()
 
     // Some spells have no amplitude set
     {
+        ApplySpellFix({ 203123 }, [](SpellInfo* spellInfo) 
+        {
+            spellInfo->DurationEntry = sSpellDurationStore.LookupEntry(28);
+        });
+
         ApplySpellFix({
             6727,  // Poison Mushroom
             7331,  // Healing Aura (TEST) (Rank 1)
