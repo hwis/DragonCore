@@ -3387,6 +3387,14 @@ void SpellMgr::LoadSpellInfoCorrections()
 
     // Some spells have no amplitude set
     {
+        ApplySpellFix({ 357210 }, [](SpellInfo* spellInfo)
+        {
+            ApplySpellEffectFix(spellInfo, EFFECT_1, [](SpellEffectInfo* spellEffectInfo)
+            {
+                spellEffectInfo->Effect = SPELL_EFFECT_NONE;
+            });
+        });
+
         ApplySpellFix({ 203123 }, [](SpellInfo* spellInfo) 
         {
             spellInfo->DurationEntry = sSpellDurationStore.LookupEntry(28);

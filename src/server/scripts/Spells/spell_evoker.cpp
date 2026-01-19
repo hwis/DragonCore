@@ -57,6 +57,10 @@ enum EvokerSpells
     SPELL_EVOKER_CALL_OF_YSERA_TALENT           = 373834,
     SPELL_EVOKER_CALL_OF_YSERA                  = 373835,
     SPELL_EVOKER_CAUSALITY                      = 375777,
+    SPELL_EVOKER_DEEP_BREATH                    = 357210,
+    SPELL_EVOKER_DEEP_BREATH_DAMAGE             = 353759,
+    SPELL_EVOKER_DEEP_BREATH_EFFECT             = 362010,
+    SPELL_EVOKER_DEEP_BREATH_FINISHER           = 362019,
     SPELL_EVOKER_DISINTEGRATE                   = 356995,
     SPELL_EVOKER_EMERALD_BLOSSOM_HEAL           = 355916,
     SPELL_EVOKER_ENERGIZING_FLAME               = 400006,
@@ -285,6 +289,58 @@ class spell_evo_charged_blast : public AuraScript
     void Register() override
     {
         DoCheckProc += AuraCheckProcFn(spell_evo_charged_blast::CheckProc);
+    }
+};
+
+// 357210 - Deep Breath
+class spell_evo_deep_breath : public SpellScript
+{
+    static void ScheduleDeepBreathTick(Unit* caster, uint32 triggerId, bool firstRun = true, uint32 duration = 0)
+    {
+        if (firstRun)
+            if (Aura* deepBreath = caster->GetAura(357210))
+                deepBreath->SetDuration(duration);
+
+        if (!caster->HasAura(357210))
+        {
+            caster->SendCancelSpellVisualKit(201121);
+            caster->CastSpell(caster, SPELL_EVOKER_DEEP_BREATH_FINISHER, TRIGGERED_FULL_MASK);
+            return;
+        }
+        
+        caster->CastSpell(caster, triggerId, TRIGGERED_FULL_MASK);
+
+        caster->m_Events.AddEventAtOffset([caster, triggerId]() {
+            ScheduleDeepBreathTick(caster, triggerId, false);
+        }, 200ms);
+    }
+    
+    void HandleDummy(SpellEffIndex /*effIndex*/) const
+    {
+        Unit* caster = GetCaster();
+        WorldLocation const* dest = GetExplTargetDest();
+
+        float x = dest->GetPositionX();
+        float y = dest->GetPositionY();
+        float z = dest->GetPositionZ();
+
+        caster->m_Events.AddEventAtOffset([caster, x, y, z]() 
+        {
+            Movement::MoveSplineInit init(caster);
+            init.MoveTo(x, y, z);
+            init.SetVelocity(15.f);
+            uint32 duration = init.Launch();
+            caster->SendPlaySpellVisualKit(201121, 2, duration);
+            
+            uint32 triggerId = 362010;
+            ScheduleDeepBreathTick(caster, triggerId, true, duration = duration);
+        }, 750ms);
+        
+    }
+
+    void Register() override
+    {
+        OnEffectHit += SpellEffectFn(spell_evo_deep_breath::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
     }
 };
 
@@ -863,6 +919,7 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_causality_disintegrate);
     RegisterSpellScript(spell_evo_causality_pyre);
     RegisterSpellScript(spell_evo_charged_blast);
+    RegisterSpellScript(spell_evo_deep_breath);
     RegisterAreaTriggerAI(at_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_emerald_blossom_heal);
     RegisterSpellScript(spell_evo_eternity_surge);
