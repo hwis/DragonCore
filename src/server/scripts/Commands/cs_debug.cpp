@@ -91,6 +91,8 @@ public:
             { "setphaseshift",      HandleDebugSendSetPhaseShiftCommand,   rbac::RBAC_PERM_COMMAND_DEBUG,   Console::No },
             { "spellfail",          HandleDebugSendSpellFailCommand,       rbac::RBAC_PERM_COMMAND_DEBUG,   Console::No },
             { "playerchoice",       HandleDebugSendPlayerChoiceCommand,    rbac::RBAC_PERM_COMMAND_DEBUG,   Console::No },
+            { "playspellvisual",    HandleDebugSendPlaySpellVisualCommand, rbac::RBAC_PERM_COMMAND_DEBUG,   Console::No },
+            { "playspellvisualkit", HandleDebugSendPlaySpellVisualKitCommand, rbac::RBAC_PERM_COMMAND_DEBUG, Console::No },
         };
         static ChatCommandTable debugCommandTable =
         {
@@ -308,6 +310,39 @@ public:
     {
         Player* player = handler->GetPlayer();
         player->SendPlayerChoice(player->GetGUID(), choiceId);
+        return true;
+    }
+
+    static bool HandleDebugSendPlaySpellVisualCommand(ChatHandler* handler, uint32 visualId, Optional<float> travelSpeed)
+    {
+        Unit* target = handler->getSelectedUnit();
+        if (!target)
+            target = handler->GetSession()->GetPlayer();
+        
+        float speed = travelSpeed.value_or(0.0f);
+
+        target->SendPlaySpellVisual(target, visualId, 0, 0, speed, false, 0.0f);        
+        
+		if (travelSpeed)
+        	handler->PSendSysMessage("Visual %u sent to %s with speed %.2f", visualId, target->GetName().c_str(), speed);
+    	else
+        	handler->PSendSysMessage("Visual %u sent to %s (instant)", visualId, target->GetName().c_str());
+
+        return true;
+    }
+
+    static bool HandleDebugSendPlaySpellVisualKitCommand(ChatHandler* handler, uint32 visualKitId, Optional<uint32> type, Optional<uint32> duration)
+    {
+        Unit* target = handler->getSelectedUnit();
+        if (!target)
+            target = handler->GetSession()->GetPlayer();
+        
+        uint32 kitType = type.value_or(0.0f);
+		uint32 kitDuration = duration.value_or(0);
+
+        target->SendPlaySpellVisualKit(visualKitId, kitType, kitDuration);        
+        
+		handler->PSendSysMessage("VisualKit %u sent (Type: %u, Duration: %u ms) to %s", visualKitId, kitType, kitDuration, target->GetName().c_str());
         return true;
     }
 
