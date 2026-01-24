@@ -882,6 +882,7 @@ class spell_evo_verdant_embrace : public SpellScript
         }
         else
             caster->CastSpell(caster, SPELL_EVOKER_VERDANT_EMBRACE_HEAL, args);
+            caster->SendPlaySpellVisualKit(SPELL_VISUAL_KIT_EVOKER_VERDANT_EMBRACE_JUMP, 0, 0);
     }
 
     void Register() override
