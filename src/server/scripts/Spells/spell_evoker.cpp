@@ -923,13 +923,13 @@ class spell_evo_visage : public SpellScript
         {
             caster->RemoveAurasByType(SPELL_AURA_WORGEN_ALTERED_FORM);
             caster->CastSpell(caster, SPELL_EVOKER_VISAGE_REGEN_AURA, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
-            caster->SetDisplayId(104597);
+            caster->SetDisplayId(104597, false);
         }
         else 
         {
             caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE_REGEN_AURA);
             caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
-            caster->SetDisplayId(108590);
+            caster->SetDisplayId(108590, false);
         }
     }
     
