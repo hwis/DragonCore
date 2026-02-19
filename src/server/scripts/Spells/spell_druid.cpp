@@ -112,6 +112,7 @@ enum DruidSpells
     SPELL_DRUID_LUNAR_BEAM_HEAL                = 204069,
     SPELL_DRUID_LUNAR_BEAM_DAMAGE              = 414613,
     SPELL_DRUID_LUNAR_INSPIRATION_OVERRIDE     = 155627,
+    SPELL_DRUID_MAIM_STUN                      = 203123,
     SPELL_DRUID_MANGLE                         = 33917,
     SPELL_DRUID_MANGLE_TALENT                  = 231064,
     SPELL_DRUID_MASS_ENTANGLEMENT              = 102359,
@@ -1402,6 +1403,34 @@ class spell_dru_luxuriant_soil : public AuraScript
     }
 };
 
+// 222570 - Maim
+class spell_dru_maim : public SpellScript
+{
+    bool Validate(SpellInfo const* /*spellInfo*/) override
+    {
+        return ValidateSpellInfo({ SPELL_DRUID_MAIM_STUN });
+    }
+
+    void CalculateDamage(SpellEffectInfo const& /*spellEffectInfo*/, Unit* /*victim*/, int32& /*damage*/, int32& /*flatMod*/, float& pctMod)
+    {
+        pctMod *= GetSpell()->GetPowerTypeCostAmount(POWER_COMBO_POINTS).value_or(0);
+    }
+
+    void HandleHit(SpellEffIndex /*effIndex*/) const
+    {
+        GetCaster()->CastSpell(GetHitUnit(), SPELL_DRUID_MAIM_STUN, CastSpellExtraArgsInit{
+            .TriggeringSpell = GetSpell(),
+            .SpellValueOverrides = { {  SPELLVALUE_DURATION, GetSpell()->GetPowerTypeCostAmount(POWER_COMBO_POINTS).value_or(0) * IN_MILLISECONDS } }
+        });
+    }
+
+    void Register() override
+    {
+        CalcDamage += SpellCalcDamageFn(spell_dru_maim::CalculateDamage);
+        OnEffectHitTarget += SpellEffectFn(spell_dru_maim::HandleHit, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
 // 33917 - Mangle
 class spell_dru_mangle : public SpellScript
 {
@@ -2598,6 +2627,7 @@ void AddSC_druid_spell_scripts()
     RegisterAreaTriggerAI(at_dru_lunar_beam);
     RegisterSpellScript(spell_dru_lunar_inspiration);
     RegisterSpellScript(spell_dru_luxuriant_soil);
+    RegisterSpellScript(spell_dru_maim);
     RegisterSpellScript(spell_dru_mangle);
     RegisterSpellScript(spell_dru_moonfire);
     RegisterSpellScript(spell_dru_natures_grace);
