@@ -18841,7 +18841,7 @@ void Player::_LoadAuras(PreparedQueryResult auraResult, PreparedQueryResult effe
     }
 
     // TODO: finish dragonriding - this forces old flight mode
-    AddAura(404468, this);
+    // AddAura(404468, this);
 }
 
 void Player::_LoadGlyphAuras()
@@ -31144,4 +31144,13 @@ bool Player::CanExecutePendingSpellCastRequest()
         return false;
 
     return true;
+}
+
+void Player::AddMoveImpulse(Position direction)
+{
+    auto addImpulse = WorldPackets::Movement::MoveAddImpulse();
+    addImpulse.MoverGUID = GetGUID();
+    addImpulse.SequenceIndex = m_movementCounter++;
+    addImpulse.Direction = direction;
+    SendMessageToSet(addImpulse.Write(), true);
 }
