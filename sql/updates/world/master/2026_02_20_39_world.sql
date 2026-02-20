@@ -1,0 +1,46 @@
+DELETE FROM `race_unlock_requirement` WHERE `raceID` IN(86,91);
+INSERT INTO `race_unlock_requirement` (`raceID`, `expansion`, `achievementId`) VALUES 
+(86, 11, 61506),
+(91, 11, 61506);
+
+DELETE FROM `playercreateinfo` WHERE `race` IN(86,91);
+INSERT INTO `playercreateinfo` (`race`, `class`, `map`, `position_x`, `position_y`, `position_z`, `orientation`, `npe_map`, `npe_position_x`, `npe_position_y`, `npe_position_z`, `npe_orientation`, `npe_transport_guid`, `intro_movie_id`, `intro_scene_id`, `npe_intro_scene_id`) VALUES 
+(86, 1, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 3, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 4, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 5, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 7, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 8, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 9, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 10, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 11, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 1, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 3, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 4, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 5, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 7, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 8, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 9, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 10, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 11, 2694, 1263.87, 926.125, 1332.46, 1.2814, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+DELETE FROM `class_expansion_requirement` WHERE `RaceID` IN(86,91);
+INSERT INTO `class_expansion_requirement` (`ClassID`, `RaceID`, `ActiveExpansionLevel`, `AccountExpansionLevel`) VALUES 
+(1, 86, 11, 11),
+(3, 86, 11, 11),
+(4, 86, 11, 11),
+(5, 86, 11, 11),
+(7, 86, 11, 11),
+(8, 86, 11, 11),
+(9, 86, 11, 11),
+(10, 86, 11, 11),
+(11, 86, 11, 11),
+(1, 91, 11, 11),
+(3, 91, 11, 11),
+(4, 91, 11, 11),
+(5, 91, 11, 11),
+(7, 91, 11, 11),
+(8, 91, 11, 11),
+(9, 91, 11, 11),
+(10, 91, 11, 11),
+(11, 91, 11, 11);
