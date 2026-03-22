@@ -72,12 +72,9 @@ class spell_af_skyward_ascent : public SpellScript
 // 372608 - Surge Forward
 class spell_af_surge_forward : public SpellScript
 {
-
     SpellCastResult CheckCast()
     {
-        Unit* caster = GetCaster();
-
-        if (caster->IsFlying())
+        if (GetCaster()->IsFlying())
             return SPELL_FAILED_NOT_ON_GROUND;
 
         return SPELL_CAST_OK;
@@ -109,9 +106,7 @@ class spell_af_whirling_surge : public SpellScript
 {
     SpellCastResult CheckCast()
     {
-        Unit* caster = GetCaster();
-        
-        if (!caster->IsFlying())
+        if (!GetCaster()->IsFlying())
             return SPELL_FAILED_NOT_ON_GROUND;
 
         return SPELL_CAST_OK;
@@ -145,9 +140,6 @@ class spell_switch_flight : public SpellScript
     {
         Unit* caster = GetCaster();
 
-        if (!caster)
-            return;
-
         bool hasRegular = caster->HasAura(SWITCH_AF_REGULAR);
         bool hasDragonRiding = caster->HasAura(SWITCH_AF_DRAGONRIDING);
 
@@ -174,13 +166,13 @@ class spell_switch_flight : public SpellScript
 class adv_flying_check : public PlayerScript
 {
 public:
-    adv_flying_check() : PlayerScript("adv_flying_check") { }
+	adv_flying_check() : PlayerScript("adv_flying_check") { }
 
 	void CheckLevel(Player* player) const
 	{
         if (player->GetLevel() >= 10)
         {
-            if (!player->HasAura(404468) || !player->HasAura(464464))
+            if (!player->HasAura(404468) || !player->HasAura(404464))
                 player->AddAura(404464, player);
 
             if (!player->HasSpell(376777))
@@ -203,13 +195,11 @@ public:
     }
 };
 
-
-
 void AddSC_advanced_flying_spell_scripts()
 {
-    RegisterSpellScript(spell_af_skyward_ascent);
-    RegisterSpellScript(spell_af_surge_forward);
-    RegisterSpellScript(spell_af_whirling_surge);
+	RegisterSpellScript(spell_af_skyward_ascent);
+	RegisterSpellScript(spell_af_surge_forward);
+	RegisterSpellScript(spell_af_whirling_surge);
     RegisterSpellScript(spell_switch_flight);
 	new adv_flying_check();
 }
