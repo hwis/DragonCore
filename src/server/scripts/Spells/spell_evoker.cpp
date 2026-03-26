@@ -31,6 +31,7 @@
 #include "SpellAuraEffects.h"
 #include "SpellHistory.h"
 #include "SpellMgr.h"
+#include "PathGenerator.h"
 #include "SpellScript.h"
 #include "TaskScheduler.h"
 
@@ -55,6 +56,10 @@ enum EvokerSpells
     SPELL_EVOKER_CALL_OF_YSERA_TALENT           = 373834,
     SPELL_EVOKER_CALL_OF_YSERA                  = 373835,
     SPELL_EVOKER_CAUSALITY                      = 375777,
+	SPELL_EVOKER_DEEP_BREATH					= 357210,
+	SPELL_EVOKER_DEEP_BREATH_DAMAGE				= 353759,
+	SPELL_EVOKER_DEEP_BREATH_EFFECT				= 362010,
+	SPELL_EVOKER_DEEP_BREATH_FINISH				= 362019,
     SPELL_EVOKER_DISINTEGRATE                   = 356995,
     SPELL_EVOKER_EMERALD_BLOSSOM_HEAL           = 355916,
     SPELL_EVOKER_ENERGIZING_FLAME               = 400006,
@@ -282,6 +287,87 @@ class spell_evo_charged_blast : public AuraScript
     {
         DoCheckProc += AuraCheckProcFn(spell_evo_charged_blast::CheckProc);
     }
+};
+
+// 357210 - Deep Breath
+class spell_evo_deep_breath : public SpellScript
+{
+	bool Validate(SpellInfo const* /*spellInfo*/) override
+	{
+		return ValidateSpellInfo({ SPELL_EVOKER_DEEP_BREATH, SPELL_EVOKER_DEEP_BREATH_EFFECT });
+	}
+
+	void HandleDummy(SpellEffIndex /*effIndex*/) const
+	{
+		Unit* caster = GetCaster();
+		WorldLocation const* destPtr = GetExplTargetDest();
+		WorldLocation dest = *destPtr;
+		
+		constexpr float Speed = 19.0f;
+		float distance = caster->GetExactDist2d(dest.GetPositionX(), dest.GetPositionY());
+		Milliseconds travelTime { uint32((distance / Speed) * 1000.0f)};
+
+		caster->m_Events.AddEventAtOffset([caster, dest]()
+		{
+			caster->GetMotionMaster()->MoveCharge(dest.GetPositionX(), dest.GetPositionY(), dest.GetPositionZ(), Speed, EVENT_CHARGE);
+		}, 750ms);
+
+		caster->m_Events.AddEventAtOffset([caster]()
+		{
+			caster->CastSpell(caster, SPELL_EVOKER_DEEP_BREATH_FINISH, CastSpellExtraArgsInit{
+				.TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR
+			});
+		}, travelTime + 750ms);
+	}
+
+	void Register() override
+	{
+		OnEffectHit += SpellEffectFn(spell_evo_deep_breath::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+	}
+};
+
+// 357210 - Deep Breath Aura
+class spell_evo_deep_breath_aura : public AuraScript
+{
+	void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/) const
+	{
+		Unit* caster = GetCaster();
+		caster->m_Events.AddEventAtOffset([caster, this](){
+			caster->SendPlaySpellVisualKit(201121, 2, 50000);
+			started = true;
+		}, 750ms);
+	}
+
+	void ForcePeriodic(AuraEffect const* /*auraEff*/, bool& isPeriodic, int32& amplitude)
+	{
+		isPeriodic = true;
+		amplitude = 200;
+	}
+
+	void HandlePeriodic(AuraEffect const* /*aurEff*/)
+	{
+		if (started)
+			GetCaster()->CastSpell(GetCaster(), SPELL_EVOKER_DEEP_BREATH_EFFECT, CastSpellExtraArgsInit{
+				.TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR
+			});
+	}
+
+	void OnRemove(AuraEffect const * /*aurEff*/, AuraEffectHandleModes /*mode*/) const
+	{
+		GetCaster()->SendCancelSpellVisualKit(201121);
+		started = false;
+	}
+
+	void Register() override
+	{
+		OnEffectApply += AuraEffectApplyFn(spell_evo_deep_breath_aura::OnApply, EFFECT_2, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
+		DoEffectCalcPeriodic += AuraEffectCalcPeriodicFn(spell_evo_deep_breath_aura::ForcePeriodic, EFFECT_2, SPELL_AURA_ANY);
+		OnEffectPeriodic += AuraEffectPeriodicFn(spell_evo_deep_breath_aura::HandlePeriodic, EFFECT_2, SPELL_AURA_ANY);
+		AfterEffectRemove += AuraEffectRemoveFn(spell_evo_deep_breath_aura::OnRemove, EFFECT_2, SPELL_AURA_ANY, AURA_EFFECT_HANDLE_REAL);
+	}
+
+private:
+	mutable bool started = false;
 };
 
 // 355913 - Emerald Blossom (Green)
@@ -774,6 +860,7 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_causality_disintegrate);
     RegisterSpellScript(spell_evo_causality_pyre);
     RegisterSpellScript(spell_evo_charged_blast);
+	RegisterSpellAndAuraScriptPair(spell_evo_deep_breath, spell_evo_deep_breath_aura);
     RegisterAreaTriggerAI(at_evo_emerald_blossom);
     RegisterSpellScript(spell_evo_emerald_blossom_heal);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_azure_essence_burst", SPELL_EVOKER_AZURE_ESSENCE_BURST);
