@@ -331,11 +331,18 @@ class spell_evo_deep_breath_aura : public AuraScript
 {
 	void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/) const
 	{
-		Unit* caster = GetCaster();
+		Unit* caster = GetTarget();
 		caster->m_Events.AddEventAtOffset([caster, this](){
 			caster->SendPlaySpellVisualKit(201121, 2, 50000);
 			started = true;
 		}, 750ms);
+
+		if(caster->HasUnitState(UNIT_STATE_ROOT))
+			caster->ClearUnitState(UNIT_STATE_ROOT);
+			
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_STUN, true);
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FEAR, true);
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_ROOT, true);
 	}
 
 	void ForcePeriodic(AuraEffect const* /*auraEff*/, bool& isPeriodic, int32& amplitude)
@@ -354,7 +361,15 @@ class spell_evo_deep_breath_aura : public AuraScript
 
 	void OnRemove(AuraEffect const * /*aurEff*/, AuraEffectHandleModes /*mode*/) const
 	{
-		GetCaster()->SendCancelSpellVisualKit(201121);
+		Unit* caster = GetTarget();
+		caster->SendCancelSpellVisualKit(201121);
+
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_STUN, false);
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FEAR, false);
+		caster->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_ROOT, false);
+		caster->SetDisableGravity(false);
+		caster->SetCanFly(false);
+
 		started = false;
 	}
 
