@@ -747,6 +747,69 @@ class spell_evo_ruby_embers : public SpellScript
     }
 };
 
+// 369536 - Soar
+class spell_evo_soar : public SpellScript
+{
+    void HandleOnCast()
+    {
+        GetCaster()->GetMotionMaster()->MoveJump(EVENT_JUMP, Position(GetCaster()->GetPositionX(), GetCaster()->GetPositionY(), GetCaster()->GetPositionZ() + 30.0f), 20.0f, {}, 10.0f);
+    }
+
+    void HandleAfterCast()
+    {
+        GetCaster()->CastSpell(GetCaster(), 430747, TRIGGERED_FULL_MASK);
+    }
+
+    void Register() override
+    {
+        OnCast += SpellCastFn(spell_evo_soar::HandleOnCast);
+        AfterCast += SpellCastFn(spell_evo_soar::HandleAfterCast);
+    }
+};
+
+// 430747 - Soar aura
+class spell_evo_soar_aura : public AuraScript
+{
+private:
+	mutable bool _wasInFlight;
+
+	void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+	{
+		_wasInFlight = GetTarget()->IsFlying() || GetTarget()->IsFalling();
+	}
+
+    // SpellAuraInterruptFlags2::Ground ???
+    void ForcePeriodic(AuraEffect const* /*auraEff*/, bool& isPeriodic, int32& amplitude)
+    {
+        isPeriodic = true;
+        amplitude = 200;
+    }
+
+    void UpdateState(AuraEffect const* /*aurEff*/)
+    {
+		Unit* target = GetTarget();
+
+		bool inFlight = target->IsFlying() || target->IsFalling();
+		bool isOnGround = !inFlight && !target->IsInWater();
+
+        if (_wasInFlight && isOnGround)
+        {
+            target->RemoveAurasDueToSpell(430747);
+            target->RemoveAurasDueToSpell(369536);
+			return;
+        }
+		
+		_wasInFlight = inFlight;
+    }
+
+    void Register() override
+    {
+		OnEffectApply += AuraEffectApplyFn(spell_evo_soar_aura::OnApply, EFFECT_0, SPELL_AURA_MOUNTED, AURA_EFFECT_HANDLE_REAL);
+        DoEffectCalcPeriodic += AuraEffectCalcPeriodicFn(spell_evo_soar_aura::ForcePeriodic, EFFECT_0, SPELL_AURA_MOUNTED);
+        OnEffectPeriodic += AuraEffectPeriodicFn(spell_evo_soar_aura::UpdateState, EFFECT_0, SPELL_AURA_MOUNTED);
+    }
+};
+
 // 357209 Fire Breath (Red)
 class spell_evo_scouring_flame : public SpellScript
 {
@@ -890,6 +953,8 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_pyre);
     RegisterSpellScript(spell_evo_ruby_embers);
     RegisterSpellScript(spell_evo_scouring_flame);
+	RegisterSpellScript(spell_evo_soar);
+	RegisterSpellScript(spell_evo_soar_aura);
     RegisterSpellScript(spell_evo_snapfire);
     RegisterSpellScript(spell_evo_snapfire_bonus_damage);
     RegisterSpellScript(spell_evo_verdant_embrace);
