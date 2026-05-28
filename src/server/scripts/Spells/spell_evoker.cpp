@@ -64,8 +64,12 @@ enum EvokerSpells
     SPELL_EVOKER_EMERALD_BLOSSOM_HEAL           = 355916,
     SPELL_EVOKER_ENERGIZING_FLAME               = 400006,
     SPELL_EVOKER_ESSENCE_BURST                  = 359618,
+	SPELL_EVOKER_ETERNITY_SURGE					= 359073,
+	SPELL_EVOKER_IMPROVED_ETERNITY_SURGE		= 382411,
+	SPELL_EVOKER_ETERNITY_SURGE_DAMAGE			= 359077,
+	SPELL_EVOKER_ETERNITY_SURGE_LAUNCH			= 359090,
     SPELL_EVOKER_FIRESTORM_DAMAGE               = 369374,
-    SPELL_EVOKER_ETERNITY_SURGE                 = 359073,
+	SPELL_EVOKER_ETERNITYS_SPAN					= 375757,
     SPELL_EVOKER_FIRE_BREATH                    = 357208,
     SPELL_EVOKER_FIRE_BREATH_DAMAGE             = 357209,
     SPELL_EVOKER_GLIDE_KNOCKBACK                = 358736,
@@ -450,6 +454,98 @@ public:
     }
 
     uint32 _talentAuraId;
+};
+
+// 359073 Eternity Surge 3 stage version
+class spell_evo_eternity_surge : public SpellScript
+{
+public:
+
+	bool Validate(SpellInfo const* /*spellInfo*/) override
+	{
+		return ValidateSpellInfo({ SPELL_EVOKER_ETERNITY_SURGE_DAMAGE, SPELL_EVOKER_ETERNITYS_SPAN, SPELL_EVOKER_ETERNITY_SURGE_LAUNCH });
+	}
+
+	void OnComplete(int32 completedStageCount) const
+	{
+		Unit* caster = GetCaster();
+		Unit* primaryTarget = GetExplTargetUnit();
+
+		int32 totalHits = completedStageCount;
+		if (caster->HasAura(SPELL_EVOKER_ETERNITYS_SPAN))
+			totalHits *= 2;
+
+		caster->CastSpell(caster, SPELL_EVOKER_ETERNITY_SURGE_LAUNCH, 
+			CastSpellExtraArgs(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR)
+				.SetTriggeringSpell(GetSpell()));
+
+		caster->CastSpell(primaryTarget, SPELL_EVOKER_ETERNITY_SURGE_DAMAGE, CastSpellExtraArgs()
+			.SetTriggeringSpell(GetSpell())
+			.SetTriggerFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR)
+			.SetCustomArg(totalHits));
+	}
+
+	void Register() override
+	{
+		OnEmpowerCompleted += SpellOnEmpowerStageCompletedFn(spell_evo_eternity_surge::OnComplete);
+	}
+};
+
+// 382411 - Eternity Surge 4 stage version
+class spell_evo_improved_eternity_surge : public SpellScript
+{
+public:
+
+	bool Validate(SpellInfo const* /*spellInfo*/) override
+	{
+		return ValidateSpellInfo({ SPELL_EVOKER_ETERNITY_SURGE_DAMAGE, SPELL_EVOKER_ETERNITYS_SPAN, SPELL_EVOKER_ETERNITY_SURGE_LAUNCH });
+	}
+
+	void OnComplete(int32 completedStageCount) const
+	{
+		Unit* caster = GetCaster();
+		Unit* primaryTarget = GetExplTargetUnit();
+
+		int32 totalHits = completedStageCount;
+		if (caster->HasAura(SPELL_EVOKER_ETERNITYS_SPAN))
+			totalHits *= 2;
+
+		caster->CastSpell(caster, SPELL_EVOKER_ETERNITY_SURGE_LAUNCH, 
+			CastSpellExtraArgs(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR)
+				.SetTriggeringSpell(GetSpell()));
+
+		caster->CastSpell(primaryTarget, SPELL_EVOKER_ETERNITY_SURGE_DAMAGE, CastSpellExtraArgs()
+			.SetTriggeringSpell(GetSpell())
+			.SetTriggerFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR)
+			.SetCustomArg(totalHits));
+	}
+
+	void Register() override
+	{
+		OnEmpowerCompleted += SpellOnEmpowerStageCompletedFn(spell_evo_improved_eternity_surge::OnComplete);
+	}
+};
+
+// 359077 - Eternity Surge damage
+class spell_evo_eternity_surge_damage : public SpellScript
+{
+	void FilterChainTargets(std::list<WorldObject*>& targets) const
+	{
+		int32 const* totalHits = std::any_cast<int32>(&GetSpell()->m_customArg);
+		if (!totalHits || *totalHits <= 1)
+		{
+			targets.clear();
+			return;
+		}
+
+		if ((int32)targets.size() > *totalHits - 1)
+			Trinity::Containers::RandomResize(targets, uint32(*totalHits -1));
+	}
+
+	void Register() override
+	{
+		OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_evo_eternity_surge_damage::FilterChainTargets, EFFECT_1, TARGET_UNIT_TARGET_ENEMY);
+	}
 };
 
 // 357208 Fire Breath (Red)
@@ -958,6 +1054,9 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_emerald_blossom_heal);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_azure_essence_burst", SPELL_EVOKER_AZURE_ESSENCE_BURST);
     RegisterSpellScriptWithArgs(spell_evo_essence_burst_trigger, "spell_evo_ruby_essence_burst", SPELL_EVOKER_RUBY_ESSENCE_BURST);
+	RegisterSpellScript(spell_evo_eternity_surge);
+	RegisterSpellScript(spell_evo_improved_eternity_surge);
+	RegisterSpellScript(spell_evo_eternity_surge_damage);
     RegisterAreaTriggerAI(at_evo_firestorm);
     RegisterSpellScript(spell_evo_fire_breath);
     RegisterSpellScript(spell_evo_fire_breath_damage);
