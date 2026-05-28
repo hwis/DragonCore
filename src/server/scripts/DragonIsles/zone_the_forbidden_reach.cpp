@@ -180,6 +180,55 @@ struct at_dracthyr_stasis_feedback : AreaTriggerAI
     }
 };
 
+enum EvokerSpecSelection
+{
+    // Spells
+    SPELL_FORCE_DEVASTATION_SPEC    = 367960,
+    SPELL_FORCE_PRESERVATION_SPEC   = 367959,
+    SPELL_FORCE_AUGMENTATION_SPEC   = 413420,
+
+    // Playerchoice
+    PLAYER_CHOICE_RESPONSE_CHOOSE_DEVASTATION_SPEC = 3352,
+    PLAYER_CHOICE_RESPONSE_CHOOSE_PRESERVATION_SPEC = 3353,
+    PLAYER_CHOICE_RESPONSE_CHOOSE_AUGMENTATION_SPEC = 3500,
+};
+
+// 688 - Playerchoice
+class playerchoice_evoker_spec_selection : public PlayerChoiceScript
+{
+public:
+    playerchoice_evoker_spec_selection() : PlayerChoiceScript("playerchoice_evoker_spec_selection") { }
+
+    void OnResponse(WorldObject* /*object*/, Player* player, PlayerChoice const* /*choice*/, PlayerChoiceResponse const* response, uint16 /*clientIdentifier*/) override
+    {
+		uint32 spellId = 0;
+        uint32 specId = 0;
+        
+        switch (response->ResponseId)
+        {
+            case PLAYER_CHOICE_RESPONSE_CHOOSE_DEVASTATION_SPEC:
+                spellId = SPELL_FORCE_DEVASTATION_SPEC;
+                specId = 1467;
+                break;
+            case PLAYER_CHOICE_RESPONSE_CHOOSE_PRESERVATION_SPEC:
+                spellId = SPELL_FORCE_PRESERVATION_SPEC;
+                specId = 1468;
+                break;
+            case PLAYER_CHOICE_RESPONSE_CHOOSE_AUGMENTATION_SPEC:
+                spellId = SPELL_FORCE_AUGMENTATION_SPEC;
+                specId = 1473;
+                break;
+            default:
+                return;
+        }
+        
+        player->CastSpell(player, spellId, CastSpellExtraArgsInit{ .TriggerFlags = TRIGGERED_FULL_MASK });
+		player->LearnSpell(218386, false); // Allow spec selection
+        if (ChrSpecializationEntry const* spec = sChrSpecializationStore.AssertEntry(specId))
+            player->ActivateTalentGroup(spec);
+    }
+};
+
 void AddSC_zone_the_forbidden_reach()
 {
     RegisterSpellScript(spell_dracthyr_login);
@@ -187,4 +236,7 @@ void AddSC_zone_the_forbidden_reach()
     RegisterSpellScript(spell_dracthyr_summon_dervishian);
     new quest_awaken_dracthyr();
     RegisterAreaTriggerAI(at_dracthyr_stasis_feedback);
+	
+	// Playerchoice
+	new playerchoice_evoker_spec_selection();
 }
