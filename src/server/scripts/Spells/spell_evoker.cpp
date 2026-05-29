@@ -38,6 +38,7 @@
 enum EvokerSpells
 {
     SPELL_EVOKER_AZURE_ESSENCE_BURST            = 375721,
+	SPELL_EVOKER_ALTERED_FORM				 	= 97709,
     SPELL_EVOKER_BLAST_FURNACE                  = 375510,
     SPELL_EVOKER_BLESSING_OF_THE_BRONZE_DK      = 381732,
     SPELL_EVOKER_BLESSING_OF_THE_BRONZE_DH      = 381741,
@@ -87,7 +88,8 @@ enum EvokerSpells
     SPELL_EVOKER_SNAPFIRE                       = 370818,
     SPELL_EVOKER_SOAR_RACIAL                    = 369536,
     SPELL_EVOKER_VERDANT_EMBRACE_HEAL           = 361195,
-    SPELL_EVOKER_VERDANT_EMBRACE_JUMP           = 373514
+    SPELL_EVOKER_VERDANT_EMBRACE_JUMP           = 373514,
+	SPELL_EVOKER_VISAGE_REGEN_AURA				= 372014,
 };
 
 enum EvokerSpellLabels
@@ -1040,6 +1042,37 @@ class spell_evo_verdant_embrace_trigger_heal : public SpellScript
     }
 };
 
+// 351239 - Visage (Racial)
+class spell_evo_visage : public SpellScript
+{
+    static constexpr uint32 DISPLAYID_VISAGE_NORMAL   = 104597; 
+    static constexpr uint32 DISPLAYID_VISAGE_ALTERED  = 108590; 
+
+    void HandleTransform(SpellEffIndex /*effIndex*/) const
+    {
+        Unit* caster = GetCaster();
+        
+        uint32 targetDisplayId = caster->HasAura(SPELL_EVOKER_VISAGE_REGEN_AURA) 
+            ? DISPLAYID_VISAGE_ALTERED   
+            : DISPLAYID_VISAGE_NORMAL;
+        
+        caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE_REGEN_AURA);
+        caster->RemoveAurasDueToSpell(SPELL_EVOKER_ALTERED_FORM);
+        
+        uint32 targetSpell = (targetDisplayId == DISPLAYID_VISAGE_ALTERED) 
+            ? SPELL_EVOKER_ALTERED_FORM 
+            : SPELL_EVOKER_VISAGE_REGEN_AURA;
+        
+        caster->CastSpell(caster, targetSpell, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+        caster->SetDisplayId(targetDisplayId, false);
+    }
+    
+    void Register() override
+    {
+        OnEffectHitTarget += SpellEffectFn(spell_evo_visage::HandleTransform, EFFECT_0, SPELL_EFFECT_REMOVE_AURA_BY_SPELL_LABEL);
+    }
+};
+
 void AddSC_evoker_spell_scripts()
 {
     RegisterSpellScript(spell_evo_azure_strike);
@@ -1073,4 +1106,5 @@ void AddSC_evoker_spell_scripts()
     RegisterSpellScript(spell_evo_snapfire_bonus_damage);
     RegisterSpellScript(spell_evo_verdant_embrace);
     RegisterSpellScript(spell_evo_verdant_embrace_trigger_heal);
+	RegisterSpellScript(spell_evo_visage);
 }
