@@ -302,6 +302,16 @@ class spell_evo_deep_breath : public SpellScript
 	{
 		return ValidateSpellInfo({ SPELL_EVOKER_DEEP_BREATH, SPELL_EVOKER_DEEP_BREATH_EFFECT });
 	}
+	
+	void OnPrecast() override
+	{
+		Unit* caster = GetCaster();
+		if (caster->GetDisplayId() == 104597 && !caster->HasAura(SPELL_EVOKER_ALTERED_FORM))
+		{
+			caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE_REGEN_AURA);
+			caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, TRIGGERED_FULL_MASK);
+		}
+	}
 
 	void HandleDummy(SpellEffIndex /*effIndex*/) const
 	{
