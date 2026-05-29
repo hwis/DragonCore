@@ -74,7 +74,7 @@ class spell_af_surge_forward : public SpellScript
 {
     SpellCastResult CheckCast()
     {
-        if (GetCaster()->IsFlying())
+        if (!GetCaster()->IsFlying())
             return SPELL_FAILED_NOT_ON_GROUND;
 
         return SPELL_CAST_OK;
