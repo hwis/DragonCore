@@ -863,9 +863,20 @@ class spell_evo_ruby_embers : public SpellScript
 // 369536 - Soar
 class spell_evo_soar : public SpellScript
 {
+	void OnPrecast() override
+	{
+		Unit* caster = GetCaster();
+		if (caster->GetDisplayId() == 104597 && !caster->HasAura(SPELL_EVOKER_ALTERED_FORM))
+		{
+			caster->RemoveAurasDueToSpell(SPELL_EVOKER_VISAGE_REGEN_AURA);
+			caster->CastSpell(caster, SPELL_EVOKER_ALTERED_FORM, TRIGGERED_FULL_MASK);
+		}
+	}
+
     void HandleOnCast()
     {
-        GetCaster()->GetMotionMaster()->MoveJump(EVENT_JUMP, Position(GetCaster()->GetPositionX(), GetCaster()->GetPositionY(), GetCaster()->GetPositionZ() + 30.0f), 20.0f, {}, 10.0f);
+		Unit* caster = GetCaster();
+        caster->GetMotionMaster()->MoveJump(EVENT_JUMP, Position(caster->GetPositionX(), caster->GetPositionY(), caster->GetPositionZ() + 30.0f), 20.0f, {}, 10.0f);
     }
 
     void HandleAfterCast()
