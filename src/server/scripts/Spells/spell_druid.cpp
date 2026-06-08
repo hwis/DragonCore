@@ -108,6 +108,8 @@ enum DruidSpells
     SPELL_DRUID_INNERVATE_RANK_2               = 326228,
     SPELL_DRUID_INFUSION                       = 37238,
     SPELL_DRUID_LANGUISH                       = 71023,
+	SPELL_DRUID_LIFEBLOOM					   = 33763,
+	SPELL_DRUID_LIFEBLOOM_2T				   = 188550,
     SPELL_DRUID_LIFEBLOOM_FINAL_HEAL           = 33778,
     SPELL_DRUID_LUNAR_BEAM_HEAL                = 204069,
     SPELL_DRUID_LUNAR_BEAM_DAMAGE              = 414613,
@@ -122,6 +124,8 @@ enum DruidSpells
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
     SPELL_DRUID_PROWL                          = 5215,
+	SPELL_DRUID_REFORESTATION				   = 392356,
+	SPELL_DRUID_REFORESTATION_AURA			   = 392360,
     SPELL_DRUID_REGROWTH                       = 8936,
     SPELL_DRUID_REJUVENATION                   = 774,
     SPELL_DRUID_REJUVENATION_GERMINATION       = 155777,
@@ -135,6 +139,10 @@ enum DruidSpells
     SPELL_DRUID_SPRING_BLOSSOMS                = 207385,
     SPELL_DRUID_SPRING_BLOSSOMS_HEAL           = 207386,
     SPELL_DRUID_STAR_BURST                     = 356474,
+	SPELL_DRUID_SOUL_OF_THE_FOREST			   = 158478,
+	SPELL_DRUID_SOUL_OF_THE_FOREST_AURA		   = 114108,
+	SPELL_DRUID_SWIFTMEND					   = 18562,
+	SPELL_DRUID_VERDANT_INFUSION			   = 392410,
     SPELL_DRUID_SUNFIRE_DAMAGE                 = 164815,
     SPELL_DRUID_SURVIVAL_INSTINCTS             = 50322,
     SPELL_DRUID_TRAVEL_FORM                    = 783,
@@ -142,6 +150,7 @@ enum DruidSpells
     SPELL_DRUID_THRASH_BEAR                    = 77758,
     SPELL_DRUID_THRASH_BEAR_AURA               = 192090,
     SPELL_DRUID_THRASH_CAT                     = 106830,
+	SPELL_DRUID_WILD_GROWTH					   = 48438,
     SPELL_DRUID_UMBRAL_EMBRACE                 = 393763,
     SPELL_DRUID_UMBRAL_INSPIRATION_TALENT      = 450418,
     SPELL_DRUID_UMBRAL_INSPIRATION_AURA        = 450419,
@@ -1977,6 +1986,73 @@ class spell_dru_swift_flight_passive : public AuraScript
     }
 };
 
+//  18562 - Swiftmend
+class spell_dru_swiftmend : public SpellScript
+{
+	static constexpr std::array<uint32, 5> hot_auras = { SPELL_DRUID_REJUVENATION, SPELL_DRUID_REGROWTH, SPELL_DRUID_WILD_GROWTH, SPELL_DRUID_LIFEBLOOM, SPELL_DRUID_LIFEBLOOM_2T };	
+	static constexpr std::array<uint32, 3> rmSpells = { SPELL_DRUID_REJUVENATION, SPELL_DRUID_REGROWTH, SPELL_DRUID_WILD_GROWTH };
+
+	void HandleDummy(SpellEffIndex /*effIndex*/)
+	{
+		Unit* caster = GetCaster();
+		Unit* target = GetHitUnit();
+
+		if (caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST))
+			caster->CastSpell(caster, SPELL_DRUID_SOUL_OF_THE_FOREST_AURA, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+
+		if (caster->HasAura(SPELL_DRUID_VERDANT_INFUSION))
+		{
+			for (uint32 spellId : hot_auras)
+			{
+				if (Aura* aura = target->GetAura(spellId))
+					aura->SetDuration(aura->GetDuration() + 8000, true);
+			}
+		}
+		else
+		{
+			for (uint32 spellId : rmSpells)
+			{
+				if (caster->HasAura(spellId))
+				{
+					caster->RemoveAurasDueToSpell(spellId);
+					break;
+				}
+			}
+		}
+
+		if (caster->HasAura(SPELL_DRUID_REFORESTATION))
+		{
+			caster->CastSpell(caster, SPELL_DRUID_REFORESTATION_AURA, TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR);
+
+			if (Aura* Reforestation = caster->GetAura(SPELL_DRUID_REFORESTATION_AURA))
+			{
+				static uint32 amount = Reforestation->GetStackAmount();
+				Reforestation->SetStackAmount(amount++);
+
+				if (Reforestation->GetStackAmount() > 3)
+				{
+					caster->CastSpell(caster, SPELL_DRUID_INCARNATION_TREE_OF_LIFE, CastSpellExtraArgs()
+						.SetTriggeringSpell(GetSpell())
+						.SetTriggerFlags(TRIGGERED_FULL_MASK));
+
+					amount = 0;
+						
+					caster->RemoveAurasDueToSpell(SPELL_DRUID_REFORESTATION_AURA);
+
+					if (Aura* tree = caster->GetAura(SPELL_DRUID_INCARNATION))
+						tree->SetDuration(10000);
+							
+				}
+			}			
+		}
+	}
+
+	void Register() override
+	{
+		OnEffectHitTarget += SpellEffectFn(spell_dru_swiftmend::HandleDummy, EFFECT_0, SPELL_EFFECT_HEAL);
+	}
+};
+
 // 28744 - Regrowth
 class spell_dru_t3_6p_bonus : public AuraScript
 {
@@ -2651,6 +2727,7 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_sunfire);
     RegisterSpellScript(spell_dru_survival_instincts);
     RegisterSpellScript(spell_dru_swift_flight_passive);
+	RegisterSpellScript(spell_dru_swiftmend);
     RegisterSpellScript(spell_dru_t3_6p_bonus);
     RegisterSpellScript(spell_dru_t3_8p_bonus);
     RegisterSpellScript(spell_dru_t4_2p_bonus);
