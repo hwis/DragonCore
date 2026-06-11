@@ -79,6 +79,7 @@ enum DruidSpells
     SPELL_DRUID_EMBRACE_OF_THE_DREAM_HEAL      = 392147,
     SPELL_DRUID_ENTANGLING_ROOTS               = 339,
     SPELL_DRUID_EXHILARATE                     = 28742,
+	SPELL_DRUID_FEROCIOUS_BITE				   = 22568,
     SPELL_DRUID_FORM_AQUATIC_PASSIVE           = 276012,
     SPELL_DRUID_FORM_AQUATIC                   = 1066,
     SPELL_DRUID_FORM_FLIGHT                    = 33943,
@@ -114,6 +115,7 @@ enum DruidSpells
     SPELL_DRUID_LUNAR_BEAM_HEAL                = 204069,
     SPELL_DRUID_LUNAR_BEAM_DAMAGE              = 414613,
     SPELL_DRUID_LUNAR_INSPIRATION_OVERRIDE     = 155627,
+	SPELL_DRUID_MAIM						   = 22570,
     SPELL_DRUID_MAIM_STUN                      = 203123,
     SPELL_DRUID_MANGLE                         = 33917,
     SPELL_DRUID_MANGLE_TALENT                  = 231064,
@@ -123,6 +125,8 @@ enum DruidSpells
     SPELL_DRUID_NEW_MOON                       = 274281,
     SPELL_DRUID_NEW_MOON_OVERRIDE              = 274295,
     SPELL_DRUID_POWER_OF_THE_ARCHDRUID         = 392302,
+	SPELL_DRUID_PREDATORY_SWIFTNESS			   = 16974,
+	SPELL_DRUID_PREDATORY_SWIFTNESS_AURA	   = 69369,
     SPELL_DRUID_PROWL                          = 5215,
 	SPELL_DRUID_REFORESTATION				   = 392356,
 	SPELL_DRUID_REFORESTATION_AURA			   = 392360,
@@ -131,6 +135,7 @@ enum DruidSpells
     SPELL_DRUID_REJUVENATION_GERMINATION       = 155777,
     SPELL_DRUID_REJUVENATION_T10_PROC          = 70691,
     SPELL_DRUID_RESTORATION_T10_2P_BONUS       = 70658,
+	SPELL_DRUID_RIP							   = 1079,
     SPELL_DRUID_SAVAGE_ROAR                    = 62071,
     SPELL_DRUID_SHOOTING_STARS                 = 202342,
     SPELL_DRUID_SHOOTING_STARS_DAMAGE          = 202497,
@@ -1660,6 +1665,33 @@ class spell_dru_power_of_the_archdruid : public AuraScript
     }
 };
 
+// Called by 22568 - Ferocious Bite
+class spell_dru_predatory_swiftness_trigger : public SpellScript
+{
+public:
+	explicit spell_dru_predatory_swiftness_trigger(uint32 SpellId) : _spellId(SpellId) { }
+
+	bool Load() override
+	{
+		return GetCaster()->HasAura(SPELL_DRUID_PREDATORY_SWIFTNESS) && roll_chance_i(20 * GetCaster()->GetPower(POWER_COMBO_POINTS));
+	}
+
+	void HandlePredatorySwiftnessProc() const
+	{
+		GetCaster()->CastSpell(GetCaster(), SPELL_DRUID_PREDATORY_SWIFTNESS_AURA, CastSpellExtraArgsInit{
+			.TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR,
+			.TriggeringSpell = GetSpell()
+		});
+	}
+
+	void Register() override
+	{
+		AfterCast += SpellCastFn(spell_dru_predatory_swiftness_trigger::HandlePredatorySwiftnessProc);
+	}
+
+	uint32 _spellId;
+};
+
 // 5215 - Prowl
 class spell_dru_prowl : public spell_dru_base_transformer
 {
@@ -2714,6 +2746,9 @@ void AddSC_druid_spell_scripts()
     RegisterSpellScript(spell_dru_omen_of_clarity);
     RegisterSpellScript(spell_dru_omen_of_clarity_restoration);
     RegisterSpellScript(spell_dru_power_of_the_archdruid);
+	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_ferocious_bite_proc", SPELL_DRUID_FEROCIOUS_BITE);
+	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_maim_proc", SPELL_DRUID_MAIM);
+	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_rip_proc", SPELL_DRUID_RIP);
     RegisterSpellScript(spell_dru_prowl);
     RegisterSpellScript(spell_dru_rip);
     RegisterSpellAndAuraScriptPair(spell_dru_savage_roar, spell_dru_savage_roar_aura);
