@@ -128,6 +128,8 @@ enum DruidSpells
 	SPELL_DRUID_PREDATORY_SWIFTNESS			   = 16974,
 	SPELL_DRUID_PREDATORY_SWIFTNESS_AURA	   = 69369,
     SPELL_DRUID_PROWL                          = 5215,
+	SPELL_DRUID_RAKE						   = 1822,
+	SPELL_DRUID_RAKE_STUN					   = 163505,
 	SPELL_DRUID_REFORESTATION				   = 392356,
 	SPELL_DRUID_REFORESTATION_AURA			   = 392360,
     SPELL_DRUID_REGROWTH                       = 8936,
@@ -1699,6 +1701,54 @@ protected:
     bool ToCatForm() const override { return true; }
 };
 
+// 1822 - Rake
+class spell_dru_rake : public SpellScript
+{
+public:
+
+	bool Validate(SpellInfo const* spellInfo) override
+	{
+		return ValidateSpellInfo({  SPELL_DRUID_RAKE_STUN })
+			&& ValidateSpellEffect({  {  spellInfo->Id, EFFECT_3 } });
+	}
+
+	bool Load() override
+	{
+		Unit* caster = GetCaster();
+		if (caster->HasAuraType(SPELL_AURA_MOD_STEALTH) && (caster->HasAura(405834) || caster->HasAura(231052)))
+		{
+			_stealthed = true;
+			return true;
+		}
+
+		return false;
+	}
+
+	void CalculateDamage(SpellEffectInfo const& /*spellEffectInfo*/, Unit* /*victim*/, int32& /*damage*/, int32& /*flatMod*/, float& pctMod) const
+	{
+		if(_stealthed)
+			AddPct(pctMod, GetEffectInfo(EFFECT_3).CalcValue(GetCaster()));
+	}
+
+	void HandleHit(SpellEffIndex /*effIndex*/) const
+	{
+		if (_stealthed)
+			GetCaster()->CastSpell(GetHitUnit(), SPELL_DRUID_RAKE_STUN, CastSpellExtraArgsInit{
+				.TriggerFlags = TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR,
+				.TriggeringSpell = GetSpell()
+			});
+	}
+
+	void Register() override
+	{
+		CalcDamage += SpellCalcDamageFn(spell_dru_rake::CalculateDamage);
+		OnEffectHitTarget += SpellEffectFn(spell_dru_rake::HandleHit, EFFECT_0, SPELL_EFFECT_SCHOOL_DAMAGE);
+	}
+
+private:
+	bool _stealthed = false;
+};
+
 // 1079 - Rip
 class spell_dru_rip : public AuraScript
 {
@@ -2750,6 +2800,7 @@ void AddSC_druid_spell_scripts()
 	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_maim_proc", SPELL_DRUID_MAIM);
 	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_rip_proc", SPELL_DRUID_RIP);
     RegisterSpellScript(spell_dru_prowl);
+	RegisterSpellScript(spell_dru_rake);
     RegisterSpellScript(spell_dru_rip);
     RegisterSpellAndAuraScriptPair(spell_dru_savage_roar, spell_dru_savage_roar_aura);
     RegisterSpellScript(spell_dru_shooting_stars);
