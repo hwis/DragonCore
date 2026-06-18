@@ -2135,6 +2135,26 @@ class spell_dru_swiftmend : public SpellScript
 	}
 };
 
+// 8936 - Regrowth
+class spell_dru_regrowth : public SpellScript
+{
+	void HandleHealEffect(SpellEffIndex /*effIndex*/) const
+	{
+		Unit* caster = GetCaster();
+
+		if (caster->HasAura(SPELL_DRUID_SOUL_OF_THE_FOREST_AURA))
+			caster->RemoveAurasDueToSpell(SPELL_DRUID_SOUL_OF_THE_FOREST_AURA);
+
+		if (caster->HasAura(SPELL_DRUID_PREDATORY_SWIFTNESS_AURA))
+			caster->RemoveAurasDueToSpell(SPELL_DRUID_PREDATORY_SWIFTNESS_AURA);
+	}
+
+	void Register() override
+	{
+		OnEffectHitTarget += SpellEffectFn(spell_dru_regrowth::HandleHealEffect, EFFECT_0, SPELL_EFFECT_HEAL);
+	}
+};
+
 // 28744 - Regrowth
 class spell_dru_t3_6p_bonus : public AuraScript
 {
@@ -2801,6 +2821,7 @@ void AddSC_druid_spell_scripts()
 	RegisterSpellScriptWithArgs(spell_dru_predatory_swiftness_trigger, "spell_dru_rip_proc", SPELL_DRUID_RIP);
     RegisterSpellScript(spell_dru_prowl);
 	RegisterSpellScript(spell_dru_rake);
+	RegisterSpellScript(spell_dru_regrowth);
     RegisterSpellScript(spell_dru_rip);
     RegisterSpellAndAuraScriptPair(spell_dru_savage_roar, spell_dru_savage_roar_aura);
     RegisterSpellScript(spell_dru_shooting_stars);
