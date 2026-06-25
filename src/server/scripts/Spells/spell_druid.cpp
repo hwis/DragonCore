@@ -2408,6 +2408,24 @@ class spell_dru_travel_form : public AuraScript
         return GetCaster()->GetTypeId() == TYPEID_PLAYER;
     }
 
+	void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+	{
+		Player* player = GetTarget()->ToPlayer();
+		if ((m_scriptSpellId == SPELL_DRUID_FORM_FLIGHT || m_scriptSpellId == SPELL_DRUID_FORM_SWIFT_FLIGHT) && player->HasAura(404464))
+		{
+			player->SetCanFly(true);
+			player->SetCanAdvFly(true);
+			player->SetCanDoubleJump(true);
+			player->SetFlightCapabilityID(1, true);
+			if (!player->HasAura(372773))
+				player->CastSpell(player, 372773, true);
+		}
+		else
+		{
+			player->SetCanAdvFly(false);
+		}
+	}
+
     void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         // If it stays 0, it removes Travel Form dummy in AfterRemove.
@@ -2432,6 +2450,16 @@ class spell_dru_travel_form : public AuraScript
 
         Player* player = GetTarget()->ToPlayer();
 
+		if (m_scriptSpellId == SPELL_DRUID_FORM_FLIGHT || m_scriptSpellId == SPELL_DRUID_FORM_SWIFT_FLIGHT)
+		{
+			player->SetCanFly(false);
+			player->SetCanAdvFly(false);
+			player->SetCanDoubleJump(false);
+			player->SetFlightCapabilityID(0, true);
+			player->RemoveUnitFlag(UNIT_FLAG_MOUNT);
+			player->RemoveAura(372773);
+		}
+
         if (triggeredSpellId) // Apply new form
             player->CastSpell(player, triggeredSpellId, aurEff);
         else // If not set, simply remove Travel Form dummy
@@ -2440,6 +2468,7 @@ class spell_dru_travel_form : public AuraScript
 
     void Register() override
     {
+		OnEffectApply += AuraEffectApplyFn(spell_dru_travel_form::OnApply, EFFECT_0, SPELL_AURA_MOD_SHAPESHIFT, AURA_EFFECT_HANDLE_REAL);
         OnEffectRemove += AuraEffectRemoveFn(spell_dru_travel_form::OnRemove, EFFECT_0, SPELL_AURA_MOD_SHAPESHIFT, AURA_EFFECT_HANDLE_REAL);
         AfterEffectRemove += AuraEffectRemoveFn(spell_dru_travel_form::AfterRemove, EFFECT_0, SPELL_AURA_MOD_SHAPESHIFT, AURA_EFFECT_HANDLE_REAL);
     }
@@ -2520,10 +2549,37 @@ class spell_dru_travel_form_dummy_aura : public AuraScript
         uint32 triggeredSpellId = spell_dru_travel_form::GetFormSpellId(player, GetCastDifficulty(), false);
 
         player->CastSpell(player, triggeredSpellId, aurEff);
+
+		if ((triggeredSpellId == SPELL_DRUID_FORM_FLIGHT || triggeredSpellId == SPELL_DRUID_FORM_SWIFT_FLIGHT) && player->HasAura(404464))
+		{
+			player->SetUnitFlag(UNIT_FLAG_MOUNT);
+			player->SetCanFly(true);
+			player->SetCanAdvFly(true);
+			player->SetCanDoubleJump(true);
+			player->SetFlightCapabilityID(1, true);
+			if (!player->HasAura(372773))
+				player->CastSpell(player, 372773, true);
+		}
+		else
+		{
+			player->SetCanAdvFly(false);
+		}
     }
 
     void AfterRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
+		Player* player = GetTarget()->ToPlayer();
+
+		if (player->HasAura(404464))
+		{
+			player->RemoveUnitFlag(UNIT_FLAG_MOUNT);
+			player->SetCanFly(false);
+			player->SetCanAdvFly(false);
+			player->SetCanDoubleJump(false);
+			player->SetFlightCapabilityID(0, true);
+			player->RemoveAura(372773);
+		}
+
         // No need to check remove mode, it's safe for auras to remove each other in AfterRemove hook.
         GetTarget()->RemoveAura(SPELL_DRUID_FORM_STAG);
         GetTarget()->RemoveAura(SPELL_DRUID_FORM_AQUATIC);
