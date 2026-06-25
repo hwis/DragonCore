@@ -447,11 +447,16 @@ class spell_monk_roll : public SpellScript
         return SPELL_CAST_OK;
     }
 
-    void HandleDummy(SpellEffIndex /*effIndex*/)
+    void HandleDummy(SpellEffIndex /*effIndex*/) const
     {
-        GetCaster()->CastSpell(GetCaster(), GetCaster()->HasUnitMovementFlag(MOVEMENTFLAG_BACKWARD) ? SPELL_MONK_ROLL_BACKWARD : SPELL_MONK_ROLL_FORWARD,
-            TRIGGERED_IGNORE_CAST_IN_PROGRESS);
-        GetCaster()->CastSpell(GetCaster(), SPELL_MONK_NO_FEATHER_FALL, true);
+		CastSpellExtraArgs args;
+		args.TriggerFlags = TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD | TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR;
+		args.TriggeringSpell = GetSpell();
+
+		Unit* caster = GetCaster();
+
+        caster->CastSpell(caster, caster->HasUnitMovementFlag(MOVEMENTFLAG_BACKWARD) ? SPELL_MONK_ROLL_BACKWARD : SPELL_MONK_ROLL_FORWARD, args);
+        caster->CastSpell(caster, SPELL_MONK_NO_FEATHER_FALL, args);
     }
 
     void Register() override
