@@ -213,6 +213,25 @@ class spell_monk_jade_walk : public AuraScript
     }
 };
 
+// 124682 - Enveloping Mist
+class spell_monk_enveloping_mist : public SpellScript
+{
+	void OnPrecast() override
+	{
+		if(GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL) && GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->GetSpellInfo()->Id == SPELL_MONK_SOOTHING_MIST)
+		{
+			TriggerCastFlags castFlags = TriggerCastFlags(GetSpell()->GetTriggeredCastFlags() | TRIGGERED_CAST_DIRECTLY);
+			GetSpell()->SetTriggerCastFlags(castFlags);
+			SpellCastTargets targets = GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->m_targets;
+			GetSpell()->InitExplicitTargets(targets);
+		}
+	}
+
+	void Register() override
+	{
+	}
+};
+
 // 116849 - Life Cocoon
 class spell_monk_life_cocoon : public SpellScript
 {
@@ -801,6 +820,7 @@ void AddSC_monk_spell_scripts()
     RegisterSpellScript(spell_monk_burst_of_life_heal);
     RegisterSpellScript(spell_monk_crackling_jade_lightning);
     RegisterSpellScript(spell_monk_crackling_jade_lightning_knockback_proc_aura);
+	RegisterSpellScript(spell_monk_enveloping_mist);
     RegisterSpellScript(spell_monk_jade_walk);
     RegisterSpellScript(spell_monk_life_cocoon);
     RegisterSpellScript(spell_monk_mists_of_life);
