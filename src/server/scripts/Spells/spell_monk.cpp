@@ -814,6 +814,25 @@ class spell_monk_tigers_lust : public SpellScript
     }
 };
 
+// 116670 - Vivify
+class spell_monk_vivify : public SpellScript
+{
+	void OnPrecast() override
+	{
+		if(GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL) && GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->GetSpellInfo()->Id == SPELL_MONK_SOOTHING_MIST)
+		{
+			TriggerCastFlags castFlags = TriggerCastFlags(GetSpell()->GetTriggeredCastFlags() | TRIGGERED_CAST_DIRECTLY);
+			GetSpell()->SetTriggerCastFlags(castFlags);
+			SpellCastTargets targets = GetCaster()->GetCurrentSpell(CURRENT_CHANNELED_SPELL)->m_targets;
+			GetSpell()->InitExplicitTargets(targets);
+		}
+	}
+
+	void Register() override
+	{
+	}
+};
+
 void AddSC_monk_spell_scripts()
 {
     RegisterSpellScript(spell_monk_burst_of_life);
@@ -838,4 +857,5 @@ void AddSC_monk_spell_scripts()
     RegisterSpellScript(spell_monk_stagger_damage_aura);
     RegisterSpellScript(spell_monk_stagger_debuff_aura);
     RegisterSpellScript(spell_monk_tigers_lust);
+	RegisterSpellScript(spell_monk_vivify);
 }
