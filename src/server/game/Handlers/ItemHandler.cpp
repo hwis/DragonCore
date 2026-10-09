@@ -1375,3 +1375,36 @@ void WorldSession::HandleSellAllJunkItems(WorldPackets::Item::SellAllJunkItems& 
         _player->AddItemToBuyBackSlot(item);
     }
 }
+
+void WorldSession::HandlePerformItemInteraction(WorldPackets::Item::PerformItemInteraction& performItemInteraction)
+{
+    if (!_player->GetNPCIfCanInteractWith(performItemInteraction.Banker, UNIT_NPC_FLAG_NONE, UNIT_NPC_FLAG_2_NONE))
+        return;
+
+    Item* item = _player->GetItemByGuid(performItemInteraction.ItemGuid);
+    if (!item)
+        return;
+
+    // TODO: Implement specific item interaction logic based on InteractionID
+    // For now, acknowledge the interaction
+    WorldPackets::Item::ItemInteractionComplete result;
+    result.InteractionID = performItemInteraction.InteractionID;
+    SendPacket(result.Write());
+}
+
+void WorldSession::HandleConvertItemToBindToAccount(WorldPackets::Item::ConvertItemToBindToAccount& convertItemToBindToAccount)
+{
+    Item* item = _player->GetItemByGuid(convertItemToBindToAccount.ItemGuid);
+    if (!item)
+        return;
+
+    if (!item->IsSoulBound())
+        return;
+
+    // TODO: Implement actual BOA conversion logic (requires reagent validation, currency cost, etc.)
+    // For now, just send the item changed notification
+    WorldPackets::Item::ItemChanged itemChanged;
+    itemChanged.ItemGuid = item->GetGUID();
+    itemChanged.ChangeType = 0;
+    SendPacket(itemChanged.Write());
+}
